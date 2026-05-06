@@ -1,0 +1,71 @@
+{
+  "theme": {
+    "id": "tech-signal",
+    "name": "Tech Signal",
+    "role": "universal_ai_tech_article_video_template",
+    "version": "1.0.0",
+    "description": "科技风视频主题包 — 适用 AI/开源/技术产品类文章转视频"
+  },
+  "mood": {
+    "keywords": ["futuristic","precise","AI-native","data-driven","clean interface","high-end tech"],
+    "avoid": ["cheap cyberpunk neon","over-glitch","gaming UI","too many random HUD elements","plastic 3D"]
+  },
+  "colors": {
+    "background_deep": "#05070A",
+    "background_panel": "#0B1118",
+    "background_soft": "#101820",
+    "text_primary": "#EAF2FF",
+    "text_secondary": "#8FA3B8",
+    "text_muted": "#536476",
+    "accent_cyan": "#00D5FF",
+    "accent_blue": "#3A7BFF",
+    "accent_violet": "#7A5CFF",
+    "accent_green": "#22E6A8",
+    "brand_orange": "#FF6A00",
+    "brand_bone": "#F2E9D8"
+  },
+  "background_presets": [
+    {"id":"bg_dark_grid","name":"Dark Grid","usage":"通用科技 / 工具介绍 / 信息密集","components":["dark gradient","low opacity grid","small scanning line"]},
+    {"id":"bg_data_stream","name":"Data Stream","usage":"AI Agent / Memory / 自动化 / 模型","components":["flowing data lines","small node particles","subtle depth blur"]},
+    {"id":"bg_hud_panels","name":"HUD Panels","usage":"版本更新 / 技术拆解 / Dashboard 类内容","components":["transparent interface panels","thin borders","micro labels","progress bars"]},
+    {"id":"bg_neural_map","name":"Neural Map","usage":"向量 / 记忆 / Embedding / Agent 关系","components":["node graph","connection lines","slow pulsing dots"]},
+    {"id":"bg_terminal_glow","name":"Terminal Glow","usage":"Debug / Issue Fix / 日志分析","components":["terminal line texture","soft green/cyan glow","code block shadows"]},
+    {"id":"bg_blueprint","name":"Blueprint","usage":"系统架构 / 工作流 / 产品结构","components":["blueprint grid","technical line drawings","axis labels"]}
+  ],
+  "card_transitions": {
+    "default": {"enter_duration":0.55,"exit_duration":0.38,"section_transition":0.75,"stagger":0.12,"easing":{"enter":"power2.out","exit":"power2.in","ambient":"sine.inOut"},"constraints":{"max_glow_opacity":0.35,"max_particle_density":"low","max_motion_distance":"48px","no_bounce":true,"no_heavy_glitch":true}},
+    "special": {
+      "hook":{"enter":"transition_hud_aperture_open","exit":"power2.in"},
+      "summary":{"enter":"transition_data_sweep_reveal","exit":"power2.in"},
+      "key_points":{"enter":"transition_interface_stack_slide","exit":"power2.in"},
+      "steps":{"enter":"transition_blueprint_draw_on","exit":"power2.in"},
+      "metrics":{"enter":"transition_metric_counter_pulse","exit":"power2.in"},
+      "code_log":{"enter":"transition_terminal_parse_in","exit":"power2.in"},
+      "architecture":{"enter":"transition_neural_node_morph","exit":"power2.in"},
+      "warning":{"enter":"transition_system_alert_shift","exit":"power2.in"},
+      "conclusion":{"enter":"transition_glass_panel_focus","exit":"power2.in"}
+    }
+  },
+  "card_type_map": {
+    "介绍/问题导入":"hook","核心观点/总结":"summary","功能亮点列表":"key_points",
+    "操作步骤":"steps","数据对比":"metrics","代码展示":"code_log",
+    "系统架构":"architecture","问题预警":"warning","收尾CTA":"conclusion"
+  },
+  "branding": {
+    "logo": {
+      "path": "../../assets/logo.svg",
+      "display_duration": 3,
+      "animation": "stagger_slide_pulse",
+      "tested_version": "v4-glow-fixed",
+      "tested_file": "2026-05-06-自定义Logo-v4-glow位置修正.mp4"
+    },
+    "follow": {
+      "handle": "@JunEr",
+      "url": "https://x.com/JunEr",
+      "display_duration": 5,
+      "animation": "slide_up_btn_press",
+      "tested_version": "v2-template-bg",
+      "tested_file": "2026-05-06-自定义FollowMe-v2-模版背景.mp4"
+    }
+  }
+}
