@@ -1,0 +1,45 @@
+<template id="soft-signal-follow-outro-template">
+  <div data-composition-id="soft-signal-follow-outro" data-width="1920" data-height="1080" data-duration="4.5">
+    <link rel="stylesheet" href="../partials/soft-signal.css" />
+    <div class="soft-brand-scene">
+      <div class="ss-grain-overlay is-subtle" data-layout-ignore aria-hidden="true"></div>
+      <div class="soft-follow-card">
+        <div class="soft-follow-avatar">
+          <img src="../../../assets/branding/follow-avatar.png" alt="Brand avatar" />
+        </div>
+        <div>
+          <div class="soft-follow-eyebrow">FOLLOW / STAY CLOSE</div>
+          <div class="soft-follow-title" data-brand-field="follow_title">Follow JunEr</div>
+          <div class="soft-follow-subtitle" data-brand-field="follow_subtitle">更多 AI Agent、产品更新、技术文章视频拆解</div>
+          <div class="soft-follow-handle" data-brand-field="handle">@JunEr</div>
+        </div>
+        <div class="soft-follow-button" data-brand-field="cta_text">
+          <span class="soft-follow-idle">+ Follow</span>
+          <span class="soft-follow-done">Following</span>
+        </div>
+      </div>
+    </div>
+    <script src="../../../assets/gsap.min.js"></script>
+    <script>
+      window.__timelines = window.__timelines || {};
+      var root = document.querySelector('[data-composition-id="soft-signal-follow-outro"]');
+      var q = function (selector) { return root.querySelectorAll(selector); };
+      var softSignalFollowOutro = gsap.timeline({ paused: true });
+      gsap.set(q('.soft-follow-card'), { opacity: 0, y: 36, scale: 0.985 });
+      gsap.set(q('.soft-follow-avatar'), { opacity: 0, x: -22, scale: 0.94 });
+      gsap.set(q('.soft-follow-eyebrow, .soft-follow-title, .soft-follow-subtitle, .soft-follow-handle'), { opacity: 0, y: 14 });
+      gsap.set(q('.soft-follow-button'), { opacity: 0, scale: 0.88 });
+      gsap.set(q('.soft-follow-done'), { opacity: 0, y: 8 });
+      softSignalFollowOutro.to(q('.soft-follow-card'), { opacity: 1, y: 0, scale: 1, duration: 0.56, ease: 'power3.out' }, 0.18);
+      softSignalFollowOutro.to(q('.soft-follow-avatar'), { opacity: 1, x: 0, scale: 1, duration: 0.40, ease: 'power3.out' }, 0.42);
+      softSignalFollowOutro.to(q('.soft-follow-eyebrow, .soft-follow-title, .soft-follow-subtitle, .soft-follow-handle'), { opacity: 1, y: 0, duration: 0.30, stagger: 0.06, ease: 'power3.out' }, 0.60);
+      softSignalFollowOutro.to(q('.soft-follow-button'), { opacity: 1, scale: 1, duration: 0.34, ease: 'back.out(1.45)' }, 0.96);
+      softSignalFollowOutro.to(q('.soft-follow-button'), { scale: 0.94, duration: 0.10, ease: 'power2.out' }, 1.55);
+      softSignalFollowOutro.to(q('.soft-follow-idle'), { opacity: 0, y: -8, duration: 0.16, ease: 'power2.out' }, 1.62);
+      softSignalFollowOutro.to(q('.soft-follow-done'), { opacity: 1, y: 0, duration: 0.20, ease: 'power2.out' }, 1.66);
+      softSignalFollowOutro.to(q('.soft-follow-button'), { scale: 1, backgroundColor: '#8FAF8C', borderColor: 'rgba(143,175,140,0.48)', boxShadow: '0 14px 34px rgba(143,175,140,0.22)', duration: 0.22, ease: 'power2.out' }, 1.67);
+      softSignalFollowOutro.to(q('.soft-follow-card'), { opacity: 0, y: -20, duration: 0.34, ease: 'power2.in' }, 4.10);
+      window.__timelines['soft-signal-follow-outro'] = softSignalFollowOutro;
+    </script>
+  </div>
+</template>

@@ -1,0 +1,46 @@
+<template id="tech-signal-follow-outro-template">
+  <div data-composition-id="tech-signal-follow-outro" data-width="1920" data-height="1080" data-duration="4.5">
+    <link rel="stylesheet" href="../partials/universal-tech.css" />
+    <div class="hf-scene follow-scene">
+      <div class="clean-brand-bg"></div>
+      <div class="follow-clean-card glass">
+        <div class="follow-avatar-frame">
+          <img class="follow-avatar-img" src="../../../assets/branding/follow-avatar.png" alt="Brand avatar" />
+        </div>
+        <div>
+          <div class="eyebrow">FOLLOW / STAY CONNECTED</div>
+          <div class="follow-clean-title" data-brand-field="follow_title">Follow JunEr</div>
+          <div class="follow-clean-subtitle" data-brand-field="follow_subtitle">更多 AI Agent、产品更新、技术文章视频拆解</div>
+          <div class="follow-clean-handle" data-brand-field="handle">@JunEr</div>
+        </div>
+        <div class="follow-clean-button" data-brand-field="cta_text">
+          <span class="follow-idle"><span>+</span><span>Follow</span></span>
+          <span class="follow-done"><span>✓</span><span>Following</span></span>
+        </div>
+      </div>
+    </div>
+    <script src="../../../assets/gsap.min.js"></script>
+    <script>
+      window.__timelines = window.__timelines || {};
+      var root = document.querySelector('[data-composition-id="tech-signal-follow-outro"]');
+      var q = function (selector) { return root.querySelectorAll(selector); };
+      var techSignalFollowOutro = gsap.timeline({ paused: true });
+      gsap.set(q('.follow-clean-card'), { opacity: 0, y: 44, scale: 0.98 });
+      gsap.set(q('.follow-avatar-frame'), { opacity: 0, x: -28, scale: 0.92 });
+      gsap.set(q('.eyebrow, .follow-clean-title, .follow-clean-subtitle, .follow-clean-handle'), { opacity: 0, y: 16 });
+      gsap.set(q('.follow-clean-button'), { opacity: 0, scale: 0.86 });
+      gsap.set(q('.follow-done'), { opacity: 0, y: 8 });
+      techSignalFollowOutro.from(q('.clean-brand-bg'), { opacity: 0, duration: 0.36, ease: 'power2.out' }, 0);
+      techSignalFollowOutro.to(q('.follow-clean-card'), { opacity: 1, y: 0, scale: 1, duration: 0.56, ease: 'power3.out' }, 0.18);
+      techSignalFollowOutro.to(q('.follow-avatar-frame'), { opacity: 1, x: 0, scale: 1, duration: 0.42, ease: 'power3.out' }, 0.46);
+      techSignalFollowOutro.to(q('.eyebrow, .follow-clean-title, .follow-clean-subtitle, .follow-clean-handle'), { opacity: 1, y: 0, duration: 0.30, stagger: 0.06, ease: 'power3.out' }, 0.64);
+      techSignalFollowOutro.to(q('.follow-clean-button'), { opacity: 1, scale: 1, duration: 0.34, ease: 'back.out(1.5)' }, 0.96);
+      techSignalFollowOutro.to(q('.follow-clean-button'), { scale: 0.94, duration: 0.10, ease: 'power2.out' }, 1.55);
+      techSignalFollowOutro.to(q('.follow-idle'), { opacity: 0, y: -8, duration: 0.16, ease: 'power2.out' }, 1.62);
+      techSignalFollowOutro.to(q('.follow-done'), { opacity: 1, y: 0, duration: 0.20, ease: 'power2.out' }, 1.66);
+      techSignalFollowOutro.to(q('.follow-clean-button'), { scale: 1, backgroundColor: '#168763', borderColor: 'rgba(34,230,168,0.34)', boxShadow: '0 16px 34px rgba(34,230,168,0.16)', duration: 0.22, ease: 'power2.out' }, 1.67);
+      techSignalFollowOutro.to(q('.follow-clean-card'), { opacity: 0, y: -24, duration: 0.32, ease: 'power2.in' }, 4.10);
+      window.__timelines['tech-signal-follow-outro'] = techSignalFollowOutro;
+    </script>
+  </div>
+</template>

@@ -1,70 +1,67 @@
-# 配音规则 — 配音脚本写作规范
+# Voice Rules
 
-> 配音 ≠ 念文章。配音是"说出来的精华"。
+Narration is the spoken spine of the video. It should be complete enough to guide the viewer through the card sequence, while cards carry the dense details.
 
----
+## Defaults
 
-## 核心原则
+- Language: Chinese unless the source article is clearly another language.
+- Voice: local Kokoro Chinese model `hexgrad/Kokoro-82M-v1.1-zh`, default voice `zf_001`, unless the user specifies another Chinese voice from that model.
+- TTS command: `.cache/kokoro-zh-venv/bin/python scripts/kokoro-zh-tts.py --input <scene-json-or-text> --out assets/speech.wav --voice zf_001 --speed 1.5`.
+- Timing default: generate one continuous `assets/speech.wav` from the ordered scene list. Do not insert artificial scene gaps unless the user explicitly asks for pauses.
+- HyperFrames CLI `tts` is only the default for non-Chinese videos or when the user explicitly asks for a HyperFrames voice.
+- Pace target: roughly 3 Chinese characters per second after TTS speed is applied.
+- Logo intro: no narration.
+- Logo intro duration: fixed 3s.
+- Follow outro: visual-only unless the user explicitly asks for an outro voice line.
 
-1. **每幕只写 1 句话** — 不展开，不啰嗦
-2. **保留 What/Why/How 三层** — 但 How 只留结论
-3. **数据提炼** — 多个数字提炼成一个最终结论
-4. **口语化** — 适合朗读，不说"第一第二第三"
-5. **不念代码** — 代码交给卡片展示
-6. **对比保留结论** — 有对比就保留原因 + 结果
+## Per-Scene Rules
 
----
+- Write 2-3 short spoken sentences per body scene.
+- Cover the headline meaning, the subtitle or core conclusion, and 1-2 important card points.
+- Keep each sentence natural when read aloud; avoid long clauses chained with commas.
+- Do not read code, config, commands, or long lists. Put those in `visual_payload`.
+- Keep important numbers if they are the point of the scene.
+- Prefer direct product language over vague commentary.
+- Avoid "第一、第二、第三" unless the article is explicitly procedural.
+- Time card entrances to the narration. If a scene says several card points aloud, each corresponding card should appear near the moment it is discussed, not all at once.
+- For Clear-Code style body scenes, use a stable sequence: empty background, badge/title, subtitle, footer, then cards. Card containers may appear first; card inner text should then enter with a light opacity/y stagger. Do not show all card text before the scene animation starts.
 
-## 规则细则
+## Length Guide
 
-### ① 字数控制
+| Body scenes | Spoken length | Video body duration |
+| --- | --- | --- |
+| 4-5 | 240-420 Chinese chars | 45-75s |
+| 6-7 | 360-620 Chinese chars | 70-105s |
+| 8+ | 480-820 Chinese chars | 90s+ or split into a series |
 
-| 场景数 | 建议总字数 | 对应时长（4字/秒） |
-|-------|-----------|----------------|
-| 3 幕短篇 | 80-120 字 | 20-30 秒 |
-| 4-5 幕中篇 | 120-180 字 | 30-45 秒 |
-| 6-7 幕长篇 | 180-250 字 | 45-60 秒 |
+## Output Handling
 
-> 超出 60 秒的视频建议拆分多集。
+The `## Narration Script` section in `article-breakdown.md` is the voice document. It is the only long-lived script source for TTS.
 
-### ② 每句话的结构
+Do not preserve a separate `voice-script.txt` in the final project. Temporary extracted scripts, transcript JSON, and alignment files may live in `.cache/voice/` while building, then should be deleted after successful render.
 
-```
-[What] 这次更新了 X
-[Why]  因为 Y
-[How]  结果 Z
+## Audio Timecode Rules
 
-示例：
-"OpenClaw v5.3 发布。（What）
-Google Meet 语音七个问题全部清零。（Why）
-如果要用 Meet 语音，直接升级就行。（How）"
-```
+Video timing must come from the real synthesized audio, not from estimated scene duration.
 
-### ③ 数据提炼规则
+1. Extract body scene narration lines from `article-breakdown.md#Narration Script`.
+2. Generate one continuous `assets/speech.wav`.
+3. Analyze the generated audio before finalizing `index.html`:
+   - Prefer the Kokoro script's cumulative per-scene timecodes from continuous single-track generation.
+   - Otherwise run `npx hyperframes transcribe assets/speech.wav --language zh --json` and map sentence timestamps back to scene IDs.
+   - If transcription is unavailable, measure synthesized scene segment durations directly and mark the timing method as `continuous_measured_scene_duration`.
+4. Create `scene_timecodes[]` with:
+   - `scene_id`
+   - `narration`
+   - `voice_start`
+   - `voice_end`
+   - `voice_duration`
+   - `scene_start`
+   - `scene_duration`
+5. Embed `scene_timecodes[]` in the JSON data block inside `index.html`.
 
-| 原文 | 配音 |
-|-----|------|
-| "Event Loop 从 6.7 秒降到了 1 毫秒，大配置秒启，Session 列表不卡了" | "性能全面翻盘，Event Loop 快了 6700 倍" |
-| "7 个问题逐一修复：麦克风权限、音频桥、说话没声音……" | "Meet 语音七个问题全部清零" |
-| "memory-core 存对话 + Active Memory 检索 + Memory Wiki 整理" | "记忆系统三层架构：存储、检索、整理" |
+`duration_target` from `article-breakdown.md` is only a planning hint. Once audio exists, the final HyperFrames `data-start` and `data-duration` values must be derived from `scene_timecodes[]`.
 
-### ④ 禁止事项
+Logo intro is silent and keeps the theme component duration. Follow outro is silent unless the user explicitly asks for an outro voice line.
 
-- ❌ 不念配置代码（`{ "key": "value" }`）
-- ❌ 不念长列表（"第一第二第三……"）
-- ❌ 不用书面语长句（"通过……实现……"）
-- ❌ 不重复标题
-
-### ⑤ 输出格式
-
-```txt
-# voice-script.txt
-#
-# 每行 = 一幕，行号对应 scenes 顺序
-# 总字数 = 人工统计
-
-OpenClaw v5.3 发布。Google Meet 语音通话大修，插件安装系统翻新。
-Meet 语音七个问题全部清零。
-四大更新：插件安装、多通道通信、Gateway 配置、Web fetch。
-如果要用 Meet 语音，直接升级。运行 openclaw update。
-```
+Do not create fixed `0.35s` or similar scene gaps just to make the timecode easier. Body scene boundaries should be adjacent in the narration track unless the article or user asks for a deliberate pause.

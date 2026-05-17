@@ -1,104 +1,52 @@
-# 文章分析规则 — 文章 → 视频蓝图
+# Article Analysis Rules
 
-> 所有主题通用。不依赖具体视觉风格。
+Analyze the whole article before choosing scenes. Do not mechanically turn every heading into one scene. The goal is to extract a watchable argument: hook, claim, proof, concrete details, and CTA.
 
----
+## Scene Model
 
-## 核心原则
+Each body scene must contain:
 
-1. **文章分析决定一切** — 分幕、卡片类型、背景都在这一步定
-2. **每段只映射一种卡片类型** — 一段内容只属于一个场景
-3. **一篇文章一个背景** — 背景选择后全文不变
-4. **过渡按卡片类型自动匹配** — 不需要手动指定
-
----
-
-## 分析步骤
-
-### 第 1 步：通读全文，划分段落
-
-读文章，按自然段落分组。每个段落应该表达一个完整的意思。
-
-### 第 2 步：判断每段的内容类型
-
-| 段落意图 | 映射卡片类型 | 说明 |
-|---------|------------|------|
-| 介绍背景/引出问题 | `hook` | 文章开头，吸引注意力 |
-| 核心观点/一句话总结 | `summary` | 这篇文章的核心结论 |
-| 功能/亮点/要点列表 | `key_points` | 3-5 个要点，每个一句 |
-| 操作指引/配置步骤 | `steps` | 有先后顺序的步骤 |
-| 数据对比/指标展示 | `metrics` | 有数字、对比、前后对照的数据 |
-| 代码/配置/JOSN 展示 | `code_log` | 技术细节展示 |
-| 系统架构/流程结构 | `architecture` | 模块关系、层级、流程 |
-| 预警/注意事项 | `warning` | 踩坑提醒、限制条件 |
-| 收尾/引导行动 | `conclusion` | 升级命令、CTA、资源链接 |
-
-### 第 3 步：选择背景
-
-从当前主题包的 `background_presets` 中选择最匹配的 1 个背景：
-
-| 文章内容方向 | 推荐背景 |
-|-------------|---------|
-| 通用科技 / 工具介绍 / 信息密集 | `bg_dark_grid` |
-| AI Agent / Memory / 自动化 / 模型 | `bg_data_stream` |
-| 版本更新 / 技术拆解 / Dashboard | `bg_hud_panels` |
-| 向量 / 记忆 / Embedding / Agent 关系 | `bg_neural_map` |
-| Debug / Issue Fix / 日志分析 | `bg_terminal_glow` |
-| 系统架构 / 工作流 / 产品结构 | `bg_blueprint` |
-
-> 如果匹配度不高或不清楚，默认使用 `bg_dark_grid`。
-
-### 第 4 步：产出视频蓝图
-
-```yaml
-# video-blueprint.yaml
-theme: "tech-signal"
-background: "bg_neural_map"   # 6 种选 1
-total_duration_estimate: 45   # 秒，预估
-scenes:
-  - scene: 1
-    card_type: hook
-    content_title: "为什么你的 OpenClaw 总是健忘？"
-    key_data: null
-  - scene: 2
-    card_type: architecture
-    content_title: "记忆系统三层架构"
-    key_data: "memory-core → Active Memory → Memory Wiki"
-  - scene: 3
-    card_type: steps
-    content_title: "三步配置法"
-    key_data: "3 步：存·检·编"
-  - scene: 4
-    card_type: summary
-    content_title: "Dreaming 自动整理"
-    key_data: null
-  - scene: 5
-    card_type: conclusion
-    content_title: "升级建议"
-    key_data: "openclaw gateway restart"
+```json
+{
+  "id": "scene-01",
+  "card_type": "summary",
+  "animation": "evidence_ladder_reveal",
+  "title": "核心变化一句话",
+  "narration": "这篇文章的重点，是把一个复杂变化压缩成观众能立刻理解的结论。画面里的卡片负责展开证据和关键细节。",
+  "visual_text": {
+    "headline": "核心结论",
+    "supporting_copy": "用文章里的证据、数字和关键术语支撑这个结论。"
+  },
+  "visual_payload": {},
+  "source_excerpt": "Paste the exact article evidence that supports this scene."
+}
 ```
 
----
+`narration` is the spoken script and should usually be 2-3 natural short sentences. It should introduce the headline meaning, the core conclusion, and 1-2 card points. `visual_text` and `visual_payload` are the screen script: they can carry the fuller headline, labels, chips, metrics, code strings, and evidence lines that would be too dense to read aloud.
 
-## 卡片类型与配音/内容的职责分离
+`animation` is not invented during analysis. Select it from `themes/<theme>/theme.json.animation_map[card_type]`.
 
-| 场景 | 配音（说的） | 卡片内容（展示的） |
-|------|-----------|----------------|
-| hook | 1 句话引起兴趣 | 视觉钩子，无代码/数据 |
-| summary | 1 句核心结论 | 关键数字或结论展示 |
-| key_points | 1 句概览 | 3-5 个要点卡片 |
-| steps | 1 句操作指引 | 代码/配置模块展示 |
-| metrics | 1 句数据结论 | 表格/指标/对比图 |
-| code_log | 1 句说明 | 代码块+高亮 |
-| architecture | 1 句架构概述 | 结构图/层级/流程 |
-| warning | 1 句风险提醒 | 警示样式+要点 |
-| conclusion | 1 句行动号召 | CTA 命令/链接 |
+## Card Type Selection
 
----
+| Article signal | Card type | Use when |
+| --- | --- | --- |
+| Main title, surprising opening, release framing | `hook` | The video needs a first-view reason to watch. |
+| Core claim, one-sentence conclusion | `summary` | The article gives a clear thesis or release headline. |
+| Feature/fix groups, highlights, noteworthy points | `key_points` | There are 3-5 parallel items. |
+| Setup, pairing, commands, operational process | `steps` | The viewer should understand an order of actions. |
+| Counts, timing, retries, before/after, performance | `metrics` | Numbers or measurable evidence matter. |
+| Commands, errors, config keys, API params | `code_log` | Technical strings should be visible, not narrated. |
+| Product chain, provider flow, module relationships | `architecture` | Named components form a system or pipeline. |
+| Before/after tables, old vs new behavior | `comparison` | The article contrasts prior pain with the new behavior. |
+| Bugs, false alarms, validation failures, risks | `warning` | The article warns about a failure mode or constraint. |
+| Upgrade recommendation, final action, no-breaking note | `conclusion` | The video closes the article body. |
 
-## 输出格式
+## Analysis Procedure
 
-分析结果必须输出为两件产物：
-
-1. `video-blueprint.yaml` — 视频蓝图（给构建器用）
-2. `voice-script.txt` — 配音脚本（每幕一句话，给 TTS 用）
+1. Read the full article once and identify the thesis in one sentence.
+2. Group evidence by viewer value: what changed, why it matters, what proof exists, what action follows.
+3. Choose 5-8 body scenes for a normal article. Use 9 only when the article has enough distinct evidence groups, such as a release table plus commands and an upgrade guide. Add Logo intro and Follow outro separately.
+4. Keep only one main idea per scene, but keep enough visible information to fill the card.
+5. Preserve technical strings exactly in `visual_payload`: commands, error messages, config keys, provider names, channel names, counts, and timings.
+6. Use `source_excerpt` to make every scene traceable to article text.
+7. Treat `tech-signal`, `soft-signal`, `folk-frequency`, and `clear-code` as deterministic themes: choose only registered backgrounds, layouts, card types, and animations from `theme.json`; never invent per-article theme assets or fixed body copy.

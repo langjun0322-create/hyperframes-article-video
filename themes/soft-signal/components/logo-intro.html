@@ -1,0 +1,42 @@
+<template id="soft-signal-logo-intro-template">
+  <div data-composition-id="soft-signal-logo-intro" data-width="1920" data-height="1080" data-duration="3">
+    <link rel="stylesheet" href="../partials/soft-signal.css" />
+    <div class="soft-brand-scene">
+      <div class="ss-grain-overlay is-subtle" data-layout-ignore aria-hidden="true"></div>
+      <div class="soft-logo-stage">
+        <div class="soft-logo-wrap">
+          <svg class="soft-logo-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1468 1244" aria-label="Brand logo">
+            <path class="soft-logo-piece j-piece" pathLength="1" d="M 755 39 L 372 41 L 370 251 L 553 255 L 553 903 L 540 943 L 507 973 L 478 986 L 285 989 L 275 985 L 266 966 L 267 777 L 37 777 L 36 997 L 129 1112 L 144 1124 L 148 1135 L 174 1161 L 174 1167 L 207 1207 L 601 1207 L 724 1047 L 725 1038 L 760 999 L 761 44 Z" />
+            <path class="soft-logo-piece e-piece" pathLength="1" d="M 825 40 L 824 1205 L 1388 1207 L 1386 989 L 1028 988 L 1027 346 L 1031 264 L 1388 264 L 1390 41 Z" />
+            <g class="soft-tri-button">
+              <path class="soft-logo-piece tri-piece" pathLength="1" d="M 1091 390 L 1093 835 L 1431 611 Z" />
+            </g>
+          </svg>
+          <div class="soft-logo-caption">
+            <div class="soft-logo-title" data-brand-field="logo_intro_text">JunEr Visual Lab</div>
+            <div class="soft-logo-url" data-brand-field="url">https://x.com/JunEr</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="../../../assets/gsap.min.js"></script>
+    <script>
+      window.__timelines = window.__timelines || {};
+      var root = document.querySelector('[data-composition-id="soft-signal-logo-intro"]');
+      var q = function (selector) { return root.querySelectorAll(selector); };
+      var softSignalLogoIntro = gsap.timeline({ paused: true });
+      gsap.set(q('.soft-tri-button'), { svgOrigin: '1205 612', scale: 1 });
+      softSignalLogoIntro.from(q('.j-piece, .e-piece'), { strokeDashoffset: 1, fillOpacity: 0, duration: 0.92, stagger: 0.10, ease: 'power2.out' }, 0.36);
+      softSignalLogoIntro.from(q('.j-piece'), { x: -18, duration: 0.58, ease: 'power3.out' }, 0.54);
+      softSignalLogoIntro.from(q('.e-piece'), { x: 18, duration: 0.58, ease: 'power3.out' }, 0.62);
+      softSignalLogoIntro.from(q('.tri-piece'), { strokeDashoffset: 1, fillOpacity: 0, duration: 0.28, ease: 'power2.out' }, 1.18);
+      softSignalLogoIntro.from(q('.soft-tri-button'), { scale: 0.44, opacity: 0, duration: 0.18, ease: 'power2.out' }, 1.22);
+      softSignalLogoIntro.to(q('.soft-tri-button'), { scale: 0.88, duration: 0.08, ease: 'power2.in' }, 1.50);
+      softSignalLogoIntro.to(q('.soft-tri-button'), { scale: 1.12, duration: 0.12, ease: 'power2.out' }, 1.58);
+      softSignalLogoIntro.to(q('.soft-tri-button'), { scale: 1, duration: 0.22, ease: 'back.out(1.7)' }, 1.72);
+      softSignalLogoIntro.from(q('.soft-logo-title, .soft-logo-url'), { opacity: 0, y: 14, duration: 0.34, stagger: 0.08, ease: 'power3.out' }, 2.04);
+      softSignalLogoIntro.to(q('.soft-logo-wrap'), { opacity: 0, y: -16, duration: 0.30, ease: 'power2.in' }, 2.68);
+      window.__timelines['soft-signal-logo-intro'] = softSignalLogoIntro;
+    </script>
+  </div>
+</template>

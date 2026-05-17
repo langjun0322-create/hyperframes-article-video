@@ -1,0 +1,914 @@
+{
+  "theme": {
+    "id": "folk-frequency",
+    "name": "Folk Frequency",
+    "version": "1.1.0",
+    "role": "handcrafted_folk_article_video_template",
+    "description": "Complete handcrafted folk poster page system with warm paper, distressed ink, fixed decorative backgrounds, large woodcut-style titles, open poster layouts, and festival-like content blocks."
+  },
+  "design_tokens": {
+    "colors": {
+      "paper": "#F6EDE1",
+      "paper_warm": "#EBD8B8",
+      "ink": "#1E1E1E",
+      "indigo": "#233D7A",
+      "coral": "#E84B3C",
+      "sunflower": "#F2C230",
+      "forest": "#2E6B4E",
+      "terracotta": "#C65A3A",
+      "cream": "#F6EDE1",
+      "muted": "#6F6253"
+    },
+    "typography": {
+      "title_family": "'Folk Display', 'Folk CN', Georgia, 'Times New Roman', serif",
+      "display_family": "'Folk Display', 'Folk CN', Georgia, 'Times New Roman', serif",
+      "body_family": "Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Noto Sans SC', sans-serif",
+      "local_fonts": [
+        "themes/folk-frequency/assets/fonts/Rye-Regular.ttf",
+        "themes/folk-frequency/assets/fonts/ZCOOLXiaoWei-Regular.ttf"
+      ],
+      "title_size": 118,
+      "subtitle_size": 28,
+      "body_size": 23,
+      "caption_size": 18
+    },
+    "layout": {
+      "width": 1920,
+      "height": 1080,
+      "safe_padding_x": 118,
+      "safe_padding_y": 92,
+      "radius": 22,
+      "panel_border": "3px solid #1E1E1E",
+      "max_shadow_opacity": 0.2,
+      "safe_area_source": "background_presets[].safe_area_px overrides default safe padding for Folk Frequency backgrounds"
+    },
+    "motion": {
+      "enter_duration": 0.58,
+      "exit_duration": 0.38,
+      "section_transition": 0.72,
+      "stagger": 0.08,
+      "enter_ease": "back.out(1.18)",
+      "exit_ease": "power2.in",
+      "paint_ease": "power3.out"
+    },
+    "avoid": [
+      "photorealistic imagery",
+      "neon sci-fi HUD",
+      "thin corporate cards",
+      "dense tiny repeated icon wallpaper",
+      "generic beige minimalism",
+      "overly ornate borders that cover text",
+      "smooth glossy gradients",
+      "randomized ornament placement"
+    ]
+  },
+  "background_presets": [
+    {
+      "id": "floral_fest",
+      "css_class": "ff-bg-floral-fest",
+      "best_for": "hook page, opening titles, brand/story introductions, warm social first frames",
+      "avoid_for": "dense code logs",
+      "asset_path": "themes/folk-frequency/assets/backgrounds/floral-fest-bg.png",
+      "safe_area_px": {
+        "top": 135,
+        "right": 150,
+        "bottom": 145,
+        "left": 150,
+        "note": "Clean folk border background: central safe area is intentionally free of fixed cards, image frames, badges, and panels."
+      },
+      "safe_area_rule": "All generated text, cards, badges, color blocks, step cards, metric stamps, logo, avatar, CTA controls, and optional illustrations must be rendered by HTML/CSS inside this rectangle."
+    },
+    {
+      "id": "night_folk",
+      "css_class": "ff-bg-night-folk",
+      "best_for": "quote cards, strong claims, hero art moments, emotional emphasis",
+      "avoid_for": "long body copy",
+      "asset_path": "themes/folk-frequency/assets/backgrounds/night-folk-bg.png",
+      "safe_area_px": {
+        "top": 145,
+        "right": 160,
+        "bottom": 150,
+        "left": 160,
+        "note": "Clean indigo-accent folk border background: quote panels and dark blocks must be separate HTML/CSS elements."
+      },
+      "safe_area_rule": "All generated text, cards, badges, color blocks, step cards, metric stamps, logo, avatar, CTA controls, and optional illustrations must be rendered by HTML/CSS inside this rectangle."
+    },
+    {
+      "id": "sunshine_block",
+      "css_class": "ff-bg-sunshine-block",
+      "best_for": "metrics, positive results, bright proof points, celebratory conclusions",
+      "avoid_for": "risk or error scenes",
+      "asset_path": "themes/folk-frequency/assets/backgrounds/sunshine-block-bg.png",
+      "safe_area_px": {
+        "top": 150,
+        "right": 165,
+        "bottom": 155,
+        "left": 165,
+        "note": "Clean sunny folk border background: metric stamps and result blocks must be separate HTML/CSS elements."
+      },
+      "safe_area_rule": "All generated text, cards, badges, color blocks, step cards, metric stamps, logo, avatar, CTA controls, and optional illustrations must be rendered by HTML/CSS inside this rectangle."
+    },
+    {
+      "id": "terracotta_print",
+      "css_class": "ff-bg-terracotta-print",
+      "best_for": "warnings, deltas, before/after comparison, release change notes",
+      "avoid_for": "low-energy calm summaries",
+      "asset_path": "themes/folk-frequency/assets/backgrounds/terracotta-print-bg.png",
+      "safe_area_px": {
+        "top": 145,
+        "right": 165,
+        "bottom": 150,
+        "left": 165,
+        "note": "Clean terracotta-accent folk border background: comparison panels must be separate HTML/CSS elements."
+      },
+      "safe_area_rule": "All generated text, cards, badges, color blocks, step cards, metric stamps, logo, avatar, CTA controls, and optional illustrations must be rendered by HTML/CSS inside this rectangle."
+    },
+    {
+      "id": "river_waves",
+      "css_class": "ff-bg-river-waves",
+      "best_for": "workflows, step-by-step processes, migration or journey scenes",
+      "avoid_for": "static quote scenes",
+      "asset_path": "themes/folk-frequency/assets/backgrounds/river-waves-bg.png",
+      "safe_area_px": {
+        "top": 145,
+        "right": 160,
+        "bottom": 205,
+        "left": 160,
+        "note": "Clean river-trim folk border background: step cards, arrows, and numbered badges must be separate HTML/CSS elements."
+      },
+      "safe_area_rule": "All generated text, cards, badges, color blocks, step cards, metric stamps, logo, avatar, CTA controls, and optional illustrations must be rendered by HTML/CSS inside this rectangle."
+    },
+    {
+      "id": "forest_floor",
+      "css_class": "ff-bg-forest-floor",
+      "best_for": "summaries, highlighted ideas, story panels, grounded key points",
+      "avoid_for": "very dark title cards",
+      "asset_path": "themes/folk-frequency/assets/backgrounds/forest-floor-bg.png",
+      "safe_area_px": {
+        "top": 145,
+        "right": 160,
+        "bottom": 150,
+        "left": 160,
+        "note": "Clean botanical folk border background: key-point blocks and summary panels must be separate HTML/CSS elements."
+      },
+      "safe_area_rule": "All generated text, cards, badges, color blocks, step cards, metric stamps, logo, avatar, CTA controls, and optional illustrations must be rendered by HTML/CSS inside this rectangle."
+    }
+  ],
+  "layout_templates": {
+    "hook": [
+      {
+        "id": "folk-frequency.hook.reference-hook-page",
+        "component_class": "ff-poster-copy-layout ff-hook-page",
+        "best_for": "reference-style Hook Page with large direct-on-paper title, green page badge, red kicker, and optional bottom colored pills; no background-baked hero zone",
+        "uses": [
+          "headline",
+          "subtitle",
+          "kicker",
+          "chips"
+        ],
+        "cardless": true
+      },
+      {
+        "id": "folk-frequency.hook.open-poster-title",
+        "component_class": "ff-poster-copy-layout",
+        "best_for": "large title, short promise, and tags placed directly on the poster background without a wrapper card",
+        "uses": [
+          "headline",
+          "subtitle",
+          "chips"
+        ],
+        "cardless": true
+      },
+      {
+        "id": "folk-frequency.hook.poster-banner",
+        "component_class": "ff-hook-layout",
+        "best_for": "big title, article promise, social poster opening",
+        "uses": [
+          "headline",
+          "subtitle",
+          "chips"
+        ]
+      }
+    ],
+    "summary": [
+      {
+        "id": "folk-frequency.summary.body-page-01",
+        "component_class": "ff-poster-copy-layout ff-body-page",
+        "best_for": "reference-style Body Page 01 with large headline and HTML-rendered color blocks, quote panel, or bottom category band",
+        "uses": [
+          "claim",
+          "evidence",
+          "items",
+          "quote"
+        ],
+        "cardless": true
+      },
+      {
+        "id": "folk-frequency.summary.open-editorial",
+        "component_class": "ff-poster-copy-layout",
+        "best_for": "claim and short evidence list placed on the background with light dividers instead of a full panel",
+        "uses": [
+          "claim",
+          "evidence",
+          "proof_points"
+        ],
+        "cardless": true
+      },
+      {
+        "id": "folk-frequency.summary.story-panel",
+        "component_class": "ff-summary-layout",
+        "best_for": "claim plus evidence in a warm editorial panel",
+        "uses": [
+          "claim",
+          "evidence",
+          "proof_chips"
+        ]
+      }
+    ],
+    "comparison": [
+      {
+        "id": "folk-frequency.comparison.twin-posters",
+        "component_class": "ff-comparison-layout",
+        "best_for": "before and after, old and new, two-option contrast",
+        "uses": [
+          "left",
+          "right",
+          "criteria"
+        ]
+      }
+    ],
+    "key_points": [
+      {
+        "id": "folk-frequency.key_points.body-page-01-blocks",
+        "component_class": "ff-poster-copy-layout ff-body-page",
+        "best_for": "3 key points displayed as colored folk poster blocks without a large enclosing card",
+        "uses": [
+          "items"
+        ],
+        "cardless": true
+      },
+      {
+        "id": "folk-frequency.key_points.workshop-highlights",
+        "component_class": "ff-key-layout",
+        "best_for": "3-5 memorable highlights with icon accents",
+        "uses": [
+          "items"
+        ]
+      }
+    ],
+    "metrics": [
+      {
+        "id": "folk-frequency.metrics.open-stamp-grid",
+        "component_class": "ff-poster-copy-layout",
+        "best_for": "metrics as colored stamp blocks placed directly on the poster background",
+        "uses": [
+          "metrics"
+        ],
+        "cardless": true
+      },
+      {
+        "id": "folk-frequency.metrics.open-stamps",
+        "component_class": "ff-poster-copy-layout",
+        "best_for": "numbers displayed as individual stamp tiles without a large enclosing card",
+        "uses": [
+          "metrics"
+        ],
+        "cardless": true
+      },
+      {
+        "id": "folk-frequency.metrics.stamp-tiles",
+        "component_class": "ff-metrics-layout",
+        "best_for": "numbers, counts, dates, short proof points",
+        "uses": [
+          "metrics"
+        ]
+      }
+    ],
+    "code_log": [
+      {
+        "id": "folk-frequency.code_log.handbill-console",
+        "component_class": "ff-code-layout",
+        "best_for": "commands and technical strings inside a printable handbill",
+        "uses": [
+          "entries"
+        ]
+      }
+    ],
+    "architecture": [
+      {
+        "id": "folk-frequency.architecture.process-path",
+        "component_class": "ff-arch-layout",
+        "best_for": "simple flow with named layers and roles",
+        "uses": [
+          "nodes",
+          "links"
+        ]
+      }
+    ],
+    "steps": [
+      {
+        "id": "folk-frequency.steps.body-page-02-flow",
+        "component_class": "ff-poster-copy-layout ff-step-page",
+        "best_for": "reference-style Body Page 02 with HTML-rendered step panels, circular numbers, arrows, and optional bottom label strip",
+        "uses": [
+          "steps"
+        ],
+        "cardless": true
+      },
+      {
+        "id": "folk-frequency.steps.open-program-list",
+        "component_class": "ff-poster-copy-layout",
+        "best_for": "short workflow or checklist placed directly on the background with numbered dividers",
+        "uses": [
+          "steps"
+        ],
+        "cardless": true
+      },
+      {
+        "id": "folk-frequency.steps.event-program",
+        "component_class": "ff-steps-layout",
+        "best_for": "sequence, upgrade guide, checklist, process",
+        "uses": [
+          "steps"
+        ]
+      }
+    ],
+    "warning": [
+      {
+        "id": "folk-frequency.warning.coral-notice",
+        "component_class": "ff-warning-layout",
+        "best_for": "constraints, caveats, risk notes with humane tone",
+        "uses": [
+          "problem",
+          "fix",
+          "risk_level"
+        ]
+      }
+    ],
+    "quote": [
+      {
+        "id": "folk-frequency.quote.dashed-poster-quote",
+        "component_class": "ff-poster-copy-layout",
+        "best_for": "quote in a dashed folk poster panel or quiet indigo zone, not a generic glass card",
+        "uses": [
+          "quote",
+          "source",
+          "context"
+        ],
+        "cardless": true
+      },
+      {
+        "id": "folk-frequency.quote.indigo-quote-card",
+        "component_class": "ff-quote-layout",
+        "best_for": "short quote or central sentiment",
+        "uses": [
+          "quote",
+          "source",
+          "context"
+        ]
+      }
+    ],
+    "conclusion": [
+      {
+        "id": "folk-frequency.conclusion.festival-cta",
+        "component_class": "ff-conclusion-layout",
+        "best_for": "final recommendation and follow-through",
+        "uses": [
+          "action",
+          "reason",
+          "compatibility",
+          "command"
+        ]
+      }
+    ]
+  },
+  "card_templates": {
+    "hook": {
+      "required_payload": [
+        "headline",
+        "subtitle"
+      ],
+      "optional_payload": [
+        "version",
+        "date",
+        "chips"
+      ],
+      "component_class": "ff-card-hook",
+      "layout_templates": [
+        "folk-frequency.hook.reference-hook-page",
+        "folk-frequency.hook.open-poster-title",
+        "folk-frequency.hook.poster-banner"
+      ]
+    },
+    "summary": {
+      "required_payload": [
+        "claim",
+        "evidence"
+      ],
+      "optional_payload": [
+        "proof_chips"
+      ],
+      "component_class": "ff-card-summary",
+      "layout_templates": [
+        "folk-frequency.summary.body-page-01",
+        "folk-frequency.summary.open-editorial",
+        "folk-frequency.summary.story-panel"
+      ]
+    },
+    "key_points": {
+      "required_payload": [
+        "items"
+      ],
+      "constraints": {
+        "min_items": 3,
+        "max_items": 5,
+        "item_fields": [
+          "title",
+          "detail"
+        ]
+      },
+      "component_class": "ff-card-key-points",
+      "layout_templates": [
+        "folk-frequency.key_points.body-page-01-blocks",
+        "folk-frequency.key_points.workshop-highlights"
+      ]
+    },
+    "steps": {
+      "required_payload": [
+        "steps"
+      ],
+      "constraints": {
+        "min_items": 2,
+        "item_fields": [
+          "label",
+          "action",
+          "detail"
+        ]
+      },
+      "component_class": "ff-card-steps",
+      "layout_templates": [
+        "folk-frequency.steps.body-page-02-flow",
+        "folk-frequency.steps.open-program-list",
+        "folk-frequency.steps.event-program"
+      ]
+    },
+    "metrics": {
+      "required_payload": [
+        "metrics"
+      ],
+      "constraints": {
+        "min_items": 1,
+        "item_fields": [
+          "value",
+          "label"
+        ]
+      },
+      "component_class": "ff-card-metrics",
+      "layout_templates": [
+        "folk-frequency.metrics.open-stamp-grid",
+        "folk-frequency.metrics.open-stamps",
+        "folk-frequency.metrics.stamp-tiles"
+      ]
+    },
+    "code_log": {
+      "required_payload": [
+        "entries"
+      ],
+      "constraints": {
+        "min_items": 2,
+        "item_fields": [
+          "code",
+          "label"
+        ]
+      },
+      "component_class": "ff-card-code-log",
+      "layout_templates": [
+        "folk-frequency.code_log.handbill-console"
+      ]
+    },
+    "architecture": {
+      "required_payload": [
+        "nodes",
+        "links"
+      ],
+      "constraints": {
+        "min_nodes": 3,
+        "node_fields": [
+          "name",
+          "role"
+        ]
+      },
+      "component_class": "ff-card-architecture",
+      "layout_templates": [
+        "folk-frequency.architecture.process-path"
+      ]
+    },
+    "warning": {
+      "required_payload": [
+        "problem",
+        "fix"
+      ],
+      "optional_payload": [
+        "risk_level"
+      ],
+      "component_class": "ff-card-warning",
+      "layout_templates": [
+        "folk-frequency.warning.coral-notice"
+      ]
+    },
+    "quote": {
+      "required_payload": [
+        "quote",
+        "source"
+      ],
+      "optional_payload": [
+        "context"
+      ],
+      "component_class": "ff-card-quote",
+      "layout_templates": [
+        "folk-frequency.quote.dashed-poster-quote",
+        "folk-frequency.quote.indigo-quote-card"
+      ]
+    },
+    "comparison": {
+      "required_payload": [
+        "left",
+        "right",
+        "criteria"
+      ],
+      "component_class": "ff-card-comparison",
+      "layout_templates": [
+        "folk-frequency.comparison.twin-posters"
+      ]
+    },
+    "conclusion": {
+      "required_payload": [
+        "action",
+        "reason"
+      ],
+      "optional_payload": [
+        "compatibility",
+        "command"
+      ],
+      "component_class": "ff-card-conclusion",
+      "layout_templates": [
+        "folk-frequency.conclusion.festival-cta"
+      ]
+    }
+  },
+  "animation_map": {
+    "hook": "poster_reveal",
+    "summary": "paint_wipe",
+    "key_points": "ornament_bloom",
+    "steps": "program_step_stamp",
+    "metrics": "stamp_pop",
+    "code_log": "handbill_type",
+    "architecture": "process_path_reveal",
+    "warning": "coral_notice_snap",
+    "quote": "indigo_quote_focus",
+    "comparison": "twin_poster_compare",
+    "conclusion": "festival_cta_settle"
+  },
+  "asset_registry": {
+    "textures": [
+      {
+        "id": "paper_grain",
+        "path": "themes/folk-frequency/assets/textures/folk-paper-grain.png",
+        "type": "png",
+        "runtime": true,
+        "best_for": "paper base, cards, subtle full-scene texture"
+      },
+      {
+        "id": "ink_distress",
+        "path": "themes/folk-frequency/assets/textures/folk-ink-distress.png",
+        "type": "png",
+        "runtime": true,
+        "best_for": "letterpress wear on cards, posters, borders"
+      }
+    ],
+    "icons": [
+      {
+        "id": "bird",
+        "path": "themes/folk-frequency/assets/icons/bird.svg",
+        "type": "svg",
+        "runtime": false,
+        "best_for": "poster hooks, cultural/community scenes",
+        "fallback_only": true
+      },
+      {
+        "id": "sun",
+        "path": "themes/folk-frequency/assets/icons/sun.svg",
+        "type": "svg",
+        "runtime": false,
+        "best_for": "positive results, metrics, warm conclusions",
+        "fallback_only": true
+      },
+      {
+        "id": "flower",
+        "path": "themes/folk-frequency/assets/icons/flower.svg",
+        "type": "svg",
+        "runtime": false,
+        "best_for": "warm hooks, lifestyle, celebration",
+        "fallback_only": true
+      },
+      {
+        "id": "leaf",
+        "path": "themes/folk-frequency/assets/icons/leaf.svg",
+        "type": "svg",
+        "runtime": false,
+        "best_for": "grounded summaries, natural editorial accents",
+        "fallback_only": true
+      },
+      {
+        "id": "star",
+        "path": "themes/folk-frequency/assets/icons/star.svg",
+        "type": "svg",
+        "runtime": false,
+        "best_for": "highlight, quote, emphasis",
+        "fallback_only": true
+      },
+      {
+        "id": "heart",
+        "path": "themes/folk-frequency/assets/icons/heart.svg",
+        "type": "svg",
+        "runtime": false,
+        "best_for": "personal brand, human stories, follow outro",
+        "fallback_only": true
+      },
+      {
+        "id": "hand",
+        "path": "themes/folk-frequency/assets/icons/hand.svg",
+        "type": "svg",
+        "runtime": false,
+        "best_for": "handcrafted process, steps, tutorial scenes",
+        "fallback_only": true
+      },
+      {
+        "id": "calendar",
+        "path": "themes/folk-frequency/assets/icons/calendar.svg",
+        "type": "svg",
+        "runtime": false,
+        "best_for": "event cards, dates, schedules",
+        "fallback_only": true
+      },
+      {
+        "id": "pin",
+        "path": "themes/folk-frequency/assets/icons/pin.svg",
+        "type": "svg",
+        "runtime": false,
+        "best_for": "location, venue, event cards",
+        "fallback_only": true
+      }
+    ],
+    "borders": [
+      {
+        "id": "scallop_strip",
+        "path": "themes/folk-frequency/assets/borders/scallop-strip.svg",
+        "type": "svg",
+        "runtime": false,
+        "best_for": "top decorative trim",
+        "fallback_only": true
+      },
+      {
+        "id": "zigzag_strip",
+        "path": "themes/folk-frequency/assets/borders/zigzag-strip.svg",
+        "type": "svg",
+        "runtime": false,
+        "best_for": "bottom trim, rhythmic folk edge",
+        "fallback_only": true
+      },
+      {
+        "id": "corner_floral",
+        "path": "themes/folk-frequency/assets/borders/corner-floral.svg",
+        "type": "svg",
+        "runtime": false,
+        "best_for": "corner ornament, poster framing",
+        "fallback_only": true
+      },
+      {
+        "id": "dotted_side",
+        "path": "themes/folk-frequency/assets/borders/dotted-side.svg",
+        "type": "svg",
+        "runtime": false,
+        "best_for": "side trim for steps and event layouts",
+        "fallback_only": true
+      }
+    ],
+    "references": [
+      {
+        "id": "ornament_sheet",
+        "path": "themes/folk-frequency/assets/references/folk-ornament-sheet.png",
+        "type": "png",
+        "runtime": false,
+        "best_for": "visual reference only; do not place directly in generated HTML"
+      }
+    ],
+    "ornaments": [
+      {
+        "id": "bird",
+        "path": "themes/folk-frequency/assets/ornaments/bird.png",
+        "type": "png_alpha",
+        "runtime": true,
+        "best_for": "poster hooks, cultural/community scenes"
+      },
+      {
+        "id": "sun",
+        "path": "themes/folk-frequency/assets/ornaments/sun.png",
+        "type": "png_alpha",
+        "runtime": true,
+        "best_for": "positive results, metrics, warm conclusions"
+      },
+      {
+        "id": "red_flower",
+        "path": "themes/folk-frequency/assets/ornaments/red-flower.png",
+        "type": "png_alpha",
+        "runtime": true,
+        "best_for": "warm hooks, lifestyle, celebration"
+      },
+      {
+        "id": "yellow_flower",
+        "path": "themes/folk-frequency/assets/ornaments/yellow-flower.png",
+        "type": "png_alpha",
+        "runtime": true,
+        "best_for": "light celebratory accents"
+      },
+      {
+        "id": "leaf",
+        "path": "themes/folk-frequency/assets/ornaments/leaf.png",
+        "type": "png_alpha",
+        "runtime": true,
+        "best_for": "grounded summaries, natural editorial accents"
+      },
+      {
+        "id": "star",
+        "path": "themes/folk-frequency/assets/ornaments/star.png",
+        "type": "png_alpha",
+        "runtime": true,
+        "best_for": "highlight, quote, emphasis"
+      },
+      {
+        "id": "heart",
+        "path": "themes/folk-frequency/assets/ornaments/heart.png",
+        "type": "png_alpha",
+        "runtime": true,
+        "best_for": "personal brand, human stories, follow outro"
+      },
+      {
+        "id": "hand",
+        "path": "themes/folk-frequency/assets/ornaments/hand.png",
+        "type": "png_alpha",
+        "runtime": true,
+        "best_for": "handcrafted process, steps, tutorial scenes"
+      },
+      {
+        "id": "scallop_strip",
+        "path": "themes/folk-frequency/assets/ornaments/scallop-strip.png",
+        "type": "png_alpha",
+        "runtime": true,
+        "best_for": "top decorative trim with handmade ink texture"
+      },
+      {
+        "id": "zigzag_strip",
+        "path": "themes/folk-frequency/assets/ornaments/zigzag-strip.png",
+        "type": "png_alpha",
+        "runtime": true,
+        "best_for": "bottom trim, rhythmic folk edge"
+      },
+      {
+        "id": "corner_floral",
+        "path": "themes/folk-frequency/assets/ornaments/corner-floral.png",
+        "type": "png_alpha",
+        "runtime": true,
+        "best_for": "corner ornament, poster framing"
+      }
+    ],
+    "backgrounds": [
+      {
+        "id": "floral_fest",
+        "path": "themes/folk-frequency/assets/backgrounds/floral-fest-bg.png",
+        "type": "png",
+        "runtime": true,
+        "size": "1920x1080",
+        "best_for": "hook page, opening titles, brand/story introductions, warm social first frames",
+        "safe_area_px": {
+          "top": 135,
+          "right": 150,
+          "bottom": 145,
+          "left": 150,
+          "note": "Clean folk border background with no fixed card, panel, badge, image-frame, or title slots."
+        }
+      },
+      {
+        "id": "night_folk",
+        "path": "themes/folk-frequency/assets/backgrounds/night-folk-bg.png",
+        "type": "png",
+        "runtime": true,
+        "size": "1920x1080",
+        "best_for": "quote cards, strong claims, hero art moments, emotional emphasis",
+        "safe_area_px": {
+          "top": 145,
+          "right": 160,
+          "bottom": 150,
+          "left": 160,
+          "note": "Clean indigo-accent folk border background; quote panels and dark blocks are HTML/CSS elements."
+        }
+      },
+      {
+        "id": "sunshine_block",
+        "path": "themes/folk-frequency/assets/backgrounds/sunshine-block-bg.png",
+        "type": "png",
+        "runtime": true,
+        "size": "1920x1080",
+        "best_for": "metrics, positive results, bright proof points, celebratory conclusions",
+        "safe_area_px": {
+          "top": 150,
+          "right": 165,
+          "bottom": 155,
+          "left": 165,
+          "note": "Clean sunny folk border background; metric stamps and result blocks are HTML/CSS elements."
+        }
+      },
+      {
+        "id": "terracotta_print",
+        "path": "themes/folk-frequency/assets/backgrounds/terracotta-print-bg.png",
+        "type": "png",
+        "runtime": true,
+        "size": "1920x1080",
+        "best_for": "warnings, deltas, before/after comparison, release change notes",
+        "safe_area_px": {
+          "top": 145,
+          "right": 165,
+          "bottom": 150,
+          "left": 165,
+          "note": "Clean terracotta-accent folk border background; comparison panels are HTML/CSS elements."
+        }
+      },
+      {
+        "id": "river_waves",
+        "path": "themes/folk-frequency/assets/backgrounds/river-waves-bg.png",
+        "type": "png",
+        "runtime": true,
+        "size": "1920x1080",
+        "best_for": "workflows, step-by-step processes, migration or journey scenes",
+        "safe_area_px": {
+          "top": 145,
+          "right": 160,
+          "bottom": 205,
+          "left": 160,
+          "note": "Clean river-trim folk border background; step cards and arrows are HTML/CSS elements."
+        }
+      },
+      {
+        "id": "forest_floor",
+        "path": "themes/folk-frequency/assets/backgrounds/forest-floor-bg.png",
+        "type": "png",
+        "runtime": true,
+        "size": "1920x1080",
+        "best_for": "summaries, highlighted ideas, story panels, grounded key points",
+        "safe_area_px": {
+          "top": 145,
+          "right": 160,
+          "bottom": 150,
+          "left": 160,
+          "note": "Clean botanical folk border background; key-point blocks and summary panels are HTML/CSS elements."
+        }
+      }
+    ],
+    "fonts": [
+      {
+        "id": "folk_display_rye",
+        "path": "themes/folk-frequency/assets/fonts/Rye-Regular.ttf",
+        "type": "ttf",
+        "runtime": true,
+        "best_for": "English display headlines with woodcut poster feel"
+      },
+      {
+        "id": "folk_cn_xiaowei",
+        "path": "themes/folk-frequency/assets/fonts/ZCOOLXiaoWei-Regular.ttf",
+        "type": "ttf",
+        "runtime": true,
+        "best_for": "Chinese display headline fallback for Folk Frequency posters"
+      }
+    ]
+  },
+  "branding_components": {
+    "logo_intro": "themes/folk-frequency/components/logo-intro.html",
+    "follow_outro": "themes/folk-frequency/components/follow-outro.html",
+    "style_note": "Brand copy and logo stay fixed; folk paper, ink, border, card language, and stamp-like motion come from this theme."
+  },
+  "asset_policy": {
+    "default": "theme_level_clean_backgrounds_plus_html_layout_components",
+    "raster_assets": "theme_level_only",
+    "allowed_theme_assets": [
+      "registered clean 1920x1080 background PNG presets with paper, outer border, corner ornaments, and edge decoration only",
+      "paper grain textures and ink distress overlays at low opacity",
+      "registered transparent PNG ornaments for at most 1-2 optional accents",
+      "SVG icons and borders as fallback-only assets",
+      "reference-only handmade poster motif sheets"
+    ],
+    "never_generate_per_article": true,
+    "ornament_limit_per_scene": "0-2 optional accent ornaments; backgrounds own only the outer border and edge motifs",
+    "background_rule": "Generated compositions should call background_presets[].asset_path through the preset css_class. Backgrounds must not contain fixed cards, panels, title slots, hero-art frames, step cards, arrows, metric slots, or readable text.",
+    "layout_rule": "All cards, title groups, badges, image frames, quote panels, metrics, and steps are HTML/CSS layout components placed inside the preset safe area."
+  }
+}

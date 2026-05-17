@@ -1,0 +1,641 @@
+.cc-article-scene {
+  position: relative;
+  z-index: 3;
+  width: 100%;
+  height: 100%;
+  padding:
+    var(--cc-safe-top, 58px)
+    var(--cc-safe-right, 78px)
+    var(--cc-safe-bottom, 58px)
+    var(--cc-safe-left, 78px);
+  box-sizing: border-box;
+  color: #1e2529;
+  font-family: "Clear Code Sans", Inter, system-ui, -apple-system, BlinkMacSystemFont, "Noto Sans SC", sans-serif;
+}
+
+.cc-page {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: grid;
+  gap: 24px;
+}
+
+.cc-layout-hook {
+  grid-template-columns: minmax(0, 1.1fr) minmax(470px, 0.9fr);
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  align-items: center;
+}
+
+.cc-layout-centered {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+
+.cc-layout-summary,
+.cc-layout-three-panel,
+.cc-layout-steps,
+.cc-layout-metrics,
+.cc-layout-code,
+.cc-layout-architecture,
+.cc-layout-warning,
+.cc-layout-quote,
+.cc-layout-comparison,
+.cc-layout-conclusion {
+  grid-template-rows: auto minmax(0, 1fr) auto;
+}
+
+.cc-brand {
+  position: absolute;
+  top: 12px;
+  right: 22px;
+  z-index: 4;
+  display: grid;
+  grid-template-columns: 50px auto;
+  gap: 14px;
+  align-items: center;
+  color: #1e2529;
+}
+
+.cc-brand-mark {
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  border-radius: 10px;
+  background: linear-gradient(145deg, #d16a46, #b54e33);
+  color: #fffdf8;
+  font-size: 22px;
+  font-weight: 800;
+  box-shadow: inset 0 0 0 1px rgba(255, 253, 248, 0.34);
+}
+
+.cc-brand-title {
+  font-family: "Clear Code Display", "Cormorant Garamond", Georgia, serif;
+  font-size: 27px;
+  line-height: 1;
+  font-weight: 700;
+}
+
+.cc-brand-subtitle {
+  margin-top: 5px;
+  color: #6f7579;
+  font-size: 16px;
+  line-height: 1.1;
+}
+
+.cc-badge {
+  display: inline-flex;
+  align-items: center;
+  width: max-content;
+  min-height: 42px;
+  padding: 8px 19px;
+  border-radius: 8px;
+  background: linear-gradient(180deg, #d16a46, #b85236);
+  color: #fffdf8;
+  font-size: 21px;
+  line-height: 1;
+  font-weight: 800;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  box-shadow: inset 0 1px 0 rgba(255, 253, 248, 0.24);
+}
+
+.cc-copy {
+  max-width: 980px;
+}
+
+.cc-copy.centered {
+  margin: 0 auto;
+  text-align: center;
+}
+
+.cc-title {
+  margin: 38px 0 0;
+  color: #1e2529;
+  font-family: "Clear Code Display", "Cormorant Garamond", "Songti SC", "Noto Serif SC", Georgia, serif;
+  font-size: 126px;
+  line-height: 0.88;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  text-wrap: balance;
+}
+
+.cc-title.medium {
+  font-size: 86px;
+  line-height: 0.96;
+}
+
+.cc-kicker {
+  margin-top: 28px;
+  color: #c85f3d;
+  font-size: 35px;
+  line-height: 1.15;
+  font-weight: 650;
+}
+
+.cc-subtitle {
+  margin: 22px 0 0;
+  max-width: 770px;
+  color: #3e4a51;
+  font-size: 25px;
+  line-height: 1.42;
+  font-weight: 450;
+}
+
+.cc-copy.centered .cc-subtitle {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.cc-hero-diagram {
+  position: relative;
+  min-height: 440px;
+  align-self: center;
+}
+
+.cc-hero-circle {
+  position: absolute;
+  top: 130px;
+  left: 160px;
+  width: 168px;
+  height: 168px;
+  display: grid;
+  place-items: center;
+  border-radius: 999px;
+  background: linear-gradient(145deg, #d16a46, #bd5739);
+  box-shadow: 0 22px 50px rgba(168, 74, 48, 0.20);
+}
+
+.cc-hero-circle img {
+  width: 78px;
+  height: 78px;
+  filter: brightness(0) invert(1);
+}
+
+.cc-hero-card {
+  position: absolute;
+  top: 78px;
+  left: 48px;
+  width: 78px;
+  height: 72px;
+  border: 1.5px solid #d8c9b9;
+  border-radius: 9px;
+  background: rgba(255, 253, 248, 0.56);
+}
+
+.cc-hero-card::before,
+.cc-hero-card::after {
+  content: "";
+  position: absolute;
+  left: 20px;
+  width: 38px;
+  height: 2px;
+  background: #b8aa9b;
+}
+
+.cc-hero-card::before {
+  top: 25px;
+}
+
+.cc-hero-card::after {
+  top: 42px;
+}
+
+.cc-hero-orb {
+  position: absolute;
+  border-radius: 999px;
+  background: #e8d8c6;
+}
+
+.cc-hero-orb.one {
+  right: 92px;
+  top: 172px;
+  width: 132px;
+  height: 132px;
+}
+
+.cc-hero-orb.two {
+  left: 66px;
+  top: 214px;
+  width: 26px;
+  height: 26px;
+  background: #c85f3d;
+}
+
+.cc-hero-line {
+  position: absolute;
+  left: 60px;
+  top: 178px;
+  width: 390px;
+  height: 190px;
+  border: 2px solid rgba(30, 37, 41, 0.48);
+  border-left: 0;
+  border-bottom: 0;
+  border-radius: 0 140px 0 0;
+}
+
+.cc-card,
+.cc-panel,
+.cc-step,
+.cc-stat,
+.cc-note-card {
+  border: 1px solid rgba(184, 170, 155, 0.60);
+  border-radius: 18px;
+  background: rgba(255, 253, 248, 0.58);
+  box-shadow: 0 18px 54px rgba(79, 61, 43, 0.08), inset 0 1px 0 rgba(255, 253, 248, 0.70);
+}
+
+.cc-card {
+  padding: 42px 46px;
+}
+
+.cc-card-title,
+.cc-item-title,
+.cc-step-title {
+  margin: 0;
+  color: #1e2529;
+  font-family: "Clear Code Display", "Cormorant Garamond", Georgia, serif;
+  font-size: 34px;
+  line-height: 1.05;
+  font-weight: 700;
+}
+
+.cc-card-text,
+.cc-item-detail,
+.cc-step-detail {
+  margin: 12px 0 0;
+  color: #3f4a50;
+  font-size: 18px;
+  line-height: 1.45;
+}
+
+.cc-chip-row,
+.cc-bottom-nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 14px;
+}
+
+.cc-chip {
+  min-height: 46px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 20px;
+  border: 1px solid rgba(184, 170, 155, 0.62);
+  border-radius: 14px;
+  background: rgba(255, 253, 248, 0.58);
+  color: #1e2529;
+  font-size: 18px;
+  font-weight: 650;
+}
+
+.cc-chip img,
+.cc-mini-icon {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+}
+
+.cc-play-symbol {
+  position: relative;
+  display: inline-grid;
+  place-items: center;
+  flex: 0 0 auto;
+  border: 1.5px solid rgba(200, 95, 61, 0.72);
+  border-radius: 8px;
+  background: rgba(255, 253, 248, 0.50);
+}
+
+.cc-play-symbol::before {
+  content: "";
+  width: 0;
+  height: 0;
+  margin-left: 2px;
+  border-top: 7px solid transparent;
+  border-bottom: 7px solid transparent;
+  border-left: 11px solid #c85f3d;
+}
+
+.cc-bottom-nav {
+  min-height: 80px;
+  padding: 14px 28px;
+  border: 1px solid rgba(184, 170, 155, 0.60);
+  border-radius: 14px;
+  background: rgba(255, 253, 248, 0.46);
+}
+
+.cc-bottom-nav .cc-nav-item {
+  color: #1e2529;
+  font-size: 17px;
+  font-weight: 650;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+
+.cc-bottom-nav .cc-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: #c85f3d;
+}
+
+.cc-grid {
+  display: grid;
+  gap: 22px;
+  align-items: start;
+}
+
+.cc-page > .cc-grid {
+  align-self: start;
+}
+
+.cc-layout-three-panel .cc-grid,
+.cc-layout-steps .cc-grid,
+.cc-layout-metrics .cc-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.cc-layout-comparison .cc-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.cc-layout-steps .cc-grid.is-four {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.cc-step {
+  position: relative;
+  min-height: 238px;
+  padding: 28px 30px;
+}
+
+.cc-step-number {
+  width: 60px;
+  height: 60px;
+  display: grid;
+  place-items: center;
+  margin-bottom: 20px;
+  border: 2px solid #c85f3d;
+  border-radius: 999px;
+  color: #c85f3d;
+  font-size: 25px;
+  font-weight: 800;
+}
+
+.cc-step::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: -22px;
+  width: 14px;
+  height: 14px;
+  border-top: 3px solid #c85f3d;
+  border-right: 3px solid #c85f3d;
+  transform: translateY(-50%) rotate(45deg);
+}
+
+.cc-step:last-child::after {
+  display: none;
+}
+
+.cc-stat {
+  min-height: 152px;
+  padding: 28px;
+}
+
+.cc-stat-value {
+  color: #c85f3d;
+  font-family: "Clear Code Display", "Cormorant Garamond", Georgia, serif;
+  font-size: 72px;
+  line-height: 0.9;
+  font-weight: 700;
+}
+
+.cc-stat-label {
+  margin-top: 12px;
+  color: #4e5960;
+  font-size: 18px;
+  line-height: 1.32;
+}
+
+.cc-quote-card {
+  padding: 52px;
+  border-radius: 18px;
+}
+
+.cc-quote-mark {
+  color: #c85f3d;
+  font-size: 66px;
+  line-height: 0.8;
+  font-weight: 800;
+}
+
+.cc-quote-text {
+  margin: 22px 0 0;
+  color: #1e2529;
+  font-family: "Clear Code Display", "Cormorant Garamond", Georgia, serif;
+  font-size: 45px;
+  line-height: 1.08;
+  font-weight: 700;
+}
+
+.cc-code-line {
+  padding: 18px 22px;
+  border-bottom: 1px solid rgba(184, 170, 155, 0.42);
+  color: #1e2529;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 21px;
+  line-height: 1.35;
+}
+
+.cc-code-line:last-child {
+  border-bottom: 0;
+}
+
+.cc-cta-button {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  min-width: 186px;
+  min-height: 58px;
+  padding: 14px 27px;
+  border: 0;
+  border-radius: 11px;
+  background: linear-gradient(180deg, #d16a46, #b85236);
+  color: #fffdf8;
+  font-size: 18px;
+  font-weight: 800;
+  overflow: hidden;
+  box-shadow: 0 18px 42px rgba(168, 74, 48, 0.24);
+}
+
+.cc-cta-button img {
+  filter: brightness(0) invert(1);
+}
+
+.cc-cta-button .cc-follow-idle,
+.cc-cta-button .cc-follow-done {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+}
+
+.cc-cta-button .cc-follow-done {
+  opacity: 0;
+}
+
+.cc-logo-frame,
+.cc-follow-card {
+  width: min(1120px, 100%);
+  margin: auto;
+  padding: 58px;
+}
+
+.cc-logo-combo-frame {
+  position: relative;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  overflow: visible;
+}
+
+.cc-logo-combo-stage {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 360px;
+  height: 300px;
+  margin: 0 auto 22px;
+}
+
+.cc-logo-svg-combo {
+  position: relative;
+  z-index: 2;
+  width: 238px;
+  height: auto;
+  overflow: visible;
+  filter: drop-shadow(0 18px 30px rgba(79, 61, 43, 0.13));
+}
+
+.cc-logo-piece {
+  transform-box: fill-box;
+  transform-origin: center;
+  stroke-width: 14;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 0;
+  paint-order: stroke fill;
+}
+
+.cc-logo-piece.j-piece,
+.cc-logo-piece.e-piece {
+  fill: #d7c4b0;
+  stroke: rgba(30, 37, 41, 0.36);
+}
+
+.cc-tri-button {
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.cc-logo-piece.tri-piece {
+  fill: #d3481f;
+  stroke: rgba(200, 95, 61, 0.82);
+}
+
+.cc-logo-mark {
+  width: 220px;
+  height: 220px;
+  margin: 0 auto 34px;
+  display: grid;
+  place-items: center;
+}
+
+.cc-logo-mark img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.cc-follow-card {
+  display: grid;
+  grid-template-columns: 260px minmax(0, 1fr) auto;
+  gap: 44px;
+  align-items: center;
+}
+
+.cc-follow-avatar {
+  width: 210px;
+  height: 210px;
+  justify-self: center;
+  overflow: hidden;
+  border: 1px solid rgba(184, 170, 155, 0.70);
+  border-radius: 30px;
+  background: #fffdf8;
+}
+
+.cc-follow-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.cc-article-scene .cc-badge,
+.cc-article-scene .cc-title,
+.cc-article-scene .cc-kicker,
+.cc-article-scene .cc-subtitle,
+.cc-article-scene .obs-bottom-nav,
+.cc-article-scene .obs-criteria,
+.cc-article-scene .obs-info-card,
+.cc-article-scene .obs-mini-card,
+.cc-article-scene .obs-stat,
+.cc-article-scene .obs-node,
+.cc-article-scene .cc-card,
+.cc-article-scene .cc-panel,
+.cc-article-scene .cc-step,
+.cc-article-scene .cc-stat,
+.cc-article-scene .cc-note-card {
+  opacity: 0;
+}
+
+.cc-article-scene .obs-info-title,
+.cc-article-scene .obs-info-text,
+.cc-article-scene .obs-list-row,
+.cc-article-scene .obs-chip,
+.cc-article-scene .obs-number,
+.cc-article-scene .obs-mini-card h2,
+.cc-article-scene .obs-mini-card p,
+.cc-article-scene .obs-stat-value,
+.cc-article-scene .obs-stat-label,
+.cc-article-scene .obs-node-index,
+.cc-article-scene .obs-node h2,
+.cc-article-scene .obs-node p,
+.cc-article-scene .obs-bullet,
+.cc-article-scene .obs-cta,
+.cc-article-scene .obs-quote,
+.cc-article-scene .cc-card-title,
+.cc-article-scene .cc-card-text,
+.cc-article-scene .cc-chip {
+  opacity: 0;
+}
+
+.obs-scene .cc-title.is-compact,
+.cc-title.is-compact {
+  max-width: 1500px;
+  font-size: clamp(68px, 4.8vw, 86px);
+  line-height: 1.02;
+}
+
+.obs-main.after-compact-title {
+  top: 360px;
+}

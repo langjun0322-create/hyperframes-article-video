@@ -1,0 +1,194 @@
+.soft-brand-scene {
+  width: 1920px;
+  height: 1080px;
+  position: relative;
+  overflow: hidden;
+  background-color: #fff8ec;
+  background-image: url("../assets/backgrounds/warm-paper-bg.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: #252325;
+  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Noto Sans SC', sans-serif;
+}
+
+.soft-brand-scene::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0.10;
+  background-image:
+    radial-gradient(circle, rgba(37, 35, 37, 0.06) 0 0.75px, transparent 1px),
+    linear-gradient(rgba(167, 156, 141, 0.10) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(167, 156, 141, 0.08) 1px, transparent 1px);
+  background-size: 8px 8px, 58px 58px, 58px 58px;
+  pointer-events: none;
+}
+
+.soft-brand-scene .ss-grain-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.06;
+  mix-blend-mode: multiply;
+  background-image:
+    radial-gradient(circle at 12% 18%, rgba(37, 35, 37, 0.42) 0 0.7px, transparent 0.9px),
+    radial-gradient(circle at 74% 22%, rgba(111, 102, 91, 0.36) 0 0.8px, transparent 1px),
+    radial-gradient(circle at 38% 74%, rgba(37, 35, 37, 0.30) 0 0.7px, transparent 1px),
+    radial-gradient(circle at 88% 64%, rgba(167, 156, 141, 0.40) 0 0.75px, transparent 1px);
+  background-size: 19px 17px, 23px 21px, 29px 31px, 37px 35px;
+}
+
+.soft-logo-stage {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+}
+
+.soft-logo-wrap {
+  width: 430px;
+  text-align: center;
+}
+
+.soft-logo-ring {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 560px;
+  height: 560px;
+  border: 1.5px solid rgba(217, 140, 99, 0.44);
+  border-radius: 50%;
+  transform: translate(-50%, -55%);
+}
+
+.soft-logo-svg {
+  width: 340px;
+  height: auto;
+  filter: drop-shadow(0 22px 36px rgba(111, 102, 91, 0.14));
+}
+
+.soft-logo-piece {
+  fill: #252325;
+  fill-opacity: 1;
+  stroke: #d98c63;
+  stroke-width: 12;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 0;
+}
+
+.soft-logo-piece.j-piece,
+.soft-logo-piece.e-piece {
+  fill: #252325;
+  stroke: rgba(37, 35, 37, 0.38);
+}
+
+.soft-logo-piece.tri-piece {
+  fill: #ff6a00;
+  stroke: #d98c63;
+}
+
+.soft-logo-caption {
+  margin-top: 28px;
+}
+
+.soft-logo-title {
+  font-family: Georgia, 'Times New Roman', 'Noto Serif SC', serif;
+  font-size: 34px;
+  color: #252325;
+}
+
+.soft-logo-url {
+  margin-top: 8px;
+  font-size: 18px;
+  color: #6f665b;
+}
+
+.soft-follow-card {
+  position: absolute;
+  z-index: 2;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 860px;
+  min-height: 288px;
+  display: grid;
+  grid-template-columns: 168px 1fr 170px;
+  gap: 34px;
+  align-items: center;
+  padding: 38px;
+  box-sizing: border-box;
+  border: 1px solid rgba(167, 156, 141, 0.34);
+  border-radius: 22px;
+  background: rgba(255, 248, 236, 0.78);
+  box-shadow: 0 28px 74px rgba(111, 102, 91, 0.14);
+  backdrop-filter: blur(12px);
+}
+
+.soft-follow-avatar {
+  width: 148px;
+  height: 148px;
+  border-radius: 26px;
+  overflow: hidden;
+  border: 1px solid rgba(217, 140, 99, 0.34);
+  background: #f4ebd8;
+}
+
+.soft-follow-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.soft-follow-eyebrow {
+  color: #8f7d64;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+.soft-follow-title {
+  margin-top: 12px;
+  font-family: Georgia, 'Times New Roman', 'Noto Serif SC', serif;
+  font-size: 44px;
+  line-height: 1.05;
+}
+
+.soft-follow-subtitle {
+  margin-top: 12px;
+  color: #6f665b;
+  font-size: 21px;
+  line-height: 1.36;
+}
+
+.soft-follow-handle {
+  margin-top: 14px;
+  color: #d98c63;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.soft-follow-button {
+  position: relative;
+  height: 58px;
+  border-radius: 999px;
+  border: 1px solid rgba(217, 140, 99, 0.42);
+  background: #ff6a00;
+  color: #fff8ec;
+  display: grid;
+  place-items: center;
+  font-size: 20px;
+  font-weight: 760;
+  box-shadow: 0 14px 34px rgba(217, 140, 99, 0.24);
+}
+
+.soft-follow-done {
+  position: absolute;
+  opacity: 0;
+  transform: translateY(8px);
+}

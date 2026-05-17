@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tech Signal Theme Overview</title>
+    <link rel="icon" href="data:," />
+    <link rel="stylesheet" href="demo.css" />
+  </head>
+  <body>
+    <main class="demo-shell">
+      <nav class="demo-nav">
+        <h1>Tech Signal 确定性模板总览</h1>
+        <div class="demo-links">
+          <a href="../../soft-signal/demo/theme-overview.html">Soft Signal</a>
+          <a href="../../folk-frequency/demo/theme-overview.html">Folk Frequency</a>
+        </div>
+      </nav>
+
+      <section class="overview-section">
+        <div class="overview-header">
+          <h2>Background Presets</h2>
+          <p>每个科技背景都是固定 1920×1080 PNG，中心安全区保持干净，边缘只保留少量现代科技线索。</p>
+        </div>
+        <div class="overview-grid">
+          <article class="overview-card"><div class="overview-frame"><section class="stage tech-demo-scene ts-bg-dark-grid"></section></div><h3>dark_grid</h3><p>通用技术发布、结构化信息、稳定解释。</p></article>
+          <article class="overview-card"><div class="overview-frame"><section class="stage tech-demo-scene ts-bg-data-stream"></section></div><h3>data_stream</h3><p>AI agent、自动化、产品分析、数据关系。</p></article>
+          <article class="overview-card"><div class="overview-frame"><section class="stage tech-demo-scene ts-bg-orbital-signal"></section></div><h3>orbital_signal</h3><p>Logo、hook、高层观点、片头，留白更大。</p></article>
+          <article class="overview-card"><div class="overview-frame"><section class="stage tech-demo-scene ts-bg-neural-map"></section></div><h3>neural_map</h3><p>memory、provider、图关系和架构说明，节点只放边缘。</p></article>
+          <article class="overview-card"><div class="overview-frame"><section class="stage tech-demo-scene ts-bg-terminal-glow"></section></div><h3>terminal_glow</h3><p>命令、日志、错误、配置字符串。</p></article>
+          <article class="overview-card"><div class="overview-frame"><section class="stage tech-demo-scene ts-bg-blueprint"></section></div><h3>blueprint</h3><p>系统架构、流程图、Gateway/Channel 结构。</p></article>
+        </div>
+      </section>
+
+      <section class="overview-section">
+        <div class="overview-header">
+          <h2>Deterministic Layouts</h2>
+          <p>正文区域读取背景安全区。装饰层使用 registry 中固定 CSS layer，不随机生成、不临时找素材。</p>
+        </div>
+        <div class="overview-grid">
+          <article class="overview-card">
+            <div class="overview-frame tall-card">
+              <section class="stage tech-demo-scene ts-bg-orbital-signal">
+                <div class="ts-element-scan-band" aria-hidden="true"></div>
+                <div class="ts-article-scene">
+                  <article class="ts-card">
+                    <div class="ts-eyebrow">Hook / orbital_signal</div>
+                    <h1 class="ts-title">固定背景，固定安全区</h1>
+                    <p class="ts-subtitle">文章拆分只选择 preset 和 layout，画面不会每次随机换风格。</p>
+                  </article>
+                </div>
+              </section>
+            </div>
+            <h3>hook / scan_band</h3>
+            <p>片头与核心观点使用固定轨道背景和扫描层。</p>
+          </article>
+          <article class="overview-card">
+            <div class="overview-frame tall-card">
+              <section class="stage tech-demo-scene ts-bg-neural-map">
+                <div class="ts-element-node-cluster" aria-hidden="true"></div>
+                <div class="ts-article-scene">
+                  <article class="ts-card">
+                    <div class="ts-eyebrow">Architecture / neural_map</div>
+                    <h1 class="ts-title">节点关系不再临时拼</h1>
+                    <div class="ts-grid">
+                      <div class="ts-item"><div class="ts-item-title">Input</div><div class="ts-item-detail">文章拆分文档</div></div>
+                      <div class="ts-item"><div class="ts-item-title">Theme</div><div class="ts-item-detail">固定背景和元素 registry</div></div>
+                      <div class="ts-item"><div class="ts-item-title">Layout</div><div class="ts-item-detail">确定性卡片组合</div></div>
+                      <div class="ts-item"><div class="ts-item-title">Output</div><div class="ts-item-detail">稳定 HyperFrames timeline</div></div>
+                    </div>
+                  </article>
+                </div>
+              </section>
+            </div>
+            <h3>architecture / node_cluster</h3>
+            <p>节点层是固定 CSS layer，不随机散点。</p>
+          </article>
+          <article class="overview-card">
+            <div class="overview-frame tall-card">
+              <section class="stage tech-demo-scene ts-bg-terminal-glow">
+                <div class="ts-element-terminal-strip" aria-hidden="true"></div>
+                <div class="ts-article-scene">
+                  <article class="ts-card">
+                    <div class="ts-eyebrow">Code Log / terminal_glow</div>
+                    <h1 class="ts-title">命令和错误保持可读</h1>
+                    <div class="ts-grid">
+                      <div class="ts-code-line">npx hyperframes lint</div>
+                      <div class="ts-code-line">background_preset: terminal_glow</div>
+                    </div>
+                  </article>
+                </div>
+              </section>
+            </div>
+            <h3>code_log / terminal_strip</h3>
+            <p>终端背景稳定，代码卡片在安全区中。</p>
+          </article>
+          <article class="overview-card">
+            <div class="overview-frame tall-card">
+              <section class="stage tech-demo-scene ts-bg-blueprint">
+                <div class="ts-element-blueprint-marks" aria-hidden="true"></div>
+                <div class="ts-article-scene">
+                  <article class="ts-card">
+                    <div class="ts-eyebrow">Metrics / blueprint</div>
+                    <h1 class="ts-title">同一输入得到同一视觉</h1>
+                    <div class="ts-grid">
+                      <div class="ts-metric"><div class="ts-metric-value">6</div><div class="ts-metric-label">fixed backgrounds</div></div>
+                      <div class="ts-metric"><div class="ts-metric-value">5</div><div class="ts-metric-label">registered layers</div></div>
+                    </div>
+                  </article>
+                </div>
+              </section>
+            </div>
+            <h3>metrics / blueprint_marks</h3>
+            <p>背景和元素都来自 registry。</p>
+          </article>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,717 @@
+@font-face {
+  font-family: "Folk Display";
+  src: url("../assets/fonts/Rye-Regular.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Folk CN";
+  src: url("../assets/fonts/ZCOOLXiaoWei-Regular.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+.ff-article-scene {
+  width: 100%;
+  height: 100%;
+  padding:
+    var(--ff-safe-top, 96px)
+    var(--ff-safe-right, 120px)
+    var(--ff-safe-bottom, 96px)
+    var(--ff-safe-left, 120px);
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #123f2f;
+  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Noto Sans SC", sans-serif;
+}
+
+.ff-poster-copy-layout {
+  align-items: stretch;
+  justify-content: center;
+}
+
+.ff-page {
+  position: relative;
+  z-index: 3;
+  width: 100%;
+  height: 100%;
+  display: grid;
+  gap: 26px;
+}
+
+.ff-hook-page {
+  grid-template-columns: minmax(0, 1fr);
+  align-items: center;
+}
+
+.ff-body-page {
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  align-items: center;
+}
+
+.ff-step-page {
+  grid-template-rows: auto minmax(0, 1fr) auto;
+}
+
+.ff-page-badge,
+.ff-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 52px;
+  width: max-content;
+  max-width: 100%;
+  padding: 9px 24px;
+  border: 3px solid rgba(30, 30, 30, 0.70);
+  border-radius: 13px;
+  background: #145431;
+  color: #f6ede1;
+  font-size: 27px;
+  line-height: 1;
+  font-weight: 950;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  box-shadow: 6px 6px 0 rgba(30, 30, 30, 0.12);
+}
+
+.ff-page-badge::before,
+.ff-page-badge::after,
+.ff-eyebrow::before,
+.ff-eyebrow::after {
+  content: "";
+  width: 20px;
+  height: 4px;
+  border-top: 3px solid currentColor;
+  border-bottom: 3px solid currentColor;
+  border-radius: 999px;
+}
+
+.ff-page-brand {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 3;
+  color: #073b61;
+  font-family: "Folk Display", "Folk CN", Georgia, serif;
+  font-size: 40px;
+  line-height: 1;
+  text-align: center;
+  text-shadow: 2px 2px 0 rgba(198, 90, 58, 0.12);
+}
+
+.ff-page-brand span {
+  display: block;
+  margin-top: 8px;
+  color: #c03f20;
+  font-family: Inter, system-ui, sans-serif;
+  font-size: 13px;
+  font-weight: 950;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+}
+
+.ff-poster-copy {
+  position: relative;
+  z-index: 3;
+  width: min(1160px, 100%);
+  padding: 0;
+}
+
+.ff-poster-copy.centered {
+  margin: 0 auto;
+  text-align: center;
+}
+
+.ff-poster-copy.narrow {
+  width: min(930px, 100%);
+}
+
+.ff-poster-title,
+.ff-title {
+  margin: 18px 0 0;
+  color: #073b61;
+  font-family: "Folk Display", "Folk CN", Georgia, "Times New Roman", serif;
+  font-size: 118px;
+  line-height: 0.94;
+  font-weight: 400;
+  letter-spacing: 0;
+  overflow-wrap: anywhere;
+  text-shadow:
+    3px 3px 0 rgba(198, 90, 58, 0.12),
+    0 0 1px rgba(30, 30, 30, 0.35);
+}
+
+.ff-title {
+  font-size: 74px;
+  line-height: 1.02;
+}
+
+.ff-poster-title.dark,
+.ff-title.dark {
+  color: #f6ede1;
+  text-shadow: 3px 3px 0 rgba(232, 75, 60, 0.22);
+}
+
+.ff-poster-kicker {
+  margin: 26px 0 0;
+  color: #c03f20;
+  font-size: 29px;
+  line-height: 1.15;
+  font-weight: 950;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+}
+
+.ff-poster-subtitle,
+.ff-subtitle {
+  margin: 22px 0 0;
+  max-width: 960px;
+  color: #123f2f;
+  font-size: 26px;
+  line-height: 1.42;
+  font-weight: 780;
+  overflow-wrap: anywhere;
+}
+
+.ff-subtitle {
+  font-size: 24px;
+}
+
+.ff-poster-copy.centered .ff-poster-subtitle,
+.ff-poster-copy.centered .ff-subtitle {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.ff-poster-subtitle.dark,
+.ff-subtitle.dark {
+  color: rgba(246, 237, 225, 0.88);
+}
+
+.ff-poster-rule {
+  width: 112px;
+  height: 5px;
+  margin-top: 26px;
+  border-radius: 999px;
+  background: #e84b3c;
+  box-shadow: 42px 0 0 #f2c230, 84px 0 0 #2e6b4e;
+}
+
+.ff-poster-copy.centered .ff-poster-rule {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.ff-poster-meta-row,
+.ff-chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: 34px;
+}
+
+.ff-poster-copy.centered .ff-poster-meta-row,
+.ff-poster-copy.centered .ff-chip-row {
+  justify-content: center;
+}
+
+.ff-poster-stamp,
+.ff-chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 56px;
+  padding: 10px 24px;
+  border: 3px solid rgba(30, 30, 30, 0.70);
+  border-radius: 14px;
+  background: #145431;
+  color: #f6ede1;
+  font-size: 22px;
+  line-height: 1;
+  font-weight: 950;
+  letter-spacing: 1.1px;
+  text-transform: uppercase;
+  box-shadow: 7px 7px 0 rgba(30, 30, 30, 0.16);
+}
+
+.ff-poster-stamp:nth-child(2n),
+.ff-chip:nth-child(2n) {
+  background: #c65a3a;
+}
+
+.ff-poster-stamp:nth-child(3n),
+.ff-chip:nth-child(3n) {
+  background: #f2c230;
+  color: #073b61;
+}
+
+.ff-zone-guide {
+  align-self: end;
+  width: min(520px, 100%);
+  margin-left: auto;
+  padding: 18px 22px;
+  border: 3px dashed #073b61;
+  border-radius: 12px;
+  color: #073b61;
+  background: rgba(246, 237, 225, 0.52);
+  font-size: 18px;
+  font-weight: 850;
+}
+
+.ff-bottom-bar {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+  width: 100%;
+}
+
+.ff-bottom-pill {
+  min-height: 74px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 20px;
+  border: 3px solid rgba(30, 30, 30, 0.62);
+  border-radius: 16px;
+  background: #145431;
+  color: #f6ede1;
+  font-size: 23px;
+  font-weight: 950;
+  letter-spacing: 1px;
+  text-align: center;
+  text-transform: uppercase;
+  box-shadow: 7px 7px 0 rgba(30, 30, 30, 0.14);
+}
+
+.ff-bottom-pill:nth-child(2) {
+  background: #c65a3a;
+}
+
+.ff-bottom-pill:nth-child(3) {
+  background: #f2c230;
+  color: #073b61;
+}
+
+.ff-color-block-row {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 26px;
+}
+
+.ff-color-block {
+  min-height: 225px;
+  padding: 34px 36px;
+  border: 3px solid rgba(30, 30, 30, 0.62);
+  border-radius: 22px;
+  color: #f6ede1;
+  background: #145431;
+  box-shadow: 10px 10px 0 rgba(30, 30, 30, 0.13);
+}
+
+.ff-color-block:nth-child(2) {
+  background: #c65a3a;
+}
+
+.ff-color-block:nth-child(3) {
+  background: #f2c230;
+  color: #073b61;
+}
+
+.ff-color-block-title,
+.ff-item-title {
+  color: currentColor;
+  font-family: "Folk Display", "Folk CN", Georgia, serif;
+  font-size: 34px;
+  line-height: 1.05;
+  font-weight: 400;
+}
+
+.ff-color-block-detail,
+.ff-item-detail {
+  margin-top: 16px;
+  color: currentColor;
+  font-size: 21px;
+  line-height: 1.42;
+  font-weight: 750;
+}
+
+.ff-open-quote {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(340px, 0.72fr);
+  gap: 28px;
+  align-items: stretch;
+}
+
+.ff-dashed-panel {
+  padding: 34px 42px;
+  border: 3px dashed #073b61;
+  border-radius: 20px;
+  background: rgba(246, 237, 225, 0.62);
+  color: #073b61;
+}
+
+.ff-dashed-panel .ff-title {
+  font-size: 46px;
+  line-height: 1.08;
+}
+
+.ff-poster-list {
+  display: grid;
+  gap: 20px;
+  margin-top: 38px;
+  max-width: 1000px;
+}
+
+.ff-poster-list.two-col {
+  grid-template-columns: repeat(2, minmax(280px, 1fr));
+  max-width: 1180px;
+}
+
+.ff-poster-list-item {
+  display: grid;
+  grid-template-columns: 62px 1fr;
+  gap: 20px;
+  align-items: start;
+  padding: 0 0 20px;
+  border-bottom: 3px dashed rgba(18, 63, 47, 0.28);
+}
+
+.ff-poster-list-item:last-child {
+  border-bottom: 0;
+}
+
+.ff-poster-number,
+.ff-step-number,
+.ff-icon-badge {
+  width: 54px;
+  height: 54px;
+  display: grid;
+  place-items: center;
+  border: 3px solid rgba(30, 30, 30, 0.70);
+  border-radius: 999px;
+  background: #073b61;
+  color: #f6ede1;
+  font-size: 26px;
+  line-height: 1;
+  font-weight: 950;
+  box-shadow: 5px 5px 0 rgba(30, 30, 30, 0.14);
+}
+
+.ff-poster-metrics,
+.ff-metrics-layout .ff-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(130px, 1fr));
+  gap: 20px;
+  margin-top: 42px;
+  max-width: 100%;
+}
+
+.ff-poster-metric,
+.ff-metric {
+  min-height: 178px;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  padding: 24px;
+  border: 3px solid rgba(30, 30, 30, 0.70);
+  border-radius: 16px;
+  background: #f2c230;
+  color: #073b61;
+  box-shadow: 8px 8px 0 rgba(30, 30, 30, 0.14);
+}
+
+.ff-poster-metric:nth-child(2n),
+.ff-metric:nth-child(2n) {
+  background: #145431;
+  color: #f6ede1;
+}
+
+.ff-poster-metric:nth-child(3n),
+.ff-metric:nth-child(3n) {
+  background: #c65a3a;
+  color: #f6ede1;
+}
+
+.ff-poster-metric-value,
+.ff-metric-value {
+  color: currentColor;
+  font-family: "Folk Display", Georgia, serif;
+  font-size: 72px;
+  line-height: 0.92;
+  font-weight: 400;
+}
+
+.ff-poster-metric-label,
+.ff-metric-label {
+  margin-top: 14px;
+  color: currentColor;
+  font-size: 19px;
+  line-height: 1.28;
+  font-weight: 850;
+}
+
+.ff-flow-row {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 32px;
+  align-items: stretch;
+}
+
+.ff-flow-card,
+.ff-step {
+  position: relative;
+  min-height: 330px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 50px 30px 34px;
+  border: 4px solid #073b61;
+  border-radius: 24px;
+  background: rgba(246, 237, 225, 0.72);
+  color: #073b61;
+  text-align: center;
+}
+
+.ff-flow-card:nth-child(2),
+.ff-step:nth-child(2) {
+  border-color: #c65a3a;
+}
+
+.ff-flow-card:nth-child(3),
+.ff-step:nth-child(3) {
+  border-color: #f2a21d;
+}
+
+.ff-flow-card:nth-child(4),
+.ff-step:nth-child(4) {
+  border-color: #145431;
+}
+
+.ff-flow-card::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: -27px;
+  width: 22px;
+  height: 22px;
+  border-top: 5px solid currentColor;
+  border-right: 5px solid currentColor;
+  transform: translateY(-50%) rotate(45deg);
+}
+
+.ff-flow-card:last-child::after {
+  display: none;
+}
+
+.ff-flow-card .ff-step-number,
+.ff-step .ff-step-number {
+  position: absolute;
+  top: -32px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: currentColor;
+  color: #f6ede1;
+}
+
+.ff-card {
+  position: relative;
+  z-index: 3;
+  width: min(1320px, 100%);
+  min-height: 610px;
+  padding: 52px 58px;
+  box-sizing: border-box;
+  background:
+    linear-gradient(rgba(246, 237, 225, 0.80), rgba(246, 237, 225, 0.80)),
+    url("../assets/textures/folk-paper-grain.png");
+  background-size: cover;
+  border: 3px solid rgba(30, 30, 30, 0.70);
+  border-radius: 22px;
+  box-shadow: 10px 10px 0 rgba(30, 30, 30, 0.13), 0 28px 70px rgba(30, 30, 30, 0.12);
+  overflow: hidden;
+}
+
+.ff-card::before {
+  content: "";
+  position: absolute;
+  inset: 18px;
+  pointer-events: none;
+  border: 3px dashed rgba(18, 63, 47, 0.28);
+  border-radius: 18px;
+}
+
+.ff-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: url("../assets/textures/folk-ink-distress.png");
+  background-size: cover;
+  opacity: 0.11;
+  mix-blend-mode: multiply;
+}
+
+.ff-card > * {
+  position: relative;
+  z-index: 2;
+}
+
+.ff-grid {
+  display: grid;
+  gap: 20px;
+  margin-top: 34px;
+}
+
+.ff-item,
+.ff-code-line,
+.ff-note {
+  position: relative;
+  border: 3px solid rgba(30, 30, 30, 0.62);
+  border-radius: 18px;
+  background: rgba(246, 237, 225, 0.74);
+  padding: 24px 26px;
+  color: #123f2f;
+  box-shadow: 7px 7px 0 rgba(30, 30, 30, 0.12);
+}
+
+.ff-hook-layout .ff-card {
+  width: min(1180px, 100%);
+  min-height: 620px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.ff-hook-layout .ff-title {
+  font-size: 92px;
+  max-width: 1040px;
+}
+
+.ff-summary-layout .ff-card {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 32px;
+  align-items: center;
+}
+
+.ff-summary-layout .ff-grid,
+.ff-key-layout .ff-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.ff-comparison-layout .ff-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.ff-comparison-layout .ff-item:first-child {
+  background: rgba(198, 90, 58, 0.16);
+}
+
+.ff-comparison-layout .ff-item:nth-child(2) {
+  background: rgba(46, 107, 78, 0.17);
+}
+
+.ff-code-layout .ff-grid {
+  grid-template-columns: 1fr;
+}
+
+.ff-code-line {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  background: #073b61;
+  color: #f6ede1;
+  font-size: 24px;
+  line-height: 1.35;
+  box-shadow: 7px 7px 0 rgba(232, 75, 60, 0.22);
+}
+
+.ff-steps-layout .ff-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.ff-arch-layout .ff-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.ff-arch-layout .ff-item::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: -28px;
+  width: 34px;
+  height: 4px;
+  background: #073b61;
+}
+
+.ff-arch-layout .ff-item:last-child::after {
+  display: none;
+}
+
+.ff-quote-layout .ff-card {
+  width: min(1040px, 100%);
+  min-height: 600px;
+  background:
+    linear-gradient(rgba(7, 59, 97, 0.94), rgba(7, 59, 97, 0.94)),
+    url("../assets/textures/folk-ink-distress.png");
+  color: #f6ede1;
+  text-align: center;
+}
+
+.ff-quote-layout .ff-title,
+.ff-quote-layout .ff-subtitle,
+.ff-quote-layout .ff-eyebrow {
+  color: #f6ede1;
+}
+
+.ff-quote-layout .ff-eyebrow {
+  background: #c65a3a;
+  border-color: #f6ede1;
+}
+
+.ff-quote-layout .ff-title {
+  margin: 64px auto 0;
+  font-size: 64px;
+}
+
+.ff-warning-layout .ff-card {
+  border-color: rgba(30, 30, 30, 0.70);
+  background:
+    linear-gradient(rgba(198, 90, 58, 0.90), rgba(198, 90, 58, 0.90)),
+    url("../assets/textures/folk-paper-grain.png");
+}
+
+.ff-warning-layout .ff-title,
+.ff-warning-layout .ff-subtitle,
+.ff-warning-layout .ff-eyebrow {
+  color: #f6ede1;
+}
+
+.ff-conclusion-layout .ff-card {
+  width: min(1120px, 100%);
+  text-align: center;
+}
+
+.ff-card-corner {
+  position: absolute;
+  width: 132px;
+  height: 132px;
+  pointer-events: none;
+  color: #2e6b4e;
+}
+
+.ff-card-corner.top-left {
+  left: 26px;
+  top: 26px;
+}
+
+.ff-card-corner.bottom-right {
+  right: 26px;
+  bottom: 26px;
+  transform: rotate(180deg);
+}

@@ -1,249 +1,176 @@
 ---
 name: hyperframes-article-video
-description: HyperFrames + TTS 文章转视频工作流。从 Obsidian 文章生成带配音的 1920×1080 解说视频，适用于 OpenClaw 更新发布、产品介绍等场景。
-version: 2.0.0
+description: Convert Markdown articles into narrated HyperFrames explainer videos. Use when Codex needs to analyze an article, split it into a concise spoken script, choose a card type and animation for each scene, generate dense visual card content, add theme-matched logo intro and follow outro from fixed branding assets, create TTS, and render/validate a minimal-output HTML video project.
 ---
 
-# HyperFrames Article Video Generator
+# HyperFrames Article Video
 
-从 Markdown 文章 → 视频蓝图 → 配音脚本 → 卡片内容 → TTS 语音 → HTML+GSAP 动画 → MP4 视频的完整工作流。
+Turn one Markdown article into a narrated HyperFrames video. The skill owns the workflow from article analysis to final render, but keeps branding and theme assets reusable across videos.
 
----
+## First-Run Setup
 
-## ⚠️ 核心变革（v2.0）
+Before using this skill on a new machine, run `npm run setup` from this repository. It checks branding and toolchain configuration, installs the local Kokoro TTS Python dependencies into `.cache/kokoro-zh-venv`, verifies lightweight imports, and validates theme contracts without pre-downloading model weights.
 
-| 旧 | 新 |
-|---|-----|
-| 硬编码 4 场景 | **分析决定分幕** — 文章分析出几幕就几幕 |
-| 配音 = 简化文章 | **配音 1 句/幕** + **卡片展示关键信息** |
-| `/tmp/` 临时目录 | **永久目录** — `📝 素材库/[帖子名]/` |
-| 背景固定 | **主题包选择** — 6 种背景预设选 1 |
-| 过渡硬编码 | **按卡片类型自动匹配** |
+## Output Contract
 
----
+Create only the files needed to audit, preview, and render a video project:
 
-## 前置要求
+- `article-breakdown.md`
+- `index.html`
+- `hyperframes.json`
+- `package.json`
+- `assets/speech.wav`
+- `compositions/*.html`
+- `renders/final.mp4`
 
-- **主题包**: `templates/themes/`（当前：`tech-signal`）
-- **HyperFrames**: `npm install -g hyperframes`
-- **TTS**: `edge-tts`（品牌声音：zh-CN-XiaoyiNeural「小艺-活泼」）
-- **Emoji 字体**: `google-noto-emoji-color-fonts`
-- **Whisper**: 用于获取配音时码（划分场景切换点）
+`article-breakdown.md` is a required long-lived output. It is the human-readable article analysis and the executable prompt for the video. Do not treat it as a temporary intermediate file.
 
----
+The final rendered video format is MP4 only. Do not produce or preserve `final.mov` unless the user explicitly changes the output contract in a later request.
 
-## 完整工作流
+Do not preserve `video-blueprint.yaml`, `voice-script.txt`, `voice-timecode.json`, or `timing.json` as long-lived output. Embed the article script, scene data, card payloads, and audio-derived timing data in `index.html` as a JSON data block. Temporary transcription, per-scene audio clips, or synthesis helper files may live in `.cache/` or a system temp directory and should be deleted after successful render.
 
-```
-文章 (.md)
-   │
-   ▼
-┌─ Step 1: 分析文章 ────────────────────────────────────┐
-│  ① 通读文章，划分段落                                  │
-│  ② 每段映射卡片类型（hook/summary/key_points/...）      │
-│  ③ 选 1 个背景（默认 bg_dark_grid）                    │
-│  ④ 产出：视频蓝图 video-blueprint.yaml                  │
-│                                                       │
-│  ⭐ 规则文件：rules/analyze-rules.md                     │
-└───────────────────────────────────────────────────────┘
-   │
-   ▼
-┌─ Step 2: 写配音脚本 ──────────────────────────────────┐
-│  ① 每幕只写 1 句                                       │
-│  ② 保留 What/Why/How                                   │
-│  ③ 数据 → 提炼最终结论                                  │
-│  ④ 口语化，不念代码                                    │
-│  ⑤ 产出：voice-script.txt                               │
-│                                                       │
-│  ⭐ 规则文件：rules/voice-rules.md                       │
-└───────────────────────────────────────────────────────┘
-   │
-   ▼
-┌─ Step 3: 准备卡片内容 ────────────────────────────────┐
-│  ① 每张卡片至少展示一条关键信息                           │
-│  ② 代码/配置 → 展示关键代码行                            │
-│  ③ 数据/指标 → 展示最终数字                              │
-│  ④ 步骤 → 展示 CLI 命令                                 │
-│  ⑤ 产出：卡片内容数据（嵌入 index.html）                  │
-│                                                       │
-│  ⭐ 规则文件：rules/card-content-rules.md                  │
-└───────────────────────────────────────────────────────┘
-   │
-   ▼
-┌─ Step 4: 构建项目目录 ────────────────────────────────┐
-│                                                       │
-│  目录：📝 素材库/[帖子名]/                               │
-│                                                       │
-│  ├── video-blueprint.yaml  ← 分析蓝图                   │
-│  ├── voice-script.txt     ← 配音稿                     │
-│  ├── speech.wav           ← TTS 配音                   │
-│  ├── index.html            ← GSAP 动画主页面             │
-│  ├── hyperframes.json      ← 项目配置                   │
-│  ├── package.json          ← 依赖                      │
-│  ├── meta.json             ← 元数据                    │
-│  ├── renders/              ← 渲染输出                    │
-│  │   └── [帖子名]-video.mp4                             │
-│  └── [帖子名].md           ← 原文章（链接引用）           │
-│                                                       │
-│  ⭐ 产出目录 = 永久保留，可回溯可重渲染                    │
-└───────────────────────────────────────────────────────┘
-   │
-   ▼
-┌─ Step 5: 生成 TTS ────────────────────────────────────┐
-│                                                       │
-│  edge-tts --voice zh-CN-XiaoyiNeural \                │
-│    --text "$(cat voice-script.txt)" \                  │
-│    --write-media speech.wav                            │
-│                                                       │
-│  ⚡ 同时生成 speech-fast.wav（1.15x 加速备用）            │
-└───────────────────────────────────────────────────────┘
-   │
-   ▼
-┌─ Step 6: Whisper 时码 ──────────────────────────────┐
-│                                                       │
-│  对 speech.wav 做语音识别 → 获得每句的时间戳             │
-│  → 场景切换点：第 0s / 第 8s / 第 18s / 第 28s ...        │
-└───────────────────────────────────────────────────────┘
-   │
-   ▼
-┌─ Step 7: 构建 index.html ───────────────────────────┐
-│                                                       │
-│  ① 选主题包 → 取对应背景 CSS + 卡片模板 + 过渡预设       │
-│  ② 按视频蓝图组合场景                                    │
-│  ③ 卡片内容填充（代码/数据/表格）                         │
-│  ④ GSAP timeline 按 Whisper 时码切场景                   │
-└───────────────────────────────────────────────────────┘
-   │
-   ▼
-┌─ Step 8: Lint + Render ────────────────────────────┐
-│  cd 📝素材库/[帖子名]/ && npm run check && npm run render  │
-└───────────────────────────────────────────────────────┘
-```
+Do not copy the fixed logo into every project unless the user explicitly requests a self-contained package. Reference the skill branding asset by path.
 
----
+## Fixed Branding
 
-## 主题包系统
+Read `assets/branding/brand-profile.json` before building Logo or Follow scenes. If the file has placeholder values, read `references/branding.md` and guide the user through the first-run replacement flow.
 
-### 选择方式
+Branding data is fixed across videos:
 
-```
-主人指定："帮我把这篇转成视频，用 tech-signal"
-未指定 → 默认使用 tech-signal 主题
-```
+- logo file
+- display name
+- social handle
+- social URL
+- Logo intro text
+- Follow title/subtitle/CTA text
 
-### 当前主题
+Visual style is not fixed. Logo intro and Follow outro must use the current theme's colors, typography, background language, components, and motion. Swapping themes should change only theme components and tokens, not brand text.
 
-| 主题 | 路径 | 状态 |
-|------|------|------|
-| **tech-signal** | `templates/themes/tech-signal/` | ✅ v1.0 |
+## Theme Selection
 
-### 主题包结构
+Default theme: `tech-signal`.
 
-```
-templates/themes/tech-signal/
-├── theme.json           ← 元数据 + 配色 + 背景预设 + 卡片过渡映射
-├── backgrounds/         ← 6 种背景效果的 CSS/JS
-├── cards/               ← 9 种卡片 HTML 模板
-└── transitions/         ← GSAP 过渡预设
-```
+Available built-in themes:
 
----
+- `tech-signal`: clean sci-fi editorial style for technical releases, AI systems, product analysis, and dense engineering content.
+- `soft-signal`: warm paper, organic shapes, botanical linework, editorial arches, soft signal lines, and gentle grids for AI, lifestyle, tutorial, personal brand, and low-pressure explainer videos.
+- `folk-frequency`: handcrafted folk poster style with warm cream paper, distressed ink, bold cultural colors, ornamental borders, and festival-like cards for cultural stories, lifestyle, events, personal brand, community content, and warm editorial videos.
+- `clear-code`: warm, clear, human-centered editorial style with large serif titles, terracotta accents, fine line icons, and light utility cards for AI tools, workflows, tutorials, release notes, and practical explainers.
 
-## 场景-卡片-过渡映射
+Read `themes/<theme>/theme.json` before writing any HyperFrames HTML. Use its:
 
-### 9 种卡片类型
+- `design_tokens`
+- `background_presets`
+- `card_templates`
+- `layout_templates`
+- `animation_map`
+- `branding_components`
+- `asset_policy`
 
-| 类型 | 用途 | 对应过渡 |
-|------|------|---------|
-| `hook` | 开头钩子/标题 | `hud_aperture_open` |
-| `summary` | 核心摘要 | `data_sweep_reveal` |
-| `key_points` | 要点列表 | `interface_stack_slide` |
-| `steps` | 操作步骤 | `blueprint_draw_on` |
-| `metrics` | 数据指标 | `metric_counter_pulse` |
-| `code_log` | 代码展示 | `terminal_parse_in` |
-| `architecture` | 系统架构 | `neural_node_morph` |
-| `warning` | 问题预警 | `system_alert_shift` |
-| `conclusion` | 收尾/CTA | `glass_panel_focus` |
+For `tech-signal`, `soft-signal`, `folk-frequency`, and `clear-code`, use fixed theme-level background presets, fixed safe areas, and registered element layers by default. Article generation must choose from `themes/<theme>/theme.json.background_presets`, `layout_templates`, `animation_map`, and `asset_registry`; do not search, generate, or invent background assets per article unless the user explicitly asks.
 
-### 卡片内容规则（关键！）
+## Workflow
 
-| 卡片 | 配音（说的） | 卡片展示（看的） |
-|------|-----------|--------------|
-| hook | 引起兴趣 | 标题 + 版本号 |
-| summary | 一句结论 | 关键数字 / 对比 |
-| key_points | 概览 | 3-5 个要点卡片 |
-| steps | 操作指引 | **配置代码 + CLI 命令** |
-| metrics | 数据结论 | **最终数字 + 对比** |
-| code_log | 说明 | **代码块 + 高亮** |
-| architecture | 架构概述 | 层级/箭头/角色 |
-| warning | 风险提醒 | 警告样式 + 要点 |
-| conclusion | 行动号召 | **CLI 命令** |
+1. **Read the article and write `article-breakdown.md`**. This single document is both the whole-article structure analysis and the scene-by-scene generation prompt.
+2. **Choose or confirm the style**. Default to `tech-signal` when the user does not specify a theme. Record the selected theme and style preset in `article-breakdown.md`.
+3. **Build body scenes from `article-breakdown.md` only**. Each body scene must include:
+   - `narration`: 2-3 natural short spoken sentences that cover the headline meaning, the core conclusion, and 1-2 important card points.
+   - `visual_text`: the visible headline, labels, chips, and card copy. This is separate from narration and should be richer than the spoken line.
+   - `visual_payload`: structured card content, dense enough to fill the selected layout without clutter.
+   - `card_type`: one of `hook`, `summary`, `comparison`, `key_points`, `steps`, `metrics`, `code_log`, `architecture`, `warning`, `quote`, `conclusion`.
+   - `layout_template`: selected from `themes/<theme>/theme.json.layout_templates[card_type]`.
+   - `background_preset`: selected from `themes/<theme>/theme.json.background_presets`.
+   - `animation`: selected from `themes/<theme>/theme.json.animation_map[card_type]`.
+   - `duration_target`: estimated visual duration before timing with audio.
+   - `source_excerpt`: the article evidence used.
+4. **Extract the voice document** from `article-breakdown.md`:
+   - The `## Narration Script` section is the canonical voice document.
+   - It must include body scene narrations in scene order.
+   - Do not create a permanent `voice-script.txt`; temporary extraction may happen in `.cache/voice/`.
+5. **Generate TTS from the voice document** with the local Kokoro Chinese model by default for Chinese videos: `hexgrad/Kokoro-82M-v1.1-zh`, voice `zf_001`, speed `1.5`, via `scripts/kokoro-zh-tts.py`. Generate one continuous `assets/speech.wav` from the ordered scene list; do not add fixed scene gaps unless the user asks for pauses. Use HyperFrames CLI TTS only for non-Chinese videos or when the user explicitly asks for a specific HyperFrames voice. Do not use macOS `say` as a silent fallback; if Kokoro is unavailable, fix or report the TTS environment and record any explicit fallback in `article-breakdown.md`.
+6. **Analyze the real audio timecode before writing the final video timeline**:
+   - Prefer the Kokoro script's cumulative per-scene timecodes from continuous single-track generation.
+   - If another engine only returns one WAV without scene timecodes, run `npx hyperframes transcribe assets/speech.wav --language zh --json` when available, then map transcript sentence timestamps back to scene IDs.
+   - If transcription is unavailable, measure synthesized scene segment durations directly and record that fallback in the embedded timing metadata.
+   - `duration_target` is only a planning estimate. It must not be the final `data-duration` once audio exists.
+7. **Derive scene timing from audio timecode**:
+   - Logo intro keeps its fixed silent 3s duration.
+   - Each body scene starts from the aligned narration start plus any deliberate visual lead-in.
+   - Each body scene duration must cover its narration plus a small reading/hold buffer for the visual card.
+   - Follow outro starts after the final body scene and remains visual-only unless the user requested outro narration.
+8. **Generate one complete timeline from the aligned timing**:
+   - Logo intro from the theme component.
+   - Body scenes from `article-breakdown.md`.
+   - Follow outro from the theme component structure.
+   Logo and Follow are not post-production append steps. They are fixed structural scenes in the same `index.html` timeline and must use the same confirmed theme.
+   Clear-Code and compatible themes should reuse the fixed segmented logo assembly animation: J/E outline-fill reveal plus the triangle play button scaling in place. Do not add a decorative outer ring around the logo unless the user explicitly requests it.
+   Follow outro must reuse the theme component markup and animation contract. If a late-start child composition cannot receive local time from HyperFrames, embed a fixed component instance in the parent timeline and drive that instance from the parent; do not freehand a new Follow layout.
+9. **Embed timing metadata into `index.html`**:
+   - `voice_source`: `article-breakdown.md#Narration Script`
+   - `speech_asset`: `assets/speech.wav`
+   - `audio_duration`
+   - `scene_timecodes[]` with `scene_id`, `narration`, `voice_start`, `voice_end`, `scene_start`, and `scene_duration`
+10. **Build HyperFrames HTML** using the theme partials:
+   - `themes/<theme>/partials/backgrounds.css`
+   - `themes/<theme>/partials/cards.css`
+   - `themes/<theme>/partials/transitions.js`
+   - Start from the selected theme's component/demo structure for the matching `layout_template`; do not freehand a temporary page that only borrows CSS class names.
+   - Do not use `data-layout-ignore` on readable text, cards, scene wrappers, Logo, or Follow content. It is only acceptable on decorative `aria-hidden="true"` nodes.
+   - Keep all `src`, `href`, `url()`, and `data-composition-src` paths local and resolvable inside the output project.
+   - Animate body scenes across the real narration duration. The default order is title and footer first, then subtitle/supporting copy, then cards or list items in sequence, then key numbers/tags. Do not front-load all card animation into the first second unless the scene narration is actually that short.
+11. **Validate and render**:
+   - `node scripts/validate-generation-logic.mjs --project <output-project> --allow-unrendered`
+   - `npx hyperframes lint`
+   - `npx hyperframes inspect --samples 15`
+   - `npx hyperframes snapshot --at <times>` for several key frames before claiming the visual style is correct
+   - `npx hyperframes render --quality draft`
+   - `node scripts/validate-generation-logic.mjs --project <output-project>`
 
----
+## Card Density Rules
 
-## 前置规则参考
+The narration may be short; the card may not be empty.
 
-| 规则 | 路径 |
-|------|------|
-| 文章分析规则 | `rules/analyze-rules.md` |
-| 配音写作规则 | `rules/voice-rules.md` |
-| 卡片内容规则 | `rules/card-content-rules.md` |
-| Logo & Follow Me 规则 | `rules/logo-follow-rules.md` |
+- `key_points`: 3-5 items, each with a title and one detail.
+- `metrics`: show at least one number, count, timing, ratio, or before/after comparison.
+- `code_log`: show commands, config keys, errors, or quoted technical strings from the article.
+- `steps`: show step labels plus concrete action/config/command text.
+- `summary`: show the core conclusion plus 1-2 evidence points.
+- `comparison`: show before/after or left/right evidence with named criteria.
+- `architecture`: show named layers, arrows, and one role per layer.
 
----
+See `rules/card-content-rules.md` for full rules.
 
-## 使用示例
+## HyperFrames Rules
 
-```bash
-# 完整流程示例（以 v5.3 文章为例）
+- Every timed element needs `id`, `data-start`, `data-duration`, and `data-track-index`.
+- Use `<audio>` for narration; never use video as audio.
+- Timelines must be synchronous, paused, and registered in `window.__timelines`.
+- Do not use runtime random APIs, clock-dependent values, or endless GSAP repeats.
+- Build the final layout first, then animate from/to that layout.
+- Keep Logo and Follow components theme-matched, not fixed-style overlays.
 
-# 1. 读取文章
-cat "📝 素材库/OpenClaw-v2026.5.3-发布.md"
+## Resource Map
 
-# 2. 分析 → 产出 video-blueprint.yaml + voice-script.txt
-#    （按 rules/analyze-rules.md + rules/voice-rules.md）
-
-# 3. 建项目目录（素材库内永久存储）
-mkdir -p "📝 素材库/OpenClaw-v2026.5.3-发布"
-cp video-blueprint.yaml "📝 素材库/OpenClaw-v2026.5.3-发布/"
-cp voice-script.txt "📝 素材库/OpenClaw-v2026.5.3-发布/"
-
-# 4. 生成 TTS
-edge-tts --voice zh-CN-XiaoyiNeural \
-  --text "$(cat voice-script.txt)" \
-  --write-media "speech.wav"
-cp speech.wav "📝 素材库/OpenClaw-v2026.5.3-发布/"
-
-# 5. Whisper 获取时码
-#    （使用本地 whisper 或 hyperframes 内置 whisper）
-whisper "speech.wav" --output_format json
-
-# 6. 构建 index.html
-#    - 取主题包 backgrounds/ + cards/ + transitions/
-#    - 按 video-blueprint 组合场景
-#    - 填充卡片内容
-#    - GSAP 按 Whisper 时码切场景
-
-# 7. 运行校验 + 渲染
-cd "📝 素材库/OpenClaw-v2026.5.3-发布"
-npm run check && npm run render
-```
-
-## 重要规则
-
-1. 每个时间元素需要 `data-start`, `data-duration`, `data-track-index`
-2. 有时间的元素必须加 `class="clip"`
-3. GSAP timeline 必须 `{ paused: true }` 并注册到 `window.__timelines`
-4. 音频用 `<audio>` 元素，不要用 `<video muted>`
-5. 只有确定性逻辑 — 不用 `Date.now()`, `Math.random()`
-6. 始终在渲染前运行 lint + validate
-7. ⭐ CSS font-family 必须包含 emoji 字体回退：`'Noto Color Emoji', 'Apple Color Emoji'`
-8. ⭐ TTS 统一使用品牌声音：`zh-CN-XiaoyiNeural`（小艺-活泼），用 `edge-tts` 生成
-9. ⭐ **配音简化 ≠ 卡片空壳** — 配音一句话，卡片展示关键信息
-10. ⭐ **项目目录永久化** — 所有产出放在 `📝 素材库/[帖子名]/`，不存 `/tmp/`
-
-## 参考
-
-- HyperFrames Docs: https://hyperframes.heygen.com/introduction
-- LLMs index: https://hyperframes.heygen.com/llms.txt
-- 主题包: `templates/themes/tech-signal/theme.json`
+- `references/branding.md`: first-run branding setup and fixed copy rules.
+- `references/generation-validation.md`: validation commands for theme contracts and generated video projects.
+- `rules/analyze-rules.md`: article-to-scene analysis.
+- `rules/voice-rules.md`: narration length, Kokoro TTS, and audio timecode rules.
+- `rules/card-content-rules.md`: visual payload density rules.
+- `themes/tech-signal/theme.json`: default theme contract.
+- `themes/tech-signal/components/logo-intro.html`: theme-matched logo intro.
+- `themes/tech-signal/components/follow-outro.html`: theme-matched follow outro.
+- `themes/tech-signal/partials/`: reusable CSS/JS for generated article scenes.
+- `themes/soft-signal/theme.json`: warm soft theme contract.
+- `themes/soft-signal/components/logo-intro.html`: soft theme logo intro.
+- `themes/soft-signal/components/follow-outro.html`: soft theme follow outro.
+- `themes/soft-signal/partials/`: warm paper, soft blob, botanical, arch, signal-block, and soft-grid CSS/JS.
+- `themes/folk-frequency/theme.json`: handcrafted folk-poster theme contract.
+- `themes/folk-frequency/components/logo-intro.html`: folk theme logo intro.
+- `themes/folk-frequency/components/follow-outro.html`: folk theme follow outro.
+- `themes/folk-frequency/partials/`: folk paper backgrounds, poster cards, and stamp-like transitions.
+- `themes/folk-frequency/assets/asset-manifest.json`: fixed Image 2 theme assets and usage rules.
+- `themes/clear-code/theme.json`: warm clear editorial theme contract.
+- `themes/clear-code/components/logo-intro.html`: clear-code theme logo intro.
+- `themes/clear-code/components/follow-outro.html`: clear-code theme follow outro.
+- `themes/clear-code/partials/`: warm canvas backgrounds, clear utility cards, and calm deterministic transitions.
+- `rules/article-breakdown-rules.md`: required `article-breakdown.md` structure and scene prompt fields.

@@ -1,0 +1,319 @@
+{
+  "theme": "folk-frequency",
+  "generated_with": "built-in image_gen / Image 2 path",
+  "runtime_rule": "Generated scenes should use one registered 1920x1080 background preset as the primary visual layer. New Folk Frequency pages render all text in HTML/CSS; background images must contain no intended readable text. Fonts and backgrounds are theme-level assets, not per-article outputs.",
+  "assets": [
+    {
+      "path": "textures/folk-paper-grain.png",
+      "type": "png",
+      "runtime": true,
+      "source": "/Users/langjun/.codex/generated_images/019e03a9-0e83-7df1-9ae6-b606d9f43407/ig_0d5739b9cf8fb8400169ff8c84f95c819b9d6c079881ee3329.png",
+      "role": "Warm cream paper grain background texture for all Folk Frequency scenes.",
+      "size": "1536x1024",
+      "usage": "Use as a subtle multiply overlay or base paper texture. Keep opacity low under dense text.",
+      "avoid": "Do not use as a standalone hero image or crop into noisy high-contrast blocks."
+    },
+    {
+      "path": "textures/folk-ink-distress.png",
+      "type": "png",
+      "runtime": true,
+      "source": "/Users/langjun/.codex/generated_images/019e03a9-0e83-7df1-9ae6-b606d9f43407/ig_0d5739b9cf8fb8400169ff8cb7f22c819b93393df899b76d4e.png",
+      "role": "Sparse ink fleck and letterpress wear overlay for cards, borders, and poster panels.",
+      "size": "1536x1024",
+      "usage": "Use with multiply blend at 0.08-0.22 opacity.",
+      "avoid": "Do not apply above body copy at high opacity."
+    },
+    {
+      "path": "references/folk-ornament-sheet.png",
+      "type": "png",
+      "runtime": false,
+      "source": "/Users/langjun/.codex/generated_images/019e03a9-0e83-7df1-9ae6-b606d9f43407/ig_0d5739b9cf8fb8400169ff8cf23c00819ba2b30dee58f0dfe1.png",
+      "role": "Reference ornament sheet with bird, sun, flower, leaf, star, heart, hand, scallop, zigzag, and floral corner motifs.",
+      "size": "1536x1024",
+      "usage": "Reference-only style sheet. Use registered SVG icons and borders for runtime HTML.",
+      "avoid": "Do not tile this entire image as a background or place it directly in a scene."
+    },
+    {
+      "path": "icons/bird.svg",
+      "type": "svg",
+      "runtime": false,
+      "role": "Folk bird ornament for poster hooks and community scenes.",
+      "fallback_only": true,
+      "usage": "Fallback-only vector asset. Prefer full-page background presets for the main visual style."
+    },
+    {
+      "path": "icons/sun.svg",
+      "type": "svg",
+      "runtime": false,
+      "role": "Smiling sun ornament for positive result and metric scenes.",
+      "fallback_only": true,
+      "usage": "Fallback-only vector asset. Prefer full-page background presets for the main visual style."
+    },
+    {
+      "path": "icons/flower.svg",
+      "type": "svg",
+      "runtime": false,
+      "role": "Folk flower ornament for warm and celebratory scenes.",
+      "fallback_only": true,
+      "usage": "Fallback-only vector asset. Prefer full-page background presets for the main visual style."
+    },
+    {
+      "path": "icons/leaf.svg",
+      "type": "svg",
+      "runtime": false,
+      "role": "Leaf sprig ornament for grounded editorial scenes.",
+      "fallback_only": true,
+      "usage": "Fallback-only vector asset. Prefer full-page background presets for the main visual style."
+    },
+    {
+      "path": "icons/star.svg",
+      "type": "svg",
+      "runtime": false,
+      "role": "Highlight star for quote and emphasis scenes.",
+      "fallback_only": true,
+      "usage": "Fallback-only vector asset. Prefer full-page background presets for the main visual style."
+    },
+    {
+      "path": "icons/heart.svg",
+      "type": "svg",
+      "runtime": false,
+      "role": "Heart ornament for personal brand and follow scenes.",
+      "fallback_only": true,
+      "usage": "Fallback-only vector asset. Prefer full-page background presets for the main visual style."
+    },
+    {
+      "path": "icons/hand.svg",
+      "type": "svg",
+      "runtime": false,
+      "role": "Handmade craft icon for process and tutorial scenes.",
+      "fallback_only": true,
+      "usage": "Fallback-only vector asset. Prefer full-page background presets for the main visual style."
+    },
+    {
+      "path": "icons/calendar.svg",
+      "type": "svg",
+      "runtime": false,
+      "role": "Calendar icon for event/date cards.",
+      "fallback_only": true,
+      "usage": "Fallback-only vector asset. Prefer full-page background presets for the main visual style."
+    },
+    {
+      "path": "icons/pin.svg",
+      "type": "svg",
+      "runtime": false,
+      "role": "Location pin icon for event/place cards.",
+      "fallback_only": true,
+      "usage": "Fallback-only vector asset. Prefer full-page background presets for the main visual style."
+    },
+    {
+      "path": "borders/scallop-strip.svg",
+      "type": "svg",
+      "runtime": false,
+      "role": "Scallop trim for poster tops.",
+      "fallback_only": true,
+      "usage": "Fallback-only vector asset. Prefer full-page background presets for the main visual style."
+    },
+    {
+      "path": "borders/zigzag-strip.svg",
+      "type": "svg",
+      "runtime": false,
+      "role": "Zigzag trim for poster bottoms.",
+      "fallback_only": true,
+      "usage": "Fallback-only vector asset. Prefer full-page background presets for the main visual style."
+    },
+    {
+      "path": "borders/corner-floral.svg",
+      "type": "svg",
+      "runtime": false,
+      "role": "Floral corner ornament for framed scenes.",
+      "fallback_only": true,
+      "usage": "Fallback-only vector asset. Prefer full-page background presets for the main visual style."
+    },
+    {
+      "path": "borders/dotted-side.svg",
+      "type": "svg",
+      "runtime": false,
+      "role": "Side dotted trim for event and step layouts.",
+      "fallback_only": true,
+      "usage": "Fallback-only vector asset. Prefer full-page background presets for the main visual style."
+    },
+    {
+      "path": "ornaments/bird.png",
+      "type": "png_alpha",
+      "runtime": true,
+      "source": "Cropped from references/folk-ornament-sheet.png with alpha matte extraction.",
+      "role": "Transparent Image 2 folk bird ornament for hooks and cultural scenes.",
+      "usage": "Optional accent only. Use no more than 1-2 per scene, and never as the main border system.",
+      "avoid": "Do not use to rebuild full-page borders or dense repeated patterns; the background preset already owns the main folk composition."
+    },
+    {
+      "path": "ornaments/sun.png",
+      "type": "png_alpha",
+      "runtime": true,
+      "source": "Cropped from references/folk-ornament-sheet.png with alpha matte extraction.",
+      "role": "Transparent Image 2 smiling sun ornament for positive result and metrics scenes.",
+      "usage": "Optional accent only. Use no more than 1-2 per scene, and never as the main border system.",
+      "avoid": "Do not use to rebuild full-page borders or dense repeated patterns; the background preset already owns the main folk composition."
+    },
+    {
+      "path": "ornaments/red-flower.png",
+      "type": "png_alpha",
+      "runtime": true,
+      "source": "Cropped from references/folk-ornament-sheet.png with alpha matte extraction.",
+      "role": "Transparent Image 2 red flower ornament for warm celebratory accents.",
+      "usage": "Optional accent only. Use no more than 1-2 per scene, and never as the main border system.",
+      "avoid": "Do not use to rebuild full-page borders or dense repeated patterns; the background preset already owns the main folk composition."
+    },
+    {
+      "path": "ornaments/yellow-flower.png",
+      "type": "png_alpha",
+      "runtime": true,
+      "source": "Cropped from references/folk-ornament-sheet.png with alpha matte extraction.",
+      "role": "Transparent Image 2 yellow flower ornament for secondary accents.",
+      "usage": "Optional accent only. Use no more than 1-2 per scene, and never as the main border system.",
+      "avoid": "Do not use to rebuild full-page borders or dense repeated patterns; the background preset already owns the main folk composition."
+    },
+    {
+      "path": "ornaments/leaf.png",
+      "type": "png_alpha",
+      "runtime": true,
+      "source": "Cropped from references/folk-ornament-sheet.png with alpha matte extraction.",
+      "role": "Transparent Image 2 leaf sprig ornament for grounded editorial scenes.",
+      "usage": "Optional accent only. Use no more than 1-2 per scene, and never as the main border system.",
+      "avoid": "Do not use to rebuild full-page borders or dense repeated patterns; the background preset already owns the main folk composition."
+    },
+    {
+      "path": "ornaments/star.png",
+      "type": "png_alpha",
+      "runtime": true,
+      "source": "Cropped from references/folk-ornament-sheet.png with alpha matte extraction.",
+      "role": "Transparent Image 2 star ornament for highlights and quotes.",
+      "usage": "Optional accent only. Use no more than 1-2 per scene, and never as the main border system.",
+      "avoid": "Do not use to rebuild full-page borders or dense repeated patterns; the background preset already owns the main folk composition."
+    },
+    {
+      "path": "ornaments/heart.png",
+      "type": "png_alpha",
+      "runtime": true,
+      "source": "Cropped from references/folk-ornament-sheet.png with alpha matte extraction.",
+      "role": "Transparent Image 2 heart ornament for personal brand and follow scenes.",
+      "usage": "Optional accent only. Use no more than 1-2 per scene, and never as the main border system.",
+      "avoid": "Do not use to rebuild full-page borders or dense repeated patterns; the background preset already owns the main folk composition."
+    },
+    {
+      "path": "ornaments/hand.png",
+      "type": "png_alpha",
+      "runtime": true,
+      "source": "Cropped from references/folk-ornament-sheet.png with alpha matte extraction.",
+      "role": "Transparent Image 2 hand ornament for handcrafted process scenes.",
+      "usage": "Optional accent only. Use no more than 1-2 per scene, and never as the main border system.",
+      "avoid": "Do not use to rebuild full-page borders or dense repeated patterns; the background preset already owns the main folk composition."
+    },
+    {
+      "path": "ornaments/scallop-strip.png",
+      "type": "png_alpha",
+      "runtime": true,
+      "source": "Cropped from references/folk-ornament-sheet.png with alpha matte extraction.",
+      "role": "Transparent Image 2 scallop trim for poster tops.",
+      "usage": "Optional accent only. Use no more than 1-2 per scene, and never as the main border system.",
+      "avoid": "Do not use to rebuild full-page borders or dense repeated patterns; the background preset already owns the main folk composition."
+    },
+    {
+      "path": "ornaments/zigzag-strip.png",
+      "type": "png_alpha",
+      "runtime": true,
+      "source": "Cropped from references/folk-ornament-sheet.png with alpha matte extraction.",
+      "role": "Transparent Image 2 zigzag trim for poster bottoms.",
+      "usage": "Optional accent only. Use no more than 1-2 per scene, and never as the main border system.",
+      "avoid": "Do not use to rebuild full-page borders or dense repeated patterns; the background preset already owns the main folk composition."
+    },
+    {
+      "path": "ornaments/corner-floral.png",
+      "type": "png_alpha",
+      "runtime": true,
+      "source": "Cropped from references/folk-ornament-sheet.png with alpha matte extraction.",
+      "role": "Transparent Image 2 corner floral ornament for poster frames.",
+      "usage": "Optional accent only. Use no more than 1-2 per scene, and never as the main border system.",
+      "avoid": "Do not use to rebuild full-page borders or dense repeated patterns; the background preset already owns the main folk composition."
+    },
+    {
+      "path": "backgrounds/floral-fest-bg.png",
+      "type": "png",
+      "runtime": true,
+      "source": "/Users/langjun/.codex/generated_images/019e03a9-0e83-7df1-9ae6-b606d9f43407/ig_08dcff39dcc52ec6016a0373dd69b881958834de604e50ad87.png",
+      "role": "Clean folk border background for hook and warm story scenes; contains paper, outer border, corner flowers, edge ornaments, and no fixed layout slots.",
+      "size": "1920x1080",
+      "usage": "Use through the matching .ff-bg-* background preset. Render all cards, titles, badges, image frames, and controls in HTML/CSS inside the safe area.",
+      "avoid": "Do not add readable text, fixed cards, panels, title slots, hero-art frames, metric slots, step cards, arrows, or blank layout boxes into the background image."
+    },
+    {
+      "path": "backgrounds/forest-floor-bg.png",
+      "type": "png",
+      "runtime": true,
+      "source": "/Users/langjun/.codex/generated_images/019e03a9-0e83-7df1-9ae6-b606d9f43407/ig_08dcff39dcc52ec6016a0374a036c881958bbed4d0296d0ea6.png",
+      "role": "Clean botanical folk border background for summaries and key points; content blocks are separate HTML/CSS elements.",
+      "size": "1920x1080",
+      "usage": "Use through the matching .ff-bg-* background preset. Render all cards, titles, badges, image frames, and controls in HTML/CSS inside the safe area.",
+      "avoid": "Do not add readable text, fixed cards, panels, title slots, hero-art frames, metric slots, step cards, arrows, or blank layout boxes into the background image."
+    },
+    {
+      "path": "backgrounds/river-waves-bg.png",
+      "type": "png",
+      "runtime": true,
+      "source": "/Users/langjun/.codex/generated_images/019e03a9-0e83-7df1-9ae6-b606d9f43407/ig_08dcff39dcc52ec6016a037505696c8195bd5445bef4b86f50.png",
+      "role": "Clean river-trim folk border background for workflows and process scenes; steps and arrows are separate HTML/CSS elements.",
+      "size": "1920x1080",
+      "usage": "Use through the matching .ff-bg-* background preset. Render all cards, titles, badges, image frames, and controls in HTML/CSS inside the safe area.",
+      "avoid": "Do not add readable text, fixed cards, panels, title slots, hero-art frames, metric slots, step cards, arrows, or blank layout boxes into the background image."
+    },
+    {
+      "path": "backgrounds/night-folk-bg.png",
+      "type": "png",
+      "runtime": true,
+      "source": "/Users/langjun/.codex/generated_images/019e03a9-0e83-7df1-9ae6-b606d9f43407/ig_08dcff39dcc52ec6016a0375ca64a08195a1e2f2a568cd23de.png",
+      "role": "Clean indigo-accent folk border background for quote and emphasis scenes; dark quote panels are separate HTML/CSS elements.",
+      "size": "1920x1080",
+      "usage": "Use through the matching .ff-bg-* background preset. Render all cards, titles, badges, image frames, and controls in HTML/CSS inside the safe area.",
+      "avoid": "Do not add readable text, fixed cards, panels, title slots, hero-art frames, metric slots, step cards, arrows, or blank layout boxes into the background image."
+    },
+    {
+      "path": "backgrounds/sunshine-block-bg.png",
+      "type": "png",
+      "runtime": true,
+      "source": "/Users/langjun/.codex/generated_images/019e03a9-0e83-7df1-9ae6-b606d9f43407/ig_08dcff39dcc52ec6016a037618eff881958bc287970a9a5c8d.png",
+      "role": "Clean sunny folk border background for metrics and positive results; stamps and result blocks are separate HTML/CSS elements.",
+      "size": "1920x1080",
+      "usage": "Use through the matching .ff-bg-* background preset. Render all cards, titles, badges, image frames, and controls in HTML/CSS inside the safe area.",
+      "avoid": "Do not add readable text, fixed cards, panels, title slots, hero-art frames, metric slots, step cards, arrows, or blank layout boxes into the background image."
+    },
+    {
+      "path": "backgrounds/terracotta-print-bg.png",
+      "type": "png",
+      "runtime": true,
+      "source": "/Users/langjun/.codex/generated_images/019e03a9-0e83-7df1-9ae6-b606d9f43407/ig_08dcff39dcc52ec6016a0376711b2481958609b95b8aff5185.png",
+      "role": "Clean terracotta-accent folk border background for warnings and comparison scenes; panels are separate HTML/CSS elements.",
+      "size": "1920x1080",
+      "usage": "Use through the matching .ff-bg-* background preset. Render all cards, titles, badges, image frames, and controls in HTML/CSS inside the safe area.",
+      "avoid": "Do not add readable text, fixed cards, panels, title slots, hero-art frames, metric slots, step cards, arrows, or blank layout boxes into the background image."
+    },
+    {
+      "path": "fonts/Rye-Regular.ttf",
+      "type": "ttf",
+      "runtime": true,
+      "source": "https://fonts.gstatic.com/s/rye/v17/r05XGLJT86YDFg.ttf",
+      "role": "Local display font for English Folk Frequency woodcut poster titles.",
+      "usage": "Use through @font-face family Folk Display.",
+      "avoid": "Do not use for long body copy."
+    },
+    {
+      "path": "fonts/ZCOOLXiaoWei-Regular.ttf",
+      "type": "ttf",
+      "runtime": true,
+      "source": "https://fonts.gstatic.com/s/zcoolxiaowei/v15/i7dMIFFrTRywPpUVX9_RJyM1YFI.ttf",
+      "role": "Local Chinese display font fallback for Folk Frequency poster titles.",
+      "usage": "Use through @font-face family Folk CN.",
+      "avoid": "Do not use for dense paragraphs where system sans is more readable."
+    }
+  ],
+  "updated_for": "clean-background-layout-separation-v1.2"
+}

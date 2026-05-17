@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Soft Signal Theme Overview</title>
+    <link rel="icon" href="data:," />
+    <link rel="stylesheet" href="../partials/backgrounds.css" />
+    <link rel="stylesheet" href="../partials/cards.css" />
+    <link rel="stylesheet" href="demo.css" />
+  </head>
+  <body>
+    <main class="demo-shell">
+      <nav class="demo-nav">
+        <h1>Soft Signal 确定性模板总览</h1>
+        <div class="demo-links">
+          <a href="index.html">Index</a>
+          <a href="../../tech-signal/demo/theme-overview.html">Tech Signal</a>
+          <a href="../../folk-frequency/demo/theme-overview.html">Folk Frequency</a>
+        </div>
+      </nav>
+
+      <section class="overview-section">
+        <div class="overview-header">
+          <h2>Background Presets</h2>
+          <p>柔和风现在也使用固定 1920×1080 背景图：大色块、纸张颗粒和留白都预先确定，生成时只调用 preset。</p>
+        </div>
+        <div class="overview-grid">
+          <article class="overview-card"><div class="overview-frame"><section class="stage soft-scene ss-bg-warm-paper"></section></div><h3>warm_paper</h3><p>通用解释、教程、温和开场。</p></article>
+          <article class="overview-card"><div class="overview-frame"><section class="stage soft-scene ss-bg-soft-blobs"></section></div><h3>soft_blobs</h3><p>产品介绍、AI 工具、友好的概念说明。</p></article>
+          <article class="overview-card"><div class="overview-frame"><section class="stage soft-scene ss-bg-botanical-signal"></section></div><h3>botanical_signal</h3><p>个人品牌、人本故事、温暖评论。</p></article>
+          <article class="overview-card"><div class="overview-frame"><section class="stage soft-scene ss-bg-editorial-arch"></section></div><h3>editorial_arch</h3><p>观点、quote、案例封面场景。</p></article>
+          <article class="overview-card"><div class="overview-frame"><section class="stage soft-scene ss-bg-signal-blocks"></section></div><h3>signal_blocks</h3><p>AI agent、memory、流程和自动化关系。</p></article>
+          <article class="overview-card"><div class="overview-frame"><section class="stage soft-scene ss-bg-soft-grid"></section></div><h3>soft_grid</h3><p>版本更新、清单、对比和技术拆解。</p></article>
+        </div>
+      </section>
+
+      <section class="overview-section">
+        <div class="overview-header">
+          <h2>Deterministic Layouts</h2>
+          <p>安全区由背景 preset 固定。元素层从 registry 选择，默认不动画、不随机、不重复铺满。</p>
+        </div>
+        <div class="overview-grid">
+          <article class="overview-card">
+            <div class="overview-frame tall-card">
+              <section class="stage soft-scene ss-bg-warm-paper">
+                <div class="ss-element-paper-grain" aria-hidden="true"></div>
+                <div class="ss-article-scene soft-hook-layout">
+                  <article class="ss-card">
+                    <div class="ss-eyebrow">Hook / warm_paper</div>
+                    <h1 class="ss-title">固定背景，柔和表达</h1>
+                    <p class="ss-subtitle">标题和卡片始终落在安全区，背景不再临时生成。</p>
+                    <div class="ss-chip-row"><span class="ss-chip">warm</span><span class="ss-chip">deterministic</span><span class="ss-chip">paper</span></div>
+                  </article>
+                </div>
+              </section>
+            </div>
+            <h3>hook / paper_grain</h3>
+            <p>纸张颗粒是固定 layer，不无限随机漂移。</p>
+          </article>
+          <article class="overview-card">
+            <div class="overview-frame tall-card">
+              <section class="stage soft-scene ss-bg-soft-blobs">
+                <div class="ss-element-large-blobs" aria-hidden="true"></div>
+                <div class="ss-article-scene soft-metrics-layout">
+                  <article class="ss-card">
+                    <div class="ss-eyebrow">Metrics / soft_blobs</div>
+                    <h1 class="ss-title">大色块，不堆小点</h1>
+                    <div class="ss-grid">
+                      <div class="ss-metric"><div class="ss-metric-value">6</div><div class="ss-metric-label">fixed backgrounds</div></div>
+                      <div class="ss-metric"><div class="ss-metric-value">5</div><div class="ss-metric-label">registered layers</div></div>
+                      <div class="ss-metric"><div class="ss-metric-value">0</div><div class="ss-metric-label">runtime imagegen</div></div>
+                    </div>
+                  </article>
+                </div>
+              </section>
+            </div>
+            <h3>metrics / large_blobs</h3>
+            <p>大色块固定在边缘，正文保持留白。</p>
+          </article>
+          <article class="overview-card">
+            <div class="overview-frame tall-card">
+              <section class="stage soft-scene ss-bg-signal-blocks">
+                <div class="ss-element-subtle-grid-blocks" aria-hidden="true"></div>
+                <div class="ss-article-scene soft-steps-layout">
+                  <article class="ss-card">
+                    <div class="ss-eyebrow">Steps / signal_blocks</div>
+                    <h1 class="ss-title">流程关系用柔和块面表达</h1>
+                    <div class="ss-grid">
+                      <div class="ss-item"><div class="ss-item-title">Article</div><div class="ss-item-detail">文章拆分文档</div></div>
+                      <div class="ss-item"><div class="ss-item-title">Theme</div><div class="ss-item-detail">固定 preset 和安全区</div></div>
+                      <div class="ss-item"><div class="ss-item-title">Video</div><div class="ss-item-detail">稳定 timeline</div></div>
+                    </div>
+                  </article>
+                </div>
+              </section>
+            </div>
+            <h3>steps / subtle_grid_blocks</h3>
+            <p>不用线条网络，也不随机散布元素。</p>
+          </article>
+          <article class="overview-card">
+            <div class="overview-frame tall-card">
+              <section class="stage soft-scene ss-bg-editorial-arch">
+                <div class="ss-element-soft-arch" aria-hidden="true"></div>
+                <div class="ss-article-scene soft-quote-layout">
+                  <article class="ss-card">
+                    <div class="ss-eyebrow">Quote / editorial_arch</div>
+                    <h1 class="ss-title">“柔和也可以很确定。”</h1>
+                    <p class="ss-subtitle">背景、元素、卡片和动效都来自主题契约。</p>
+                  </article>
+                </div>
+              </section>
+            </div>
+            <h3>quote / soft_arch</h3>
+            <p>观点页使用固定 arch 背景和固定元素。</p>
+          </article>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

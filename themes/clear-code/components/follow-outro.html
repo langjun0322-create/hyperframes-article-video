@@ -1,0 +1,73 @@
+<template id="clear-code-follow-outro-template">
+  <div data-composition-id="clear-code-follow-outro" data-width="1920" data-height="1080" data-duration="4.5">
+    <link rel="stylesheet" href="../partials/clear-code.css" />
+    <style>
+      [data-composition-id="clear-code-follow-outro"] .cc-follow-card,
+      [data-composition-id="clear-code-follow-outro"] .cc-follow-avatar,
+      [data-composition-id="clear-code-follow-outro"] .cc-title,
+      [data-composition-id="clear-code-follow-outro"] .cc-subtitle,
+      [data-composition-id="clear-code-follow-outro"] .cc-chip,
+      [data-composition-id="clear-code-follow-outro"] .cc-cta-button {
+        opacity: 0;
+      }
+
+      [data-composition-id="clear-code-follow-outro"] .cc-follow-card {
+        transform: translateY(34px) scale(0.985);
+      }
+
+      [data-composition-id="clear-code-follow-outro"] .cc-follow-avatar {
+        transform: translateX(-18px) scale(0.94);
+      }
+
+      [data-composition-id="clear-code-follow-outro"] .cc-title,
+      [data-composition-id="clear-code-follow-outro"] .cc-subtitle,
+      [data-composition-id="clear-code-follow-outro"] .cc-chip {
+        transform: translateY(16px);
+      }
+
+      [data-composition-id="clear-code-follow-outro"] .cc-cta-button {
+        transform: scale(0.9);
+      }
+
+      [data-composition-id="clear-code-follow-outro"] .cc-follow-done {
+        transform: translateY(8px);
+      }
+    </style>
+    <div class="cc-theme cc-bg-actionable-cards">
+      <div class="cc-dot-field top-right" data-layout-ignore aria-hidden="true"></div>
+      <div class="cc-article-scene cc-layout-centered">
+        <div class="cc-card cc-follow-card">
+          <div class="cc-follow-avatar">
+            <img src="../../../assets/branding/follow-avatar.png" alt="Brand avatar" />
+          </div>
+          <div>
+            <h1 class="cc-title medium" data-brand-field="follow_title">Follow JunEr</h1>
+            <p class="cc-subtitle" data-brand-field="follow_subtitle">更多 OpenClaw 更新和 AI Agent 实战拆解</p>
+            <div class="cc-chip" data-brand-field="handle">@JunEr</div>
+          </div>
+          <button class="cc-cta-button" type="button" data-brand-field="cta_text">
+            <span class="cc-follow-idle">Follow me</span>
+            <span class="cc-follow-done">Following</span>
+          </button>
+        </div>
+      </div>
+    </div>
+    <script src="../../../assets/gsap.min.js"></script>
+    <script>
+      window.__timelines = window.__timelines || {};
+      var root = document.querySelector('[data-composition-id="clear-code-follow-outro"]');
+      var q = function (selector) { return root.querySelectorAll(selector); };
+      var clearCodeFollowOutro = gsap.timeline({ paused: true });
+      clearCodeFollowOutro.to(q('.cc-follow-card'), { opacity: 1, y: 0, scale: 1, duration: 0.54, ease: 'power3.out' }, 0.35);
+      clearCodeFollowOutro.to(q('.cc-follow-avatar'), { opacity: 1, x: 0, scale: 1, duration: 0.38, ease: 'power3.out' }, 0.62);
+      clearCodeFollowOutro.to(q('.cc-title, .cc-subtitle, .cc-chip'), { opacity: 1, y: 0, duration: 0.42, stagger: 0.08, ease: 'power3.out' }, 0.82);
+      clearCodeFollowOutro.to(q('.cc-cta-button'), { opacity: 1, scale: 1, duration: 0.32, ease: 'back.out(1.45)' }, 1.02);
+      clearCodeFollowOutro.to(q('.cc-cta-button'), { scale: 0.94, duration: 0.10, ease: 'power2.out' }, 1.55);
+      clearCodeFollowOutro.to(q('.cc-follow-idle'), { opacity: 0, y: -8, duration: 0.16, ease: 'power2.out' }, 1.63);
+      clearCodeFollowOutro.to(q('.cc-follow-done'), { opacity: 1, y: 0, duration: 0.20, ease: 'power2.out' }, 1.67);
+      clearCodeFollowOutro.to(q('.cc-cta-button'), { scale: 1, backgroundColor: '#1e2529', duration: 0.22, ease: 'power2.out' }, 1.68);
+      clearCodeFollowOutro.to(q('.cc-follow-card'), { opacity: 0, y: -20, duration: 0.34, ease: 'power2.in' }, 4.10);
+      window.__timelines['clear-code-follow-outro'] = clearCodeFollowOutro;
+    </script>
+  </div>
+</template>

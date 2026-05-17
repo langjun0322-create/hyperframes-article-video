@@ -1,0 +1,57 @@
+@import url("backgrounds.css");
+@import url("cards.css");
+
+@font-face {
+  font-family: "Clear Code Display";
+  src: url("../assets/fonts/CormorantGaramond-SemiBold.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Clear Code Display";
+  src: url("../assets/fonts/CormorantGaramond-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Clear Code Sans";
+  src: url("../assets/fonts/Inter-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Clear Code Sans";
+  src: url("../assets/fonts/Inter-SemiBold.ttf") format("truetype");
+  font-weight: 650;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Clear Code Sans";
+  src: url("../assets/fonts/Inter-Bold.ttf") format("truetype");
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+.cc-theme {
+  --cc-canvas: #f7f1ea;
+  --cc-canvas-warm: #efe5d8;
+  --cc-ink: #1e2529;
+  --cc-secondary: #4e5960;
+  --cc-muted: #7a716a;
+  --cc-line: #d8c9b9;
+  --cc-line-dark: #b8aa9b;
+  --cc-accent: #c85f3d;
+  --cc-accent-dark: #a84a30;
+  --cc-soft: #e8d8c6;
+  --cc-white: #fffdf8;
+  font-family: "Clear Code Sans", Inter, system-ui, -apple-system, BlinkMacSystemFont, "Noto Sans SC", sans-serif;
+}

@@ -1,0 +1,502 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>4 Themes 5s Preview</title>
+    <link rel="icon" href="data:," />
+    <link rel="stylesheet" href="tech-signal/partials/backgrounds.css" />
+    <link rel="stylesheet" href="tech-signal/partials/cards.css" />
+    <link rel="stylesheet" href="soft-signal/partials/backgrounds.css" />
+    <link rel="stylesheet" href="soft-signal/partials/cards.css" />
+    <link rel="stylesheet" href="folk-frequency/partials/backgrounds.css" />
+    <link rel="stylesheet" href="folk-frequency/partials/cards.css" />
+    <link rel="stylesheet" href="clear-code/partials/clear-code.css" />
+    <style>
+      :root {
+        --page-bg: #0b0d10;
+        --panel-bg: #13171c;
+        --panel-border: rgba(255, 255, 255, 0.10);
+        --text: #f4f1ea;
+        --muted: rgba(244, 241, 234, 0.68);
+        --scale: 0.5;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        background: var(--page-bg);
+        color: var(--text);
+        font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Noto Sans SC", sans-serif;
+      }
+
+      .preview-shell {
+        width: min(1180px, calc(100vw - 48px));
+        margin: 0 auto;
+        padding: 34px 0 54px;
+      }
+
+      .preview-header {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        gap: 24px;
+        margin-bottom: 26px;
+      }
+
+      .preview-header h1 {
+        margin: 0;
+        font-size: 34px;
+        line-height: 1.1;
+        letter-spacing: 0;
+      }
+
+      .preview-header p {
+        max-width: 680px;
+        margin: 10px 0 0;
+        color: var(--muted);
+        font-size: 16px;
+        line-height: 1.55;
+      }
+
+      .replay-button {
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.08);
+        color: var(--text);
+        padding: 11px 17px;
+        font: inherit;
+        font-weight: 700;
+        cursor: pointer;
+      }
+
+      .replay-button:hover {
+        background: rgba(255, 255, 255, 0.13);
+      }
+
+      .template-preview {
+        margin-top: 26px;
+        padding: 18px;
+        border: 1px solid var(--panel-border);
+        border-radius: 18px;
+        background: var(--panel-bg);
+      }
+
+      .template-meta {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 18px;
+        margin-bottom: 14px;
+      }
+
+      .template-meta h2 {
+        margin: 0;
+        font-size: 22px;
+        line-height: 1.2;
+        letter-spacing: 0;
+      }
+
+      .template-meta p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 14px;
+      }
+
+      .preview-window {
+        width: calc(1920px * var(--scale));
+        height: calc(1080px * var(--scale));
+        max-width: 100%;
+        overflow: auto;
+        border-radius: 14px;
+        background: #000;
+        box-shadow: 0 22px 70px rgba(0, 0, 0, 0.34);
+      }
+
+      .stage-viewport {
+        position: relative;
+        width: 1920px;
+        height: 1080px;
+        transform: scale(var(--scale));
+        transform-origin: top left;
+      }
+
+      .preview-scene {
+        position: absolute;
+        inset: 0;
+        width: 1920px;
+        height: 1080px;
+        opacity: 0;
+      }
+
+      .preview-shell.is-playing .hook-scene {
+        animation: preview-hook 5s cubic-bezier(0.22, 1, 0.36, 1) both;
+      }
+
+      .preview-shell.is-playing .body-scene {
+        animation: preview-body 5s cubic-bezier(0.22, 1, 0.36, 1) both;
+      }
+
+      .ts-article-scene,
+      .ss-article-scene,
+      .ff-article-scene,
+      .cc-article-scene {
+        position: relative;
+        z-index: 4;
+      }
+
+      .preview-hook-card {
+        text-align: center;
+      }
+
+      .preview-hook-card .ts-title,
+      .preview-hook-card .ss-title,
+      .preview-hook-card .ff-title {
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .preview-hook-card .ts-subtitle,
+      .preview-hook-card .ss-subtitle,
+      .preview-hook-card .ff-subtitle {
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .ts-card.preview-hook-card,
+      .ss-card.preview-hook-card {
+        min-height: 560px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      .preview-label-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 30px;
+      }
+
+      .ts-label,
+      .ss-label {
+        display: inline-flex;
+        align-items: center;
+        min-height: 38px;
+        padding: 8px 14px;
+        border-radius: 999px;
+        font-size: 18px;
+        font-weight: 760;
+      }
+
+      .ts-label {
+        border: 1px solid rgba(0, 213, 255, 0.24);
+        background: rgba(0, 213, 255, 0.10);
+        color: #bff4ff;
+      }
+
+      .ss-label {
+        border: 1px solid rgba(143, 175, 140, 0.32);
+        background: rgba(143, 175, 140, 0.16);
+        color: #5f765d;
+      }
+
+      .folk-preview .ff-title {
+        font-size: 74px;
+      }
+
+      .folk-preview .body-scene .ff-title {
+        font-size: 52px;
+      }
+
+      .folk-preview .body-scene .ff-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .folk-preview .ff-poster-title {
+        font-size: 108px;
+      }
+
+      .folk-preview .ff-color-block-detail,
+      .folk-preview .ff-poster-subtitle {
+        font-size: 23px;
+      }
+
+      .clear-preview .cc-title {
+        font-size: 108px;
+      }
+
+      .clear-preview .body-scene .cc-title {
+        font-size: 78px;
+      }
+
+      .clear-preview .cc-subtitle {
+        font-size: 23px;
+      }
+
+      @keyframes preview-hook {
+        0% {
+          opacity: 0;
+          transform: scale(1.012);
+        }
+        8% {
+          opacity: 1;
+          transform: scale(1);
+        }
+        34% {
+          opacity: 1;
+          transform: scale(1);
+        }
+        42%,
+        100% {
+          opacity: 0;
+          transform: scale(0.992);
+        }
+      }
+
+      @keyframes preview-body {
+        0%,
+        36% {
+          opacity: 0;
+          transform: translateY(34px) scale(0.992);
+        }
+        46%,
+        100% {
+          opacity: 1;
+          transform: translateY(0) scale(1);
+        }
+      }
+
+      @media (max-width: 1050px) {
+        :root {
+          --scale: 0.42;
+        }
+      }
+
+      @media (max-width: 840px) {
+        :root {
+          --scale: 0.34;
+        }
+
+        .preview-header,
+        .template-meta {
+          align-items: flex-start;
+          flex-direction: column;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="preview-shell is-playing">
+      <header class="preview-header">
+        <div>
+          <h1>4 个主题 5 秒预览</h1>
+          <p>每个模板总长 5 秒：前 2 秒是 hook，后 3 秒是正式正文页面。所有画面只调用主题固定背景、卡片样式和已登记元素。</p>
+        </div>
+        <button class="replay-button" type="button">Replay 5s</button>
+      </header>
+
+      <section class="template-preview tech-preview">
+        <div class="template-meta">
+          <h2>Tech Signal</h2>
+          <p>现代干净科技风 / hook + 技术说明页</p>
+        </div>
+        <div class="preview-window">
+          <div class="stage-viewport">
+            <section class="preview-scene hook-scene ts-bg-orbital-signal">
+              <div class="ts-element-scan-band" aria-hidden="true"></div>
+              <div class="ts-article-scene">
+                <article class="ts-card preview-hook-card">
+                  <div class="ts-eyebrow">Hook / orbital_signal</div>
+                  <h1 class="ts-title">文章拆解，一次生成完整视频</h1>
+                  <p class="ts-subtitle">从台本、画面文字、卡片排版到动画选择，全部由模板确定。</p>
+                </article>
+              </div>
+            </section>
+
+            <section class="preview-scene body-scene ts-bg-blueprint">
+              <div class="ts-element-blueprint-marks" aria-hidden="true"></div>
+              <div class="ts-article-scene">
+                <article class="ts-card">
+                  <div class="ts-eyebrow">Formal Page / visual payload</div>
+                  <h1 class="ts-title">拆分文档驱动正文场景</h1>
+                  <p class="ts-subtitle">Narration 只说一句，画面保留更完整的证据、要点和数据结构。</p>
+                  <div class="ts-grid">
+                    <div class="ts-item"><div class="ts-item-title">Narration</div><div class="ts-item-detail">这一幕讲清核心结论，不把长列表塞进语音。</div></div>
+                    <div class="ts-item"><div class="ts-item-title">Visual Text</div><div class="ts-item-detail">标题、说明、标签分层展示，和语音不重复。</div></div>
+                    <div class="ts-item"><div class="ts-item-title">Card Type</div><div class="ts-item-detail">由文章证据选择 hook、summary、metrics 或 code_log。</div></div>
+                    <div class="ts-item"><div class="ts-item-title">Animation</div><div class="ts-item-detail">从 theme animation_map 中固定匹配，不临时随机。</div></div>
+                  </div>
+                </article>
+              </div>
+            </section>
+          </div>
+        </div>
+      </section>
+
+      <section class="template-preview soft-preview">
+        <div class="template-meta">
+          <h2>Soft Signal</h2>
+          <p>柔和纸张色块 / hook + 温和信息页</p>
+        </div>
+        <div class="preview-window">
+          <div class="stage-viewport">
+            <section class="preview-scene hook-scene ss-bg-soft-blobs">
+              <div class="ss-element-large-blobs" aria-hidden="true"></div>
+              <div class="ss-article-scene soft-hook-layout">
+                <article class="ss-card preview-hook-card">
+                  <div class="ss-eyebrow">Hook / soft_blobs</div>
+                  <h1 class="ss-title">文章拆解，一次生成完整视频</h1>
+                  <p class="ss-subtitle">从台本、画面文字、卡片排版到动画选择，全部由模板确定。</p>
+                  <div class="preview-label-row">
+                    <span class="ss-label">温和解释</span>
+                    <span class="ss-label">大色块留白</span>
+                    <span class="ss-label">低压力信息</span>
+                  </div>
+                </article>
+              </div>
+            </section>
+
+            <section class="preview-scene body-scene ss-bg-warm-paper">
+              <div class="ss-grain-overlay is-subtle" aria-hidden="true"></div>
+              <div class="ss-article-scene">
+                <article class="ss-card">
+                  <div class="ss-eyebrow">Formal Page / visual payload</div>
+                  <h1 class="ss-title">声音短，画面信息更完整</h1>
+                  <p class="ss-subtitle">适合教程、生活方式、AI 工具说明和个人品牌内容，用柔和排版承载信息密度。</p>
+                  <div class="ss-grid">
+                    <div class="ss-item"><div class="ss-item-title">Narration</div><div class="ss-item-detail">一句话说出这一幕为什么重要。</div></div>
+                    <div class="ss-item"><div class="ss-item-title">Visual Text</div><div class="ss-item-detail">屏幕上展示完整层级、标签和说明。</div></div>
+                    <div class="ss-item"><div class="ss-item-title">Visual Payload</div><div class="ss-item-detail">保留 3 个要点，让卡片不会显空。</div></div>
+                    <div class="ss-item"><div class="ss-item-title">Background</div><div class="ss-item-detail">固定 preset 和安全区，不靠随机拼贴。</div></div>
+                  </div>
+                </article>
+              </div>
+            </section>
+          </div>
+        </div>
+      </section>
+
+      <section class="template-preview folk-preview">
+        <div class="template-meta">
+          <h2>Folk Frequency</h2>
+          <p>手工民俗海报风 / hook + 内容卡片页</p>
+        </div>
+        <div class="preview-window">
+          <div class="stage-viewport">
+            <section class="preview-scene hook-scene ff-bg-floral-fest">
+              <div class="ff-article-scene ff-poster-copy-layout">
+                <div class="ff-page ff-hook-page">
+                  <div class="ff-poster-copy centered">
+                    <div class="ff-page-badge">HOOK PAGE</div>
+                    <h1 class="ff-poster-title">Festival of Ideas</h1>
+                    <div class="ff-poster-kicker">文章拆解，一次生成完整视频</div>
+                    <p class="ff-poster-subtitle">从台本、画面文字、卡片排版到动画选择，全部由模板确定。</p>
+                    <div class="ff-bottom-bar">
+                      <div class="ff-bottom-pill">Script</div>
+                      <div class="ff-bottom-pill">Cards</div>
+                      <div class="ff-bottom-pill">Motion</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <section class="preview-scene body-scene ff-bg-forest-floor">
+              <div class="ff-article-scene ff-poster-copy-layout">
+                <div class="ff-page ff-body-page">
+                  <div class="ff-poster-copy centered">
+                    <div class="ff-page-badge">BODY PAGE 01</div>
+                    <h1 class="ff-poster-title">Rooted Stories</h1>
+                    <p class="ff-poster-subtitle">正式页面保留信息密度，用彩色块承载声音、画面文字和内容 payload。</p>
+                  </div>
+                  <div class="ff-color-block-row">
+                    <div class="ff-color-block"><div class="ff-color-block-title">Narration</div><div class="ff-color-block-detail">一句短配音，负责节奏。</div></div>
+                    <div class="ff-color-block"><div class="ff-color-block-title">Visual Text</div><div class="ff-color-block-detail">标题和说明承担可读信息。</div></div>
+                    <div class="ff-color-block"><div class="ff-color-block-title">Payload</div><div class="ff-color-block-detail">3 个要点填满卡片层次。</div></div>
+                  </div>
+                  <div class="ff-bottom-bar">
+                    <div class="ff-bottom-pill">Article</div>
+                    <div class="ff-bottom-pill">Breakdown</div>
+                    <div class="ff-bottom-pill">Video</div>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </div>
+        </div>
+      </section>
+
+      <section class="template-preview clear-preview">
+        <div class="template-meta">
+          <h2>Clear Code</h2>
+          <p>温暖清晰工具风 / hook + 正文工作流页</p>
+        </div>
+        <div class="preview-window">
+          <div class="stage-viewport">
+            <section class="preview-scene hook-scene cc-theme cc-bg-tool-diagram">
+              <div class="cc-dot-field top-right" aria-hidden="true"></div>
+              <div class="cc-orbit-lines" aria-hidden="true"></div>
+              <div class="cc-article-scene">
+                <div class="cc-page cc-layout-hook">
+                  <div class="cc-brand"><div class="cc-brand-mark">CC</div><div><div class="cc-brand-title">Clear Code</div><div class="cc-brand-subtitle">Visual Style System</div></div></div>
+                  <div class="cc-copy">
+                    <div class="cc-badge">Hook Page</div>
+                    <h1 class="cc-title">Build With Clarity</h1>
+                    <div class="cc-kicker">文章拆解，一次生成完整视频</div>
+                    <p class="cc-subtitle">从台本、画面文字、卡片排版到动画选择，全部由模板确定。</p>
+                    <div class="cc-chip-row" style="margin-top: 30px;">
+                      <div class="cc-chip"><img class="cc-mini-icon" src="clear-code/assets/icons/lightbulb.svg" alt="" />Warm</div>
+                      <div class="cc-chip"><img class="cc-mini-icon" src="clear-code/assets/icons/spark.svg" alt="" />Clear</div>
+                      <div class="cc-chip"><img class="cc-mini-icon" src="clear-code/assets/icons/check-circle.svg" alt="" />Useful</div>
+                    </div>
+                  </div>
+                  <div class="cc-hero-diagram" aria-hidden="true">
+                    <div class="cc-hero-line"></div>
+                    <div class="cc-hero-card"></div>
+                    <div class="cc-hero-circle"><img src="clear-code/assets/icons/lightbulb.svg" alt="" /></div>
+                    <div class="cc-hero-orb one"></div>
+                    <div class="cc-hero-orb two"></div>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <section class="preview-scene body-scene cc-theme cc-bg-workflow-grid">
+              <div class="cc-article-scene">
+                <div class="cc-page cc-layout-steps">
+                  <div class="cc-copy">
+                    <div class="cc-badge">Body Page 01</div>
+                    <h1 class="cc-title medium">Explain The Workflow</h1>
+                    <p class="cc-subtitle">正式页面用轻量步骤卡承载声音、画面文字和内容 payload。</p>
+                  </div>
+                  <div class="cc-grid">
+                    <article class="cc-step"><div class="cc-step-number">01</div><h2 class="cc-step-title">Narration</h2><p class="cc-step-detail">一句短配音，负责节奏。</p></article>
+                    <article class="cc-step"><div class="cc-step-number">02</div><h2 class="cc-step-title">Visual Text</h2><p class="cc-step-detail">标题和说明承担可读信息。</p></article>
+                    <article class="cc-step"><div class="cc-step-number">03</div><h2 class="cc-step-title">Payload</h2><p class="cc-step-detail">3 个要点填满卡片层次。</p></article>
+                  </div>
+                  <div class="cc-bottom-nav"><img class="cc-mini-icon" src="clear-code/assets/icons/play.svg" alt="" /><span class="cc-nav-item">AI Tools</span><span class="cc-dot"></span><span class="cc-nav-item">Workflow</span><span class="cc-dot"></span><span class="cc-nav-item">Updates</span></div>
+                </div>
+              </div>
+            </section>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script>
+      const shell = document.querySelector(".preview-shell");
+      const replayButton = document.querySelector(".replay-button");
+
+      replayButton.addEventListener("click", () => {
+        shell.classList.remove("is-playing");
+        void shell.offsetWidth;
+        shell.classList.add("is-playing");
+      });
+    </script>
+  </body>
+</html>

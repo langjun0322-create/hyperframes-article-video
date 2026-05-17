@@ -1,0 +1,166 @@
+.ss-bg-warm-paper,
+.ss-bg-soft-blobs,
+.ss-bg-botanical-signal,
+.ss-bg-editorial-arch,
+.ss-bg-signal-blocks,
+.ss-bg-signal-lines,
+.ss-bg-soft-grid {
+  position: relative;
+  overflow: hidden;
+  --ss-safe-top: 150px;
+  --ss-safe-right: 320px;
+  --ss-safe-bottom: 150px;
+  --ss-safe-left: 320px;
+  background-color: #fff8ec;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.ss-bg-warm-paper::before,
+.ss-bg-soft-blobs::before,
+.ss-bg-botanical-signal::before,
+.ss-bg-editorial-arch::before,
+.ss-bg-signal-blocks::before,
+.ss-bg-signal-lines::before,
+.ss-bg-soft-grid::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.10;
+  mix-blend-mode: multiply;
+  background-image:
+    radial-gradient(circle, rgba(37, 35, 37, 0.16) 0 0.7px, transparent 1px),
+    radial-gradient(circle, rgba(167, 156, 141, 0.18) 0 0.8px, transparent 1.2px);
+  background-size: 11px 11px, 19px 19px;
+}
+
+.ss-bg-warm-paper::after,
+.ss-bg-soft-blobs::after,
+.ss-bg-botanical-signal::after,
+.ss-bg-editorial-arch::after,
+.ss-bg-signal-blocks::after,
+.ss-bg-signal-lines::after,
+.ss-bg-soft-grid::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: radial-gradient(circle at center, transparent 0 62%, rgba(244, 235, 216, 0.26) 100%);
+}
+
+.ss-bg-warm-paper {
+  --ss-safe-top: 150px;
+  --ss-safe-right: 300px;
+  --ss-safe-bottom: 160px;
+  --ss-safe-left: 300px;
+  background-image: url("../assets/backgrounds/warm-paper-bg.png");
+}
+
+.ss-bg-soft-blobs {
+  --ss-safe-top: 150px;
+  --ss-safe-right: 360px;
+  --ss-safe-bottom: 170px;
+  --ss-safe-left: 360px;
+  background-image: url("../assets/backgrounds/soft-blobs-bg.png");
+}
+
+.ss-bg-botanical-signal {
+  --ss-safe-top: 160px;
+  --ss-safe-right: 410px;
+  --ss-safe-bottom: 170px;
+  --ss-safe-left: 410px;
+  background-image: url("../assets/backgrounds/botanical-signal-bg.png");
+}
+
+.ss-bg-editorial-arch {
+  --ss-safe-top: 150px;
+  --ss-safe-right: 320px;
+  --ss-safe-bottom: 180px;
+  --ss-safe-left: 390px;
+  background-image: url("../assets/backgrounds/editorial-arch-bg.png");
+}
+
+.ss-bg-signal-blocks,
+.ss-bg-signal-lines {
+  --ss-safe-top: 150px;
+  --ss-safe-right: 390px;
+  --ss-safe-bottom: 180px;
+  --ss-safe-left: 390px;
+  background-image: url("../assets/backgrounds/signal-blocks-bg.png");
+}
+
+.ss-bg-soft-grid {
+  --ss-safe-top: 150px;
+  --ss-safe-right: 340px;
+  --ss-safe-bottom: 170px;
+  --ss-safe-left: 340px;
+  background-image: url("../assets/backgrounds/soft-grid-bg.png");
+}
+
+.ss-grain-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.10;
+  mix-blend-mode: multiply;
+  background-image:
+    radial-gradient(circle at 12% 18%, rgba(37, 35, 37, 0.26) 0 0.7px, transparent 0.9px),
+    radial-gradient(circle at 74% 22%, rgba(111, 102, 91, 0.20) 0 0.8px, transparent 1px),
+    radial-gradient(circle at 38% 74%, rgba(37, 35, 37, 0.18) 0 0.7px, transparent 1px),
+    radial-gradient(circle at 88% 64%, rgba(167, 156, 141, 0.24) 0 0.75px, transparent 1px);
+  background-size: 19px 17px, 23px 21px, 29px 31px, 37px 35px;
+}
+
+.ss-grain-overlay.is-subtle {
+  opacity: 0.06;
+}
+
+.ss-grain-overlay.is-strong {
+  opacity: 0.15;
+}
+
+.ss-element-paper-grain,
+.ss-element-large-blobs,
+.ss-element-soft-arch,
+.ss-element-botanical-silhouette,
+.ss-element-subtle-grid-blocks {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.ss-element-paper-grain {
+  background-image: radial-gradient(circle, rgba(37, 35, 37, 0.13) 0 0.8px, transparent 1px);
+  background-size: 13px 13px;
+  opacity: 0.10;
+}
+
+.ss-element-large-blobs {
+  background:
+    radial-gradient(ellipse at 12% 88%, rgba(143, 175, 140, 0.16) 0 18%, transparent 18.6%),
+    radial-gradient(ellipse at 88% 12%, rgba(196, 163, 163, 0.15) 0 16%, transparent 16.6%);
+}
+
+.ss-element-soft-arch {
+  background: radial-gradient(ellipse at 18% 58%, rgba(217, 140, 99, 0.14) 0 15%, transparent 15.8%);
+}
+
+.ss-element-botanical-silhouette {
+  background: radial-gradient(ellipse at 10% 64%, rgba(143, 175, 140, 0.16) 0 14%, transparent 14.8%);
+  mask-image: linear-gradient(90deg, black 0 28%, transparent 46%);
+}
+
+.ss-element-subtle-grid-blocks {
+  background-image:
+    linear-gradient(rgba(167, 156, 141, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(167, 156, 141, 0.07) 1px, transparent 1px);
+  background-size: 72px 72px;
+  opacity: 0.35;
+  mask-image: linear-gradient(90deg, black 0 18%, transparent 34% 66%, black 82% 100%);
+}

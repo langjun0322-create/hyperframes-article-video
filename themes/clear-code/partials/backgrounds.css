@@ -1,0 +1,114 @@
+.cc-bg-warm-canvas,
+.cc-bg-workflow-grid,
+.cc-bg-actionable-cards,
+.cc-bg-quote-focus,
+.cc-bg-tool-diagram,
+.cc-bg-decision-board {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  --cc-safe-top: 58px;
+  --cc-safe-right: 78px;
+  --cc-safe-bottom: 58px;
+  --cc-safe-left: 78px;
+  background:
+    linear-gradient(135deg, #fffdf8 0%, #f7f1ea 54%, #efe5d8 100%);
+  color: #1e2529;
+}
+
+.cc-bg-warm-canvas::before,
+.cc-bg-workflow-grid::before,
+.cc-bg-actionable-cards::before,
+.cc-bg-quote-focus::before,
+.cc-bg-tool-diagram::before,
+.cc-bg-decision-board::before {
+  content: "";
+  position: absolute;
+  inset: 14px;
+  z-index: 0;
+  pointer-events: none;
+  border: 1px solid rgba(216, 201, 185, 0.66);
+  border-radius: 18px;
+  box-shadow: inset 0 0 0 1px rgba(255, 253, 248, 0.76), 0 20px 70px rgba(79, 61, 43, 0.09);
+}
+
+.cc-bg-warm-canvas::after,
+.cc-bg-workflow-grid::after,
+.cc-bg-actionable-cards::after,
+.cc-bg-quote-focus::after,
+.cc-bg-tool-diagram::after,
+.cc-bg-decision-board::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, rgba(216, 201, 185, 0.10) 1px, transparent 1px),
+    linear-gradient(180deg, rgba(216, 201, 185, 0.08) 1px, transparent 1px);
+  background-size: 120px 120px, 120px 120px;
+  opacity: 0.18;
+  mix-blend-mode: multiply;
+}
+
+.cc-bg-workflow-grid {
+  background:
+    linear-gradient(90deg, rgba(216, 201, 185, 0.18) 1px, transparent 1px),
+    linear-gradient(180deg, rgba(216, 201, 185, 0.18) 1px, transparent 1px),
+    linear-gradient(135deg, #fffdf8 0%, #f7f1ea 64%, #efe5d8 100%);
+  background-size: 96px 96px, 96px 96px, auto;
+}
+
+.cc-bg-actionable-cards {
+  background:
+    linear-gradient(90deg, rgba(255, 253, 248, 0.78) 0%, rgba(255, 253, 248, 0.18) 52%, rgba(239, 229, 216, 0.28) 100%),
+    linear-gradient(135deg, #fffdf8 0%, #f8f2eb 58%, #efe5d8 100%);
+}
+
+.cc-bg-quote-focus {
+  background:
+    linear-gradient(90deg, rgba(200, 95, 61, 0.05) 0%, transparent 38%, rgba(232, 216, 198, 0.20) 100%),
+    linear-gradient(135deg, #fffdf8 0%, #f7f1ea 58%, #efe5d8 100%);
+}
+
+.cc-bg-tool-diagram {
+  background:
+    linear-gradient(90deg, rgba(255, 253, 248, 0.64) 0%, rgba(247, 241, 234, 0.22) 58%, rgba(200, 95, 61, 0.05) 100%),
+    linear-gradient(135deg, #fffdf8 0%, #f7f1ea 62%, #efe5d8 100%);
+}
+
+.cc-bg-decision-board {
+  background:
+    linear-gradient(180deg, rgba(255, 253, 248, 0.58) 0%, transparent 46%, rgba(239, 229, 216, 0.28) 100%),
+    linear-gradient(135deg, #fffdf8 0%, #f8f2eb 56%, #efe5d8 100%);
+}
+
+.cc-dot-field {
+  position: absolute;
+  z-index: 1;
+  width: 112px;
+  height: 112px;
+  background-image: radial-gradient(circle, #c85f3d 0 2px, transparent 2.5px);
+  background-size: 18px 18px;
+  opacity: 0.72;
+  pointer-events: none;
+}
+
+.cc-dot-field.top-right {
+  top: 170px;
+  right: 142px;
+}
+
+.cc-orbit-lines {
+  position: absolute;
+  z-index: 1;
+  right: 160px;
+  top: 120px;
+  width: 430px;
+  height: 310px;
+  pointer-events: none;
+  border: 1.5px dashed rgba(184, 170, 155, 0.72);
+  border-radius: 55% 45% 52% 48%;
+  transform: rotate(-12deg);
+}

@@ -1,162 +1,91 @@
-# 卡片内容规则 — 卡片视觉内容填充规范
+# Card Content Rules
 
-> 配音简化 ≠ 卡片空壳。配音可以一句话，卡片必须展示关键信息。
+Short narration does not mean sparse visuals. Every article body scene needs a card with enough source-grounded information to feel intentionally designed.
 
----
+Cards should not all share one layout. Match the information shape:
 
-## 核心原则
+- Use a hero + tilted proof chips for a release hook.
+- Use a two-column proof board for summary scenes.
+- Use radar, constellation, or stacked interface layouts for key-point scenes.
+- Use metric walls for numbers.
+- Use terminal shells for code and errors.
+- Use node flows for architecture.
+- Use confirmation rings or CTA panels for conclusions.
 
-1. **配音只管说，卡片只管展示**
-2. **每张卡片必须承载至少一条关键信息**（代码/数据/结构/命令）
-3. **卡片内容来自文章原文**，不做二次提炼（提炼交给配音）
-4. **关键信息密度合理** — 不堆太多，不空着
+Themes decide how much content is open layout versus wrapped in cards. `folk-frequency` and `soft-signal` may place titles and short labels directly on the background safe area; use cards only for grouped information. `tech-signal` and `clear-code` can use stronger panels, but the visible text and payload must still come from the article breakdown, not from theme demo copy.
 
----
+Use a few relevant emoji markers when they improve scanning, especially in labels and small chips. Do not turn the whole card into emoji decoration.
 
-## 各卡片类型的内容填充规则
+## Required Fields
 
-### hook（钩子卡）
+Each `visual_payload` must include the fields required by its card template in `theme.json.card_templates`.
 
-| 元素 | 规则 |
-|------|------|
-| 标题 | 文章主标题或核心问题 |
-| 副标题 | 一句话解决方案 |
-| 版本信息 | 如果有，右下角显示 |
-| ❌ 不放 | 代码、数据表、长文本 |
+Use `visual_text` for the screen's human-readable copy: scene headline, short subtitle, labels, chip text, and card section names. Use `visual_payload` for structured content that templates render: item arrays, metrics, commands, before/after rows, nodes, and links. Do not make `visual_text` a duplicate of `narration`; the spoken line can be compact while the screen carries richer evidence.
 
-```
-示例：
-  ┌──────────────────────┐
-  │ OpenClaw v5.3 发布   │
-  │ Meet 语音全面修复     │
-  │ MAY 6, 2026          │
-  └──────────────────────┘
-```
+Keep text from the article when it is a technical string, number, command, error, provider, channel, or product name. Summarize prose only when needed for fit.
 
-### summary（摘要卡）
+## Type Rules
 
-| 元素 | 规则 |
-|------|------|
-| 核心数据 | 1-2 个关键指标（大号字体） |
-| 前后对比 | before → after |
-| ❌ 不放 | 长文本说明 |
+### `hook`
 
-### key_points（要点卡）
+- Show the article title or strongest framing.
+- Add a subtitle that explains why the viewer should care.
+- Include version/date if available.
+- Do not show code or long lists.
 
-| 元素 | 规则 |
-|------|------|
-| 标题 | "N 大更新亮点" |
-| 要点列表 | 3-5 条，每条一行标题 + 一行说明 |
-| 编号 | 用 ① ② ③ ④ ⑤ |
+### `summary`
 
-```
-示例：
-  ① 插件安装自动回退稳定版
-     npm latest 指向 beta 时自动降级
-  ② 多通道通信全部修复
-     WhatsApp / Telegram / 飞书 / Discord
-```
+- Show the core conclusion.
+- Include 1-2 proof chips, numbers, or short evidence lines.
+- Good for "30+ 修复项覆盖全链路".
 
-### steps（步骤卡）
+### `key_points`
 
-| 元素 | 规则 |
-|------|------|
-| 步骤编号 | Step 1 / Step 2 / Step 3 |
-| **关键内容** | ⭐ **配置代码/CLI 命令必须展示** |
-| 说明 | 每步一行简短的说明文字 |
+- Show 3-5 items.
+- Each item needs a title plus one concrete detail.
+- Avoid one-word bullets.
 
-```
-示例：
-  ┌─ Step 1 ──────────────────┐
-  │ memory-core 配置：          │
-  │ { "searchMode": "hybrid" } │
-  ├─ Step 2 ──────────────────┤
-  │ Active Memory 配置：        │
-  │ { "agents": ["main"] }    │
-  └───────────────────────────┘
-```
+### `steps`
 
-### metrics（指标卡）
+- Show ordered steps.
+- Each step needs an action and a concrete config, command, setup code, or route when available.
 
-| 元素 | 规则 |
-|------|------|
-| **关键数据** | ⭐ **最终数字大号展示** |
-| 对比 | before → after 箭头 |
-| 单位 | 清晰标注 |
+### `metrics`
 
-```
-示例：
-  6.7s  →  1ms     ↑6700x
-  Event Loop Delay
-```
+- Show final numbers prominently.
+- Include labels and units.
+- Use before/after or count cards when the article gives comparisons.
 
-### code_log（代码卡）
+### `code_log`
 
-| 元素 | 规则 |
-|------|------|
-| **代码块** | ⭐ **核心配置/命令必须展示** |
-| 语法 | 带终端/代码样式 |
-| 注释 | 保留关键注释 |
+- Show commands, errors, config keys, API params, or quoted strings exactly.
+- Add a short label explaining why each string matters.
+- Do not invent code.
 
-```
-示例：
-  ┌─────────────────────────┐
-  │ $ openclaw gateway restart │
-  │ $ openclaw memory status   │
-  └─────────────────────────┘
-```
+### `architecture`
 
-### architecture（架构卡）
+- Show named nodes and arrows.
+- Each node needs a one-line role.
+- Use this for product chains and multi-system relationships.
 
-| 元素 | 规则 |
-|------|------|
-| 层级 | 上下/左右 分层展示 |
-| 连接线 | 箭头指向 |
-| 关键名称 | 每层名称 + 一句职责 |
+### `warning`
 
-```
-示例：
-  memory-core  →  Active Memory  →  Memory Wiki
-    存储               检索              整理
-```
+- Show the failure mode and the fix.
+- Use warning styling, but keep the tone precise.
 
-### warning（警告卡）
+### `conclusion`
 
-| 元素 | 规则 |
-|------|------|
-| ⚠️ 标识 | 醒目警告样式 |
-| 问题标题 | 一句话 |
-| 解决方案 | 一句话 |
+- Show the action the viewer should take.
+- Include compatibility or risk information when the article provides it.
+- Keep Follow Me content out of this card; Follow Me is a separate theme component.
 
-### conclusion（结论卡）
+## Density Checklist
 
-| 元素 | 规则 |
-|------|------|
-| 行动命令 | ⭐ **升级/安装命令** |
-| 资源链接 | 可选文档链接 |
-| 品牌信息 | OpenClaw / 项目信息 |
+Before writing HTML, confirm:
 
----
-
-## 与其他规则的关系
-
-| 规则 | 内容 | 所属文件 |
-|------|------|---------|
-| **本规则** | 各卡片类型的内容填充（代码/数据/表格/列表） | `card-content-rules.md` |
-| **Logo 片头** | 视频开头的品牌 Logo 展示（独立场景） | `logo-follow-rules.md` |
-| **Follow Me 片尾** | 视频结尾的关注引导（独立场景） | `logo-follow-rules.md` |
-
-> Logo 片头和 Follow Me 片尾是每个视频**固定附加**的独立场景，不属于任何卡片的填充内容。
-
----
-
-## 关键检查清单
-
-生成卡片内容后确认：
-
-- [ ] 每张卡片至少有一条关键信息
-- [ ] 代码/配置类卡片展示了关键代码行
-- [ ] 数据类卡片展示了最终结果数字
-- [ ] 步骤类卡片展示了关键命令
-- [ ] 无空壳卡片
-- [ ] 字数不超过卡片设计容量
+- No body card is title-only.
+- Any scene with a number displays the number.
+- Any scene about code/config displays the exact technical string.
+- Any `key_points` scene has at least 3 real items.
+- Text volume fits the selected card template.
+- Long headlines use the theme's compact title or lower-body layout rule so cards never overlap the title or subtitle.

@@ -1,0 +1,262 @@
+{
+  "theme": "clear-code",
+  "description": "Warm, clear, human-centered editorial theme for AI tools, workflows, updates, tutorials, and practical explainers.",
+  "design_tokens": {
+    "colors": {
+      "canvas": "#F7F1EA",
+      "canvas_warm": "#EFE5D8",
+      "ink": "#1E2529",
+      "text_secondary": "#4E5960",
+      "muted": "#7A716A",
+      "line": "#D8C9B9",
+      "line_dark": "#B8AA9B",
+      "accent": "#C85F3D",
+      "accent_dark": "#A84A30",
+      "warm_accent": "#E8D8C6",
+      "white": "#FFFDF8"
+    },
+    "typography": {
+      "title_family": "\"Clear Code Display\", \"Cormorant Garamond\", \"Songti SC\", \"Noto Serif SC\", Georgia, serif",
+      "body_family": "\"Clear Code Sans\", Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Noto Sans SC\", sans-serif",
+      "title_size": 118,
+      "subtitle_size": 32,
+      "body_size": 23,
+      "caption_size": 17
+    },
+    "layout": {
+      "width": 1920,
+      "height": 1080,
+      "safe_padding_x": 78,
+      "safe_padding_y": 58,
+      "radius": 18,
+      "panel_border": "1px solid rgba(184,170,155,0.54)",
+      "safe_area_source": "background_presets[].safe_area_px controls each deterministic canvas preset"
+    },
+    "motion": {
+      "enter_duration": 0.58,
+      "exit_duration": 0.38,
+      "stagger": 0.08,
+      "enter_ease": "power3.out",
+      "exit_ease": "power2.in"
+    },
+    "avoid": [
+      "dark tech dashboard",
+      "neon HUD",
+      "heavy gradients",
+      "busy backgrounds",
+      "generic glass cards",
+      "decorative clutter",
+      "reference-brand naming or logos"
+    ]
+  },
+  "background_presets": [
+    {
+      "id": "warm_canvas",
+      "css_class": "cc-bg-warm-canvas",
+      "best_for": "hook, conclusion, general article scenes",
+      "asset_path": null,
+      "safe_area_px": { "top": 58, "right": 78, "bottom": 58, "left": 78 },
+      "safe_area_rule": "Use the full rounded canvas; keep text and cards inside the inner frame."
+    },
+    {
+      "id": "workflow_grid",
+      "css_class": "cc-bg-workflow-grid",
+      "best_for": "steps, workflows, process explanations",
+      "asset_path": null,
+      "safe_area_px": { "top": 58, "right": 78, "bottom": 58, "left": 78 },
+      "safe_area_rule": "Use for step cards and connected process layouts."
+    },
+    {
+      "id": "actionable_cards",
+      "css_class": "cc-bg-actionable-cards",
+      "best_for": "summary, key points, practical guidance",
+      "asset_path": null,
+      "safe_area_px": { "top": 58, "right": 78, "bottom": 58, "left": 78 },
+      "safe_area_rule": "Use for multi-card content with roomy margins."
+    },
+    {
+      "id": "quote_focus",
+      "css_class": "cc-bg-quote-focus",
+      "best_for": "quote, warning, strong claims",
+      "asset_path": null,
+      "safe_area_px": { "top": 58, "right": 78, "bottom": 58, "left": 78 },
+      "safe_area_rule": "Use for quote panels and focused statements."
+    },
+    {
+      "id": "tool_diagram",
+      "css_class": "cc-bg-tool-diagram",
+      "best_for": "architecture, tool flow, system relationships",
+      "asset_path": null,
+      "safe_area_px": { "top": 58, "right": 78, "bottom": 58, "left": 78 },
+      "safe_area_rule": "Use with right-side diagram or node layouts."
+    },
+    {
+      "id": "decision_board",
+      "css_class": "cc-bg-decision-board",
+      "best_for": "comparison, metrics, decisions",
+      "asset_path": null,
+      "safe_area_px": { "top": 58, "right": 78, "bottom": 58, "left": 78 },
+      "safe_area_rule": "Use for before/after, metric groups, and decision blocks."
+    }
+  ],
+  "layout_templates": {
+    "hook": [
+      {
+        "id": "clear-code.hook.split-hero",
+        "component_class": "cc-layout-hook",
+        "best_for": "large serif headline with right-side line diagram and bottom nav",
+        "uses": ["headline", "subtitle", "chips"]
+      },
+      {
+        "id": "clear-code.hook.centered-manifesto",
+        "component_class": "cc-layout-centered",
+        "best_for": "short thesis and three value cards",
+        "uses": ["headline", "subtitle", "items"]
+      }
+    ],
+    "summary": [
+      {
+        "id": "clear-code.summary.card-stack",
+        "component_class": "cc-layout-summary",
+        "best_for": "main explanation card plus supporting focus card",
+        "uses": ["claim", "evidence", "proof_chips"]
+      }
+    ],
+    "key_points": [
+      {
+        "id": "clear-code.key_points.three-panel",
+        "component_class": "cc-layout-three-panel",
+        "best_for": "three practical takeaways with icons",
+        "uses": ["items"]
+      }
+    ],
+    "steps": [
+      {
+        "id": "clear-code.steps.workflow-cards",
+        "component_class": "cc-layout-steps",
+        "best_for": "three or four workflow steps connected by arrows",
+        "uses": ["steps"]
+      }
+    ],
+    "metrics": [
+      {
+        "id": "clear-code.metrics.stat-strip",
+        "component_class": "cc-layout-metrics",
+        "best_for": "numbers, labels, and proof points in a horizontal strip",
+        "uses": ["metrics"]
+      }
+    ],
+    "code_log": [
+      {
+        "id": "clear-code.code_log.note-console",
+        "component_class": "cc-layout-code",
+        "best_for": "commands and config strings in a calm note card",
+        "uses": ["entries"]
+      }
+    ],
+    "architecture": [
+      {
+        "id": "clear-code.architecture.tool-map",
+        "component_class": "cc-layout-architecture",
+        "best_for": "tool layers, relationships, and simple system diagrams",
+        "uses": ["nodes", "links"]
+      }
+    ],
+    "warning": [
+      {
+        "id": "clear-code.warning.focus-note",
+        "component_class": "cc-layout-warning",
+        "best_for": "risk, caveat, and resolution note",
+        "uses": ["problem", "fix", "risk_level"]
+      }
+    ],
+    "quote": [
+      {
+        "id": "clear-code.quote.side-quote",
+        "component_class": "cc-layout-quote",
+        "best_for": "quote card paired with short explanation",
+        "uses": ["quote", "source", "context"]
+      }
+    ],
+    "comparison": [
+      {
+        "id": "clear-code.comparison.two-column",
+        "component_class": "cc-layout-comparison",
+        "best_for": "before and after comparison with criteria",
+        "uses": ["left", "right", "criteria"]
+      }
+    ],
+    "conclusion": [
+      {
+        "id": "clear-code.conclusion.action-card",
+        "component_class": "cc-layout-conclusion",
+        "best_for": "final action, reason, and CTA",
+        "uses": ["action", "reason", "compatibility", "command"]
+      }
+    ]
+  },
+  "card_templates": {
+    "hook": { "required_payload": ["headline", "subtitle"], "optional_payload": ["chips"], "component_class": "cc-card-hook", "layout_templates": ["clear-code.hook.split-hero", "clear-code.hook.centered-manifesto"] },
+    "summary": { "required_payload": ["claim", "evidence"], "optional_payload": ["proof_chips"], "component_class": "cc-card-summary", "layout_templates": ["clear-code.summary.card-stack"] },
+    "key_points": { "required_payload": ["items"], "constraints": { "min_items": 3, "max_items": 5, "item_fields": ["title", "detail"] }, "component_class": "cc-card-key-points", "layout_templates": ["clear-code.key_points.three-panel"] },
+    "steps": { "required_payload": ["steps"], "constraints": { "min_items": 2, "item_fields": ["label", "action", "detail"] }, "component_class": "cc-card-steps", "layout_templates": ["clear-code.steps.workflow-cards"] },
+    "metrics": { "required_payload": ["metrics"], "constraints": { "min_items": 1, "item_fields": ["value", "label"] }, "component_class": "cc-card-metrics", "layout_templates": ["clear-code.metrics.stat-strip"] },
+    "code_log": { "required_payload": ["entries"], "constraints": { "min_items": 2, "item_fields": ["code", "label"] }, "component_class": "cc-card-code-log", "layout_templates": ["clear-code.code_log.note-console"] },
+    "architecture": { "required_payload": ["nodes", "links"], "constraints": { "min_nodes": 3, "node_fields": ["name", "role"] }, "component_class": "cc-card-architecture", "layout_templates": ["clear-code.architecture.tool-map"] },
+    "warning": { "required_payload": ["problem", "fix"], "optional_payload": ["risk_level"], "component_class": "cc-card-warning", "layout_templates": ["clear-code.warning.focus-note"] },
+    "quote": { "required_payload": ["quote", "source"], "optional_payload": ["context"], "component_class": "cc-card-quote", "layout_templates": ["clear-code.quote.side-quote"] },
+    "comparison": { "required_payload": ["left", "right", "criteria"], "component_class": "cc-card-comparison", "layout_templates": ["clear-code.comparison.two-column"] },
+    "conclusion": { "required_payload": ["action", "reason"], "optional_payload": ["compatibility", "command"], "component_class": "cc-card-conclusion", "layout_templates": ["clear-code.conclusion.action-card"] }
+  },
+  "animation_map": {
+    "hook": "clear_hero_reveal",
+    "summary": "cards_rise_in",
+    "key_points": "panels_step_in",
+    "steps": "workflow_sequence",
+    "metrics": "stats_count_in",
+    "code_log": "note_console_reveal",
+    "architecture": "diagram_connect",
+    "warning": "focus_note_pop",
+    "quote": "quote_slide_focus",
+    "comparison": "two_column_compare",
+    "conclusion": "cta_settle"
+  },
+  "branding_components": {
+    "logo_intro": "themes/clear-code/components/logo-intro.html",
+    "follow_outro": "themes/clear-code/components/follow-outro.html",
+    "style_note": "Brand copy and logo stay fixed; warm canvas, serif typography, terracotta accents, and clear-card motion come from this theme."
+  },
+  "asset_policy": {
+    "default": "deterministic_css_backgrounds_and_registered_svg_icons",
+    "raster_assets": "none_by_default",
+    "allowed_theme_assets": [
+      "registered local fonts",
+      "registered SVG line icons",
+      "CSS gradient/background presets",
+      "fixed branding assets from assets/branding"
+    ],
+    "never_generate_per_article": true,
+    "background_rule": "Do not add per-article generated backgrounds. Background presets are CSS-only canvases with safe areas.",
+    "layout_rule": "All cards, diagrams, buttons, badges, and navigation bars are deterministic HTML/CSS layout components."
+  },
+  "asset_registry": {
+    "fonts": [
+      { "id": "clear_code_display_semibold", "path": "themes/clear-code/assets/fonts/CormorantGaramond-SemiBold.ttf", "type": "ttf", "runtime": true, "best_for": "large serif titles" },
+      { "id": "clear_code_display_bold", "path": "themes/clear-code/assets/fonts/CormorantGaramond-Bold.ttf", "type": "ttf", "runtime": true, "best_for": "large serif titles with stronger weight" },
+      { "id": "clear_code_sans_regular", "path": "themes/clear-code/assets/fonts/Inter-Regular.ttf", "type": "ttf", "runtime": true, "best_for": "body copy" },
+      { "id": "clear_code_sans_semibold", "path": "themes/clear-code/assets/fonts/Inter-SemiBold.ttf", "type": "ttf", "runtime": true, "best_for": "labels and card titles" },
+      { "id": "clear_code_sans_bold", "path": "themes/clear-code/assets/fonts/Inter-Bold.ttf", "type": "ttf", "runtime": true, "best_for": "badges and CTA" }
+    ],
+    "icons": [
+      { "id": "lightbulb", "path": "themes/clear-code/assets/icons/lightbulb.svg", "type": "svg", "runtime": true, "best_for": "ideas and hooks" },
+      { "id": "document", "path": "themes/clear-code/assets/icons/document.svg", "type": "svg", "runtime": true, "best_for": "summary and notes" },
+      { "id": "check_circle", "path": "themes/clear-code/assets/icons/check-circle.svg", "type": "svg", "runtime": true, "best_for": "steps and decisions" },
+      { "id": "list", "path": "themes/clear-code/assets/icons/list.svg", "type": "svg", "runtime": true, "best_for": "structured lists" },
+      { "id": "play", "path": "themes/clear-code/assets/icons/play.svg", "type": "svg", "runtime": true, "best_for": "video CTA and bottom nav" },
+      { "id": "spark", "path": "themes/clear-code/assets/icons/spark.svg", "type": "svg", "runtime": true, "best_for": "emphasis" },
+      { "id": "stack", "path": "themes/clear-code/assets/icons/stack.svg", "type": "svg", "runtime": true, "best_for": "structure and layers" },
+      { "id": "user", "path": "themes/clear-code/assets/icons/user.svg", "type": "svg", "runtime": true, "best_for": "audience" },
+      { "id": "arrow_right", "path": "themes/clear-code/assets/icons/arrow-right.svg", "type": "svg", "runtime": true, "best_for": "flow" }
+    ]
+  }
+}

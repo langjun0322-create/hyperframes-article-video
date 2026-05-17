@@ -1,0 +1,171 @@
+@import url("../partials/backgrounds.css");
+@import url("../partials/cards.css");
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+  background: #020409;
+  color: #ecf8ff;
+  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Noto Color Emoji", "Apple Color Emoji", sans-serif;
+}
+
+body {
+  padding: 28px;
+}
+
+.demo-shell {
+  display: grid;
+  gap: 28px;
+  max-width: 1500px;
+  margin: 0 auto;
+}
+
+.demo-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 14px 0;
+}
+
+.demo-nav h1 {
+  margin: 0;
+  color: #ecf8ff;
+  font-size: 38px;
+  line-height: 1.08;
+  font-weight: 860;
+  letter-spacing: 0;
+}
+
+.demo-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.demo-links a {
+  color: #def8ff;
+  text-decoration: none;
+  border: 1px solid rgba(0, 213, 255, 0.24);
+  border-radius: 999px;
+  padding: 10px 16px;
+  background: rgba(0, 213, 255, 0.08);
+  font-weight: 780;
+}
+
+.overview-section {
+  display: grid;
+  gap: 22px;
+}
+
+.overview-header {
+  max-width: 920px;
+}
+
+.overview-header h2 {
+  margin: 0;
+  color: #00d5ff;
+  font-size: 22px;
+  font-weight: 860;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.overview-header p {
+  margin: 10px 0 0;
+  color: #97aabd;
+  font-size: 19px;
+  line-height: 1.5;
+}
+
+.overview-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 22px;
+}
+
+.overview-card {
+  display: grid;
+  gap: 12px;
+}
+
+.overview-card h3 {
+  margin: 0;
+  color: #ecf8ff;
+  font-size: 18px;
+  line-height: 1.2;
+  font-weight: 840;
+}
+
+.overview-card p {
+  margin: 0;
+  color: #97aabd;
+  font-size: 16px;
+  line-height: 1.36;
+}
+
+.preview-frame,
+.overview-frame {
+  overflow: hidden;
+  background: #020409;
+  border: 1px solid rgba(0, 213, 255, 0.18);
+  border-radius: 18px;
+  box-shadow: 0 22px 70px rgba(0, 0, 0, 0.30);
+}
+
+.preview-frame {
+  width: 960px;
+  max-width: calc(100vw - 56px);
+  height: 540px;
+  margin: 0 auto;
+}
+
+.overview-frame {
+  width: 480px;
+  max-width: 100%;
+  aspect-ratio: 16 / 9;
+}
+
+.stage {
+  width: 1920px;
+  height: 1080px;
+  transform-origin: top left;
+  transform: scale(0.5);
+}
+
+.overview-frame .stage {
+  transform: scale(0.25);
+}
+
+.overview-frame.tall-card {
+  width: 700px;
+}
+
+.overview-frame.tall-card .stage {
+  transform: scale(0.364583);
+}
+
+.tech-demo-scene {
+  width: 1920px;
+  height: 1080px;
+  position: relative;
+  overflow: hidden;
+}
+
+@media (max-width: 980px) {
+  body {
+    padding: 16px;
+  }
+
+  .demo-nav,
+  .overview-grid {
+    align-items: flex-start;
+    grid-template-columns: 1fr;
+    flex-direction: column;
+  }
+}

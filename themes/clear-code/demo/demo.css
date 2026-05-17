@@ -1,0 +1,126 @@
+@import url("../partials/clear-code.css");
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+  background: #efe5d8;
+  color: #1e2529;
+  font-family: "Clear Code Sans", Inter, system-ui, -apple-system, BlinkMacSystemFont, "Noto Sans SC", sans-serif;
+}
+
+body {
+  padding: 28px;
+}
+
+.demo-shell {
+  display: grid;
+  gap: 28px;
+  max-width: 1500px;
+  margin: 0 auto;
+}
+
+.demo-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 10px 0 18px;
+}
+
+.demo-nav h1 {
+  margin: 0;
+  font-family: "Clear Code Display", "Cormorant Garamond", Georgia, serif;
+  font-size: 48px;
+  line-height: 1;
+}
+
+.demo-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.demo-links a {
+  color: #fffdf8;
+  text-decoration: none;
+  border-radius: 10px;
+  padding: 10px 16px;
+  background: #c85f3d;
+  font-weight: 800;
+}
+
+.preview-frame {
+  width: 960px;
+  max-width: calc(100vw - 56px);
+  height: 540px;
+  margin: 0 auto;
+  border: 1px solid rgba(184, 170, 155, 0.70);
+  border-radius: 18px;
+  overflow: hidden;
+  background: #fffdf8;
+  box-shadow: 0 26px 70px rgba(79, 61, 43, 0.16);
+}
+
+.stage {
+  width: 1920px;
+  height: 1080px;
+  transform-origin: top left;
+  transform: scale(0.5);
+}
+
+.overview-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 22px;
+}
+
+.overview-card {
+  display: grid;
+  gap: 12px;
+}
+
+.overview-frame {
+  width: 480px;
+  max-width: 100%;
+  aspect-ratio: 16 / 9;
+  border: 1px solid rgba(184, 170, 155, 0.70);
+  border-radius: 16px;
+  overflow: hidden;
+  background: #fffdf8;
+  box-shadow: 0 18px 46px rgba(79, 61, 43, 0.12);
+}
+
+.overview-frame .stage {
+  transform: scale(0.25);
+}
+
+.overview-card h3 {
+  margin: 0;
+  color: #1e2529;
+  font-family: "Clear Code Display", "Cormorant Garamond", Georgia, serif;
+  font-size: 30px;
+  line-height: 1;
+}
+
+.overview-card p {
+  margin: 0;
+  color: #4e5960;
+  font-size: 16px;
+  line-height: 1.38;
+}
+
+@media (max-width: 980px) {
+  .demo-nav {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .overview-grid {
+    grid-template-columns: 1fr;
+  }
+}

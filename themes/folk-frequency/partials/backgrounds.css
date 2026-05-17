@@ -1,0 +1,249 @@
+.ff-bg-floral-fest,
+.ff-bg-night-folk,
+.ff-bg-sunshine-block,
+.ff-bg-terracotta-print,
+.ff-bg-river-waves,
+.ff-bg-forest-floor {
+  position: relative;
+  overflow: hidden;
+  --ff-safe-top: 150px;
+  --ff-safe-right: 340px;
+  --ff-safe-bottom: 170px;
+  --ff-safe-left: 340px;
+  background-color: #f6ede1;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.ff-bg-floral-fest::before,
+.ff-bg-night-folk::before,
+.ff-bg-sunshine-block::before,
+.ff-bg-terracotta-print::before,
+.ff-bg-river-waves::before,
+.ff-bg-forest-floor::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image: url("../assets/textures/folk-paper-grain.png");
+  background-size: cover;
+  background-position: center;
+  opacity: 0.08;
+  mix-blend-mode: multiply;
+}
+
+.ff-bg-floral-fest::after,
+.ff-bg-night-folk::after,
+.ff-bg-sunshine-block::after,
+.ff-bg-terracotta-print::after,
+.ff-bg-river-waves::after,
+.ff-bg-forest-floor::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background-image: url("../assets/textures/folk-ink-distress.png");
+  background-size: cover;
+  background-position: center;
+  opacity: 0.035;
+  mix-blend-mode: multiply;
+}
+
+.ff-bg-floral-fest {
+  --ff-safe-top: 135px;
+  --ff-safe-right: 150px;
+  --ff-safe-bottom: 145px;
+  --ff-safe-left: 150px;
+  background-image: url("../assets/backgrounds/floral-fest-bg.png");
+}
+
+.ff-bg-floral-fest .ff-ornament-corner {
+  color: #2e6b4e;
+}
+
+.ff-bg-night-folk {
+  --ff-safe-top: 145px;
+  --ff-safe-right: 160px;
+  --ff-safe-bottom: 150px;
+  --ff-safe-left: 160px;
+  background-image: url("../assets/backgrounds/night-folk-bg.png");
+  color: #f6ede1;
+}
+
+.ff-bg-sunshine-block {
+  --ff-safe-top: 150px;
+  --ff-safe-right: 165px;
+  --ff-safe-bottom: 155px;
+  --ff-safe-left: 165px;
+  background-image: url("../assets/backgrounds/sunshine-block-bg.png");
+}
+
+.ff-bg-terracotta-print {
+  --ff-safe-top: 145px;
+  --ff-safe-right: 165px;
+  --ff-safe-bottom: 150px;
+  --ff-safe-left: 165px;
+  background-image: url("../assets/backgrounds/terracotta-print-bg.png");
+}
+
+.ff-bg-river-waves {
+  --ff-safe-top: 145px;
+  --ff-safe-right: 160px;
+  --ff-safe-bottom: 205px;
+  --ff-safe-left: 160px;
+  background-image: url("../assets/backgrounds/river-waves-bg.png");
+}
+
+.ff-bg-forest-floor {
+  --ff-safe-top: 145px;
+  --ff-safe-right: 160px;
+  --ff-safe-bottom: 150px;
+  --ff-safe-left: 160px;
+  background-image: url("../assets/backgrounds/forest-floor-bg.png");
+}
+
+.ff-paper-texture,
+.ff-ink-distress {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.ff-paper-texture {
+  z-index: 0;
+  background-image: url("../assets/textures/folk-paper-grain.png");
+  background-size: cover;
+  opacity: 0.08;
+  mix-blend-mode: multiply;
+}
+
+.ff-ink-distress {
+  z-index: 5;
+  background-image: url("../assets/textures/folk-ink-distress.png");
+  background-size: cover;
+  opacity: 0.04;
+  mix-blend-mode: multiply;
+}
+
+.ff-border-frame {
+  position: absolute;
+  inset: 34px;
+  z-index: 2;
+  pointer-events: none;
+  border: 3px solid currentColor;
+  color: rgba(30, 30, 30, 0.72);
+}
+
+.ff-border-strip,
+.ff-border-corner,
+.ff-border-side,
+.ff-deco {
+  position: absolute;
+  z-index: 2;
+  pointer-events: none;
+  user-select: none;
+}
+
+.ff-border-strip {
+  left: 92px;
+  right: 92px;
+  width: calc(100% - 184px);
+  height: 48px;
+  object-fit: fill;
+  opacity: 0.95;
+}
+
+.ff-border-strip.top {
+  top: 32px;
+}
+
+.ff-border-strip.bottom {
+  bottom: 32px;
+  transform: rotate(180deg);
+}
+
+.ff-border-strip.zigzag {
+  height: 52px;
+}
+
+.ff-border-corner {
+  width: 144px;
+  height: 144px;
+  object-fit: contain;
+}
+
+.ff-border-corner.top-left {
+  left: 48px;
+  top: 48px;
+}
+
+.ff-border-corner.top-right {
+  right: 48px;
+  top: 48px;
+  transform: scaleX(-1);
+}
+
+.ff-border-corner.bottom-left {
+  left: 48px;
+  bottom: 48px;
+  transform: scaleY(-1);
+}
+
+.ff-border-corner.bottom-right {
+  right: 48px;
+  bottom: 48px;
+  transform: rotate(180deg);
+}
+
+.ff-border-side {
+  top: 92px;
+  bottom: 92px;
+  width: 48px;
+  height: calc(100% - 184px);
+  object-fit: fill;
+  opacity: 0.72;
+}
+
+.ff-border-side.left {
+  left: 34px;
+}
+
+.ff-border-side.right {
+  right: 34px;
+  transform: scaleX(-1);
+}
+
+.ff-deco {
+  object-fit: contain;
+  filter: drop-shadow(6px 8px 0 rgba(30, 30, 30, 0.12));
+}
+
+.ff-deco-bird {
+  width: 220px;
+  height: 160px;
+}
+
+.ff-deco-sun {
+  width: 174px;
+  height: 174px;
+}
+
+.ff-deco-flower {
+  width: 210px;
+  height: 210px;
+}
+
+.ff-deco-leaf {
+  width: 260px;
+  height: 180px;
+}
+
+.ff-deco-star,
+.ff-deco-heart,
+.ff-deco-hand {
+  width: 136px;
+  height: 136px;
+}

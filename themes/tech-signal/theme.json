@@ -2,70 +2,667 @@
   "theme": {
     "id": "tech-signal",
     "name": "Tech Signal",
-    "role": "universal_ai_tech_article_video_template",
-    "version": "1.0.0",
-    "description": "科技风视频主题包 — 适用 AI/开源/技术产品类文章转视频"
+    "version": "1.3.0",
+    "role": "ai_tech_article_video_template",
+    "description": "Modern minimal tech editorial style for turning any article type into clean narrated HyperFrames videos."
   },
-  "mood": {
-    "keywords": ["futuristic","precise","AI-native","data-driven","clean interface","high-end tech"],
-    "avoid": ["cheap cyberpunk neon","over-glitch","gaming UI","too many random HUD elements","plastic 3D"]
-  },
-  "colors": {
-    "background_deep": "#05070A",
-    "background_panel": "#0B1118",
-    "background_soft": "#101820",
-    "text_primary": "#EAF2FF",
-    "text_secondary": "#8FA3B8",
-    "text_muted": "#536476",
-    "accent_cyan": "#00D5FF",
-    "accent_blue": "#3A7BFF",
-    "accent_violet": "#7A5CFF",
-    "accent_green": "#22E6A8",
-    "brand_orange": "#FF6A00",
-    "brand_bone": "#F2E9D8"
+  "design_tokens": {
+    "colors": {
+      "background_deep": "#020409",
+      "background_panel": "#08131D",
+      "background_soft": "#0B1822",
+      "text_primary": "#ECF8FF",
+      "text_secondary": "#97AABD",
+      "text_muted": "#536476",
+      "accent_cyan": "#00D5FF",
+      "accent_blue": "#3A7BFF",
+      "accent_green": "#22E6A8",
+      "accent_amber": "#FFB45C",
+      "accent_magenta": "#D65CFF",
+      "warning": "#FFB45C",
+      "danger": "#FF4D4D",
+      "brand_warm": "#D5BEA9",
+      "brand_hot": "#D73C0D"
+    },
+    "typography": {
+      "family": "Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Noto Color Emoji', 'Apple Color Emoji', sans-serif",
+      "title_size": 76,
+      "subtitle_size": 34,
+      "body_size": 26,
+      "caption_size": 18
+    },
+    "layout": {
+      "width": 1920,
+      "height": 1080,
+      "safe_padding_x": 150,
+      "safe_padding_y": 112,
+      "radius": 24,
+      "panel_border": "1px solid rgba(0,213,255,0.14)",
+      "max_glow_opacity": 0.28,
+      "safe_area_source": "background_presets[].safe_area_px overrides default safe padding for deterministic fixed background presets"
+    },
+    "motion": {
+      "enter_duration": 0.55,
+      "exit_duration": 0.38,
+      "section_transition": 0.75,
+      "stagger": 0.1,
+      "enter_ease": "power3.out",
+      "exit_ease": "power2.in",
+      "ambient_ease": "sine.inOut"
+    },
+    "avoid": [
+      "cheap cyberpunk neon",
+      "heavy glitch",
+      "gaming HUD clutter",
+      "plastic 3D",
+      "random particle storms",
+      "single-color blue-only palette",
+      "uniform card-only scene layouts",
+      "logo intro presented as a rectangular card",
+      "busy particle fields",
+      "dense crossing background lines",
+      "over-glowing panels",
+      "hex-grid sci-fi wallpaper",
+      "busy circuit wallpaper",
+      "dense decorative HUD panels"
+    ]
   },
   "background_presets": [
-    {"id":"bg_dark_grid","name":"Dark Grid","usage":"通用科技 / 工具介绍 / 信息密集","components":["dark gradient","low opacity grid","small scanning line"]},
-    {"id":"bg_data_stream","name":"Data Stream","usage":"AI Agent / Memory / 自动化 / 模型","components":["flowing data lines","small node particles","subtle depth blur"]},
-    {"id":"bg_hud_panels","name":"HUD Panels","usage":"版本更新 / 技术拆解 / Dashboard 类内容","components":["transparent interface panels","thin borders","micro labels","progress bars"]},
-    {"id":"bg_neural_map","name":"Neural Map","usage":"向量 / 记忆 / Embedding / Agent 关系","components":["node graph","connection lines","slow pulsing dots"]},
-    {"id":"bg_terminal_glow","name":"Terminal Glow","usage":"Debug / Issue Fix / 日志分析","components":["terminal line texture","soft green/cyan glow","code block shadows"]},
-    {"id":"bg_blueprint","name":"Blueprint","usage":"系统架构 / 工作流 / 产品结构","components":["blueprint grid","technical line drawings","axis labels"]}
-  ],
-  "card_transitions": {
-    "default": {"enter_duration":0.55,"exit_duration":0.38,"section_transition":0.75,"stagger":0.12,"easing":{"enter":"power2.out","exit":"power2.in","ambient":"sine.inOut"},"constraints":{"max_glow_opacity":0.35,"max_particle_density":"low","max_motion_distance":"48px","no_bounce":true,"no_heavy_glitch":true}},
-    "special": {
-      "hook":{"enter":"transition_hud_aperture_open","exit":"power2.in"},
-      "summary":{"enter":"transition_data_sweep_reveal","exit":"power2.in"},
-      "key_points":{"enter":"transition_interface_stack_slide","exit":"power2.in"},
-      "steps":{"enter":"transition_blueprint_draw_on","exit":"power2.in"},
-      "metrics":{"enter":"transition_metric_counter_pulse","exit":"power2.in"},
-      "code_log":{"enter":"transition_terminal_parse_in","exit":"power2.in"},
-      "architecture":{"enter":"transition_neural_node_morph","exit":"power2.in"},
-      "warning":{"enter":"transition_system_alert_shift","exit":"power2.in"},
-      "conclusion":{"enter":"transition_glass_panel_focus","exit":"power2.in"}
-    }
-  },
-  "card_type_map": {
-    "介绍/问题导入":"hook","核心观点/总结":"summary","功能亮点列表":"key_points",
-    "操作步骤":"steps","数据对比":"metrics","代码展示":"code_log",
-    "系统架构":"architecture","问题预警":"warning","收尾CTA":"conclusion"
-  },
-  "branding": {
-    "logo": {
-      "path": "../../assets/logo.svg",
-      "display_duration": 3,
-      "animation": "stagger_slide_pulse",
-      "tested_version": "v4-glow-fixed",
-      "tested_file": "2026-05-06-自定义Logo-v4-glow位置修正.mp4"
+    {
+      "id": "dark_grid",
+      "aliases": [
+        "bg_dark_grid"
+      ],
+      "css_class": "ts-bg-dark-grid",
+      "best_for": "clean technical release, dense information, stable product updates, educational explainers",
+      "avoid_for": "scenes that need visible node relationships",
+      "asset_path": "themes/tech-signal/assets/backgrounds/dark-grid-bg.png",
+      "safe_area_px": {
+        "top": 150,
+        "right": 310,
+        "bottom": 150,
+        "left": 310,
+        "note": "Keeps content inside a quiet central field; only the edges carry sparse guide lines."
+      },
+      "safe_area_rule": "All text, cards, metric tiles, logo, avatar, and CTA controls must stay inside this rectangle for 1920x1080 compositions."
     },
-    "follow": {
-      "handle": "@JunEr",
-      "url": "https://x.com/JunEr",
-      "display_duration": 5,
-      "animation": "slide_up_btn_press",
-      "tested_version": "v2-template-bg",
-      "tested_file": "2026-05-06-自定义FollowMe-v2-模版背景.mp4"
+    {
+      "id": "data_stream",
+      "aliases": [
+        "bg_data_stream"
+      ],
+      "css_class": "ts-bg-data-stream",
+      "best_for": "AI agent, automation, product analysis, and data relationship scenes that need a quiet sense of flow",
+      "avoid_for": "warning-heavy scenes",
+      "asset_path": "themes/tech-signal/assets/backgrounds/data-stream-bg.png",
+      "safe_area_px": {
+        "top": 150,
+        "right": 370,
+        "bottom": 150,
+        "left": 370,
+        "note": "Keeps content away from restrained side flow lines while preserving a wide clean center."
+      },
+      "safe_area_rule": "All text, cards, metric tiles, logo, avatar, and CTA controls must stay inside this rectangle for 1920x1080 compositions."
+    },
+    {
+      "id": "orbital_signal",
+      "aliases": [
+        "bg_orbital_signal"
+      ],
+      "css_class": "ts-bg-orbital-signal",
+      "best_for": "logo intro, hook scene, high-level thesis, cinematic opener with broad negative space",
+      "avoid_for": "dense code log scenes",
+      "asset_path": "themes/tech-signal/assets/backgrounds/orbital-signal-bg.png",
+      "safe_area_px": {
+        "top": 150,
+        "right": 340,
+        "bottom": 170,
+        "left": 340,
+        "note": "Keeps content inside the open center and away from very subtle outer orbit lines."
+      },
+      "safe_area_rule": "All text, cards, metric tiles, logo, avatar, and CTA controls must stay inside this rectangle for 1920x1080 compositions."
+    },
+    {
+      "id": "neural_map",
+      "aliases": [
+        "bg_neural_map"
+      ],
+      "css_class": "ts-bg-neural-map",
+      "best_for": "memory, provider, graph relationship, and architecture scenes with only a few edge nodes",
+      "avoid_for": "short conclusion scenes",
+      "asset_path": "themes/tech-signal/assets/backgrounds/neural-map-bg.png",
+      "safe_area_px": {
+        "top": 160,
+        "right": 410,
+        "bottom": 160,
+        "left": 410,
+        "note": "Keeps content away from sparse edge nodes and leaves the middle quiet."
+      },
+      "safe_area_rule": "All text, cards, metric tiles, logo, avatar, and CTA controls must stay inside this rectangle for 1920x1080 compositions."
+    },
+    {
+      "id": "terminal_glow",
+      "aliases": [
+        "bg_terminal_glow"
+      ],
+      "css_class": "ts-bg-terminal-glow",
+      "best_for": "commands, logs, errors, configuration strings, and CLI examples with quiet terminal atmosphere",
+      "avoid_for": "high-level hook scenes",
+      "asset_path": "themes/tech-signal/assets/backgrounds/terminal-glow-bg.png",
+      "safe_area_px": {
+        "top": 160,
+        "right": 330,
+        "bottom": 170,
+        "left": 330,
+        "note": "Keeps content above the low terminal glow and away from edge command accents."
+      },
+      "safe_area_rule": "All text, cards, metric tiles, logo, avatar, and CTA controls must stay inside this rectangle for 1920x1080 compositions."
+    },
+    {
+      "id": "blueprint",
+      "aliases": [
+        "bg_blueprint"
+      ],
+      "css_class": "ts-bg-blueprint",
+      "best_for": "system architecture, process diagrams, Gateway/Channel structure, and implementation maps",
+      "avoid_for": "metric-only cards",
+      "asset_path": "themes/tech-signal/assets/backgrounds/blueprint-bg.png",
+      "safe_area_px": {
+        "top": 170,
+        "right": 360,
+        "bottom": 170,
+        "left": 360,
+        "note": "Keeps content away from sparse corner construction marks and preserves a clean center."
+      },
+      "safe_area_rule": "All text, cards, metric tiles, logo, avatar, and CTA controls must stay inside this rectangle for 1920x1080 compositions."
     }
+  ],
+  "layout_templates": {
+    "hook": [
+      {
+        "id": "tech-signal.hook.orbital-proof-chips",
+        "component_class": "hook-layout",
+        "best_for": "article title, release framing, opening thesis",
+        "uses": [
+          "headline",
+          "supporting_copy",
+          "chips"
+        ]
+      }
+    ],
+    "summary": [
+      {
+        "id": "tech-signal.summary.evidence-ladder",
+        "component_class": "summary-layout",
+        "best_for": "central claim with 2-3 proof points",
+        "uses": [
+          "claim",
+          "evidence",
+          "proof_chips"
+        ]
+      }
+    ],
+    "comparison": [
+      {
+        "id": "tech-signal.comparison.before-after-board",
+        "component_class": "comparison-layout",
+        "best_for": "old behavior vs new behavior, before/after tables",
+        "uses": [
+          "left",
+          "right",
+          "criteria"
+        ]
+      }
+    ],
+    "key_points": [
+      {
+        "id": "tech-signal.key_points.layered-stack",
+        "component_class": "key-layout",
+        "best_for": "3-5 peer highlights or fix groups",
+        "uses": [
+          "items"
+        ]
+      }
+    ],
+    "metrics": [
+      {
+        "id": "tech-signal.metrics.metric-wall",
+        "component_class": "metrics-layout",
+        "best_for": "counts, timings, retries, ratios, measurable proof",
+        "uses": [
+          "metrics"
+        ]
+      }
+    ],
+    "code_log": [
+      {
+        "id": "tech-signal.code_log.terminal-shell",
+        "component_class": "code-layout",
+        "best_for": "commands, errors, config keys, status enums, API strings",
+        "uses": [
+          "entries"
+        ]
+      }
+    ],
+    "architecture": [
+      {
+        "id": "tech-signal.architecture.node-flow",
+        "component_class": "arch-layout",
+        "best_for": "module relationships, provider flows, gateway/channel routes",
+        "uses": [
+          "nodes",
+          "links"
+        ]
+      }
+    ],
+    "steps": [
+      {
+        "id": "tech-signal.steps.command-timeline",
+        "component_class": "steps-layout",
+        "best_for": "upgrade guide, setup sequence, operational checklist",
+        "uses": [
+          "steps"
+        ]
+      }
+    ],
+    "warning": [
+      {
+        "id": "tech-signal.warning.system-alert-panel",
+        "component_class": "warning-layout",
+        "best_for": "failure modes, risks, validation constraints",
+        "uses": [
+          "problem",
+          "fix",
+          "risk_level"
+        ]
+      }
+    ],
+    "quote": [
+      {
+        "id": "tech-signal.quote.focus-frame",
+        "component_class": "quote-layout",
+        "best_for": "short source quote that carries the argument",
+        "uses": [
+          "quote",
+          "source",
+          "context"
+        ]
+      }
+    ],
+    "conclusion": [
+      {
+        "id": "tech-signal.conclusion.signal-cta",
+        "component_class": "conclusion-layout",
+        "best_for": "final recommendation, action, upgrade or takeaway",
+        "uses": [
+          "action",
+          "reason",
+          "compatibility",
+          "command"
+        ]
+      }
+    ]
+  },
+  "card_templates": {
+    "hook": {
+      "required_payload": [
+        "headline",
+        "subtitle"
+      ],
+      "optional_payload": [
+        "version",
+        "date",
+        "chips"
+      ],
+      "component_class": "ts-card-hook",
+      "layout_templates": [
+        "tech-signal.hook.orbital-proof-chips"
+      ]
+    },
+    "summary": {
+      "required_payload": [
+        "claim",
+        "evidence"
+      ],
+      "optional_payload": [
+        "proof_chips"
+      ],
+      "component_class": "ts-card-summary",
+      "layout_templates": [
+        "tech-signal.summary.evidence-ladder"
+      ]
+    },
+    "key_points": {
+      "required_payload": [
+        "items"
+      ],
+      "constraints": {
+        "min_items": 3,
+        "max_items": 5,
+        "item_fields": [
+          "title",
+          "detail"
+        ]
+      },
+      "component_class": "ts-card-key-points",
+      "layout_templates": [
+        "tech-signal.key_points.layered-stack"
+      ]
+    },
+    "steps": {
+      "required_payload": [
+        "steps"
+      ],
+      "constraints": {
+        "min_items": 2,
+        "item_fields": [
+          "label",
+          "action",
+          "detail"
+        ]
+      },
+      "component_class": "ts-card-steps",
+      "layout_templates": [
+        "tech-signal.steps.command-timeline"
+      ]
+    },
+    "metrics": {
+      "required_payload": [
+        "metrics"
+      ],
+      "constraints": {
+        "min_items": 1,
+        "item_fields": [
+          "value",
+          "label"
+        ]
+      },
+      "component_class": "ts-card-metrics",
+      "layout_templates": [
+        "tech-signal.metrics.metric-wall"
+      ]
+    },
+    "code_log": {
+      "required_payload": [
+        "entries"
+      ],
+      "constraints": {
+        "min_items": 2,
+        "item_fields": [
+          "code",
+          "label"
+        ]
+      },
+      "component_class": "ts-card-code-log",
+      "layout_templates": [
+        "tech-signal.code_log.terminal-shell"
+      ]
+    },
+    "architecture": {
+      "required_payload": [
+        "nodes",
+        "links"
+      ],
+      "constraints": {
+        "min_nodes": 3,
+        "node_fields": [
+          "name",
+          "role"
+        ]
+      },
+      "component_class": "ts-card-architecture",
+      "layout_templates": [
+        "tech-signal.architecture.node-flow"
+      ]
+    },
+    "warning": {
+      "required_payload": [
+        "problem",
+        "fix"
+      ],
+      "optional_payload": [
+        "risk_level"
+      ],
+      "component_class": "ts-card-warning",
+      "layout_templates": [
+        "tech-signal.warning.system-alert-panel"
+      ]
+    },
+    "quote": {
+      "required_payload": [
+        "quote",
+        "source"
+      ],
+      "optional_payload": [
+        "context"
+      ],
+      "component_class": "ts-card-quote",
+      "layout_templates": [
+        "tech-signal.quote.focus-frame"
+      ]
+    },
+    "comparison": {
+      "required_payload": [
+        "left",
+        "right",
+        "criteria"
+      ],
+      "component_class": "ts-card-comparison",
+      "layout_templates": [
+        "tech-signal.comparison.before-after-board"
+      ]
+    },
+    "conclusion": {
+      "required_payload": [
+        "action",
+        "reason"
+      ],
+      "optional_payload": [
+        "compatibility",
+        "command"
+      ],
+      "component_class": "ts-card-conclusion",
+      "layout_templates": [
+        "tech-signal.conclusion.signal-cta"
+      ]
+    }
+  },
+  "animation_map": {
+    "hook": "orbital_thesis_reveal",
+    "summary": "evidence_ladder_reveal",
+    "key_points": "layered_points_stack",
+    "steps": "timeline_nodes_draw",
+    "metrics": "metric_counter_pulse",
+    "code_log": "terminal_parse_in",
+    "architecture": "neural_node_morph",
+    "warning": "system_alert_shift",
+    "quote": "quote_frame_focus",
+    "comparison": "comparison_split_reveal",
+    "conclusion": "glass_panel_focus"
+  },
+  "branding_components": {
+    "logo_intro": {
+      "path": "themes/tech-signal/components/logo-intro.html",
+      "duration": 6,
+      "uses_brand_profile": true,
+      "reference": "https://hyperframes.heygen.com/catalog/blocks/logo-outro",
+      "animation": "signal_logo_assemble"
+    },
+    "follow_outro": {
+      "path": "themes/tech-signal/components/follow-outro.html",
+      "duration": 4.5,
+      "uses_brand_profile": true,
+      "reference": "https://hyperframes.heygen.com/catalog/blocks/tiktok-follow",
+      "animation": "signal_follow_confirm"
+    }
+  },
+  "partials": {
+    "universal_style": "themes/tech-signal/partials/universal-tech.css",
+    "backgrounds": "themes/tech-signal/partials/backgrounds.css",
+    "cards": "themes/tech-signal/partials/cards.css",
+    "transitions": "themes/tech-signal/partials/transitions.js"
+  },
+  "asset_policy": {
+    "default": "deterministic_registered_assets_only",
+    "raster_assets": "theme_level_only",
+    "allowed_theme_assets": [
+      "registered 1920x1080 background PNG presets",
+      "registered CSS element layers in asset_registry.elements",
+      "fixed branding assets from assets/branding"
+    ],
+    "never_generate_per_article": true,
+    "do_not_generate_per_article": true,
+    "runtime_rule": "Generated article videos must call background_presets[].asset_path through the preset css_class and may only use asset_registry.elements for decorative layers.",
+    "background_rule": "Do not create, search, or generate per-article backgrounds. Do not use unknown image paths or random decorative placement.",
+    "motion_rule": "Use deterministic transitions from transitions.js only; no runtime random APIs, random positions, random durations, or looping ambient background motion."
+  },
+  "asset_registry": {
+    "backgrounds": [
+      {
+        "id": "dark_grid",
+        "aliases": [
+          "bg_dark_grid"
+        ],
+        "path": "themes/tech-signal/assets/backgrounds/dark-grid-bg.png",
+        "type": "png",
+        "runtime": true,
+        "size": "1920x1080",
+        "best_for": "clean technical release, dense information, stable product updates, educational explainers",
+        "safe_area_px": {
+          "top": 150,
+          "right": 310,
+          "bottom": 150,
+          "left": 310,
+          "note": "Keeps content inside a quiet central field; only the edges carry sparse guide lines."
+        }
+      },
+      {
+        "id": "data_stream",
+        "aliases": [
+          "bg_data_stream"
+        ],
+        "path": "themes/tech-signal/assets/backgrounds/data-stream-bg.png",
+        "type": "png",
+        "runtime": true,
+        "size": "1920x1080",
+        "best_for": "AI agent, automation, product analysis, and data relationship scenes that need a quiet sense of flow",
+        "safe_area_px": {
+          "top": 150,
+          "right": 370,
+          "bottom": 150,
+          "left": 370,
+          "note": "Keeps content away from restrained side flow lines while preserving a wide clean center."
+        }
+      },
+      {
+        "id": "orbital_signal",
+        "aliases": [
+          "bg_orbital_signal"
+        ],
+        "path": "themes/tech-signal/assets/backgrounds/orbital-signal-bg.png",
+        "type": "png",
+        "runtime": true,
+        "size": "1920x1080",
+        "best_for": "logo intro, hook scene, high-level thesis, cinematic opener with broad negative space",
+        "safe_area_px": {
+          "top": 150,
+          "right": 340,
+          "bottom": 170,
+          "left": 340,
+          "note": "Keeps content inside the open center and away from very subtle outer orbit lines."
+        }
+      },
+      {
+        "id": "neural_map",
+        "aliases": [
+          "bg_neural_map"
+        ],
+        "path": "themes/tech-signal/assets/backgrounds/neural-map-bg.png",
+        "type": "png",
+        "runtime": true,
+        "size": "1920x1080",
+        "best_for": "memory, provider, graph relationship, and architecture scenes with only a few edge nodes",
+        "safe_area_px": {
+          "top": 160,
+          "right": 410,
+          "bottom": 160,
+          "left": 410,
+          "note": "Keeps content away from sparse edge nodes and leaves the middle quiet."
+        }
+      },
+      {
+        "id": "terminal_glow",
+        "aliases": [
+          "bg_terminal_glow"
+        ],
+        "path": "themes/tech-signal/assets/backgrounds/terminal-glow-bg.png",
+        "type": "png",
+        "runtime": true,
+        "size": "1920x1080",
+        "best_for": "commands, logs, errors, configuration strings, and CLI examples with quiet terminal atmosphere",
+        "safe_area_px": {
+          "top": 160,
+          "right": 330,
+          "bottom": 170,
+          "left": 330,
+          "note": "Keeps content above the low terminal glow and away from edge command accents."
+        }
+      },
+      {
+        "id": "blueprint",
+        "aliases": [
+          "bg_blueprint"
+        ],
+        "path": "themes/tech-signal/assets/backgrounds/blueprint-bg.png",
+        "type": "png",
+        "runtime": true,
+        "size": "1920x1080",
+        "best_for": "system architecture, process diagrams, Gateway/Channel structure, and implementation maps",
+        "safe_area_px": {
+          "top": 170,
+          "right": 360,
+          "bottom": 170,
+          "left": 360,
+          "note": "Keeps content away from sparse corner construction marks and preserves a clean center."
+        }
+      }
+    ],
+    "elements": [
+      {
+        "id": "scan_band",
+        "type": "css_layer",
+        "runtime": true,
+        "css_class": "ts-element-scan-band",
+        "best_for": "logo, hook, system scan moments"
+      },
+      {
+        "id": "node_cluster",
+        "type": "css_layer",
+        "runtime": true,
+        "css_class": "ts-element-node-cluster",
+        "best_for": "AI memory, graph, provider relation scenes"
+      },
+      {
+        "id": "terminal_strip",
+        "type": "css_layer",
+        "runtime": true,
+        "css_class": "ts-element-terminal-strip",
+        "best_for": "code log and debugging scenes"
+      },
+      {
+        "id": "blueprint_marks",
+        "type": "css_layer",
+        "runtime": true,
+        "css_class": "ts-element-blueprint-marks",
+        "best_for": "architecture and flow scenes"
+      },
+      {
+        "id": "signal_dots",
+        "type": "css_layer",
+        "runtime": true,
+        "css_class": "ts-element-signal-dots",
+        "best_for": "light emphasis without random particles"
+      }
+    ]
   }
 }

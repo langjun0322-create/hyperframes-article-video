@@ -1,0 +1,40 @@
+<template id="folk-frequency-logo-intro-template">
+  <div data-composition-id="folk-frequency-logo-intro" data-width="1920" data-height="1080" data-duration="3">
+    <link rel="stylesheet" href="../partials/folk-frequency.css" />
+    <div class="folk-brand-scene ff-bg-floral-fest">
+      <div class="ff-ink-distress" data-layout-ignore aria-hidden="true"></div>
+      <div class="folk-brand-stage">
+        <div class="folk-logo-wrap">
+          <svg class="folk-logo-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1468 1244" aria-label="Brand logo">
+            <path class="folk-logo-piece j-piece" pathLength="1" d="M 755 39 L 372 41 L 370 251 L 553 255 L 553 903 L 540 943 L 507 973 L 478 986 L 285 989 L 275 985 L 266 966 L 267 777 L 37 777 L 36 997 L 129 1112 L 144 1124 L 148 1135 L 174 1161 L 174 1167 L 207 1207 L 601 1207 L 724 1047 L 725 1038 L 760 999 L 761 44 Z" />
+            <path class="folk-logo-piece e-piece" pathLength="1" d="M 825 40 L 824 1205 L 1388 1207 L 1386 989 L 1028 988 L 1027 346 L 1031 264 L 1388 264 L 1390 41 Z" />
+            <g class="folk-tri-button">
+              <path class="folk-logo-piece tri-piece" pathLength="1" d="M 1091 390 L 1093 835 L 1431 611 Z" />
+            </g>
+          </svg>
+          <div class="folk-logo-caption">
+            <div class="folk-logo-title" data-brand-field="logo_intro_text">JunEr Visual Lab</div>
+            <div class="folk-logo-url" data-brand-field="url">https://x.com/JunEr</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="../../../assets/gsap.min.js"></script>
+    <script>
+      window.__timelines = window.__timelines || {};
+      var root = document.querySelector('[data-composition-id="folk-frequency-logo-intro"]');
+      var q = function (selector) { return root.querySelectorAll(selector); };
+      var folkLogoIntro = gsap.timeline({ paused: true });
+      gsap.set(q('.folk-tri-button'), { svgOrigin: '1205 612', scale: 1 });
+      folkLogoIntro.from(q('.j-piece, .e-piece'), { strokeDashoffset: 1, fillOpacity: 0, duration: 0.88, stagger: 0.10, ease: 'power2.out' }, 0.58);
+      folkLogoIntro.from(q('.tri-piece'), { strokeDashoffset: 1, fillOpacity: 0, duration: 0.26, ease: 'power2.out' }, 1.20);
+      folkLogoIntro.from(q('.folk-tri-button'), { scale: 0.42, opacity: 0, duration: 0.16, ease: 'power2.out' }, 1.24);
+      folkLogoIntro.to(q('.folk-tri-button'), { scale: 0.88, duration: 0.08, ease: 'power2.in' }, 1.48);
+      folkLogoIntro.to(q('.folk-tri-button'), { scale: 1.13, duration: 0.12, ease: 'power2.out' }, 1.56);
+      folkLogoIntro.to(q('.folk-tri-button'), { scale: 1, duration: 0.20, ease: 'back.out(1.7)' }, 1.70);
+      folkLogoIntro.from(q('.folk-logo-title, .folk-logo-url'), { opacity: 0, y: 14, duration: 0.34, stagger: 0.08, ease: 'power3.out' }, 2.04);
+      folkLogoIntro.to(q('.folk-logo-wrap'), { opacity: 0, y: -16, duration: 0.30, ease: 'power2.in' }, 2.68);
+      window.__timelines['folk-frequency-logo-intro'] = folkLogoIntro;
+    </script>
+  </div>
+</template>

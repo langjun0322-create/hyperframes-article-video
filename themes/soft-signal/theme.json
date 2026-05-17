@@ -1,0 +1,613 @@
+{
+  "theme": {
+    "id": "soft-signal",
+    "name": "Soft Signal",
+    "version": "1.0.0",
+    "role": "warm_soft_article_video_template",
+    "description": "Warm paper, organic color blocks, editorial arches, soft grid hints, and subtle grain for AI, lifestyle, tutorial, personal brand, and calm explainer videos."
+  },
+  "design_tokens": {
+    "colors": {
+      "paper": "#FFF8EC",
+      "paper_warm": "#F4EBD8",
+      "ink": "#252325",
+      "text_secondary": "#6F665B",
+      "text_muted": "#A79C8D",
+      "accent_gold": "#F5A623",
+      "sage": "#8FAF8C",
+      "rose": "#C4A3A3",
+      "clay": "#D98C63",
+      "orange": "#FF6A00",
+      "black": "#0A0A0A"
+    },
+    "typography": {
+      "title_family": "Georgia, 'Times New Roman', 'Noto Serif SC', serif",
+      "body_family": "Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Noto Sans SC', sans-serif",
+      "title_size": 74,
+      "subtitle_size": 32,
+      "body_size": 25,
+      "caption_size": 18
+    },
+    "layout": {
+      "width": 1920,
+      "height": 1080,
+      "safe_padding_x": 146,
+      "safe_padding_y": 104,
+      "radius": 18,
+      "panel_border": "1px solid rgba(167,156,141,0.32)",
+      "max_shadow_opacity": 0.16,
+      "safe_area_source": "background_presets[].safe_area_px overrides default safe padding for deterministic fixed background presets"
+    },
+    "motion": {
+      "enter_duration": 0.62,
+      "exit_duration": 0.42,
+      "section_transition": 0.78,
+      "stagger": 0.09,
+      "enter_ease": "power3.out",
+      "exit_ease": "power2.in",
+      "ambient_ease": "sine.inOut"
+    },
+    "avoid": [
+      "hard neon",
+      "heavy cyberpunk",
+      "high contrast tech HUD",
+      "busy particle fields",
+      "dark dashboard panels",
+      "overly cute stickers",
+      "thick botanical illustrations",
+      "dense decorative borders",
+      "uniform card-only scene layouts"
+    ]
+  },
+  "background_presets": [
+    {
+      "id": "warm_paper",
+      "css_class": "ss-bg-warm-paper",
+      "best_for": "general explainers, tutorials, dense information, calm opening summaries",
+      "avoid_for": "high-energy metric or automation scenes that need visible motion paths",
+      "asset_path": "themes/soft-signal/assets/backgrounds/warm-paper-bg.png",
+      "safe_area_px": {
+        "top": 150,
+        "right": 300,
+        "bottom": 160,
+        "left": 300,
+        "note": "Keeps content inside the warm central paper field."
+      },
+      "safe_area_rule": "All text, cards, metric tiles, logo, avatar, and CTA controls must stay inside this rectangle for 1920x1080 compositions."
+    },
+    {
+      "id": "soft_blobs",
+      "css_class": "ss-bg-soft-blobs",
+      "best_for": "product introduction, AI tools, workflow overview, friendly high-level concepts",
+      "avoid_for": "command-heavy scenes",
+      "asset_path": "themes/soft-signal/assets/backgrounds/soft-blobs-bg.png",
+      "safe_area_px": {
+        "top": 150,
+        "right": 360,
+        "bottom": 170,
+        "left": 360,
+        "note": "Keeps content away from large organic edge blobs."
+      },
+      "safe_area_rule": "All text, cards, metric tiles, logo, avatar, and CTA controls must stay inside this rectangle for 1920x1080 compositions."
+    },
+    {
+      "id": "botanical_signal",
+      "css_class": "ss-bg-botanical-signal",
+      "best_for": "personal brand, human-centered stories, warm commentary, creator-facing content",
+      "avoid_for": "strict technical architecture diagrams",
+      "asset_path": "themes/soft-signal/assets/backgrounds/botanical-signal-bg.png",
+      "safe_area_px": {
+        "top": 160,
+        "right": 410,
+        "bottom": 170,
+        "left": 410,
+        "note": "Keeps content away from side botanical silhouettes."
+      },
+      "safe_area_rule": "All text, cards, metric tiles, logo, avatar, and CTA controls must stay inside this rectangle for 1920x1080 compositions."
+    },
+    {
+      "id": "editorial_arch",
+      "css_class": "ss-bg-editorial-arch",
+      "best_for": "case studies, viewpoint scenes, quote scenes, cover-like moments",
+      "avoid_for": "dense comparison tables",
+      "asset_path": "themes/soft-signal/assets/backgrounds/editorial-arch-bg.png",
+      "safe_area_px": {
+        "top": 150,
+        "right": 320,
+        "bottom": 180,
+        "left": 390,
+        "note": "Keeps text away from the side arch and color fields."
+      },
+      "safe_area_rule": "All text, cards, metric tiles, logo, avatar, and CTA controls must stay inside this rectangle for 1920x1080 compositions."
+    },
+    {
+      "id": "signal_blocks",
+      "aliases": [
+        "signal_lines"
+      ],
+      "css_class": "ss-bg-signal-blocks",
+      "best_for": "AI agents, memory, automation, process flow, relationship mapping using layered soft blocks",
+      "avoid_for": "minimal logo-only moments",
+      "asset_path": "themes/soft-signal/assets/backgrounds/signal-blocks-bg.png",
+      "safe_area_px": {
+        "top": 150,
+        "right": 390,
+        "bottom": 180,
+        "left": 390,
+        "note": "Keeps content away from layered soft blocks near edges."
+      },
+      "safe_area_rule": "All text, cards, metric tiles, logo, avatar, and CTA controls must stay inside this rectangle for 1920x1080 compositions."
+    },
+    {
+      "id": "soft_grid",
+      "css_class": "ss-bg-soft-grid",
+      "best_for": "version updates, technical breakdowns, comparison, checklists, structured summaries",
+      "avoid_for": "intimate personal brand scenes",
+      "asset_path": "themes/soft-signal/assets/backgrounds/soft-grid-bg.png",
+      "safe_area_px": {
+        "top": 150,
+        "right": 340,
+        "bottom": 170,
+        "left": 340,
+        "note": "Keeps structured content inside the subtle central grid field."
+      },
+      "safe_area_rule": "All text, cards, metric tiles, logo, avatar, and CTA controls must stay inside this rectangle for 1920x1080 compositions."
+    }
+  ],
+  "layout_templates": {
+    "hook": [
+      {
+        "id": "soft-signal.hook.warm-title-chips",
+        "component_class": "soft-hook-layout",
+        "best_for": "article title, opening thesis, calm promise",
+        "uses": [
+          "headline",
+          "supporting_copy",
+          "chips"
+        ]
+      }
+    ],
+    "summary": [
+      {
+        "id": "soft-signal.summary.paper-evidence-stack",
+        "component_class": "soft-summary-layout",
+        "best_for": "central claim with 2-3 gentle evidence blocks",
+        "uses": [
+          "claim",
+          "evidence",
+          "proof_chips"
+        ]
+      }
+    ],
+    "comparison": [
+      {
+        "id": "soft-signal.comparison.soft-grid-before-after",
+        "component_class": "soft-comparison-layout",
+        "best_for": "before/after table, calm comparison, version delta",
+        "uses": [
+          "left",
+          "right",
+          "criteria"
+        ]
+      }
+    ],
+    "key_points": [
+      {
+        "id": "soft-signal.key_points.botanical-note-stack",
+        "component_class": "soft-key-layout",
+        "best_for": "3-5 warm highlights or content pillars",
+        "uses": [
+          "items"
+        ]
+      }
+    ],
+    "metrics": [
+      {
+        "id": "soft-signal.metrics.soft-number-tiles",
+        "component_class": "soft-metrics-layout",
+        "best_for": "numbers, counts, timings, ratios, light proof",
+        "uses": [
+          "metrics"
+        ]
+      }
+    ],
+    "code_log": [
+      {
+        "id": "soft-signal.code_log.paper-console",
+        "component_class": "soft-code-layout",
+        "best_for": "commands or technical strings presented in a gentler editorial style",
+        "uses": [
+          "entries"
+        ]
+      }
+    ],
+    "architecture": [
+      {
+        "id": "soft-signal.architecture.soft-block-flow",
+        "component_class": "soft-arch-layout",
+        "best_for": "agent flow, memory, automation, product chain without visible line clutter",
+        "uses": [
+          "nodes",
+          "links"
+        ]
+      }
+    ],
+    "steps": [
+      {
+        "id": "soft-signal.steps.editorial-checklist",
+        "component_class": "soft-steps-layout",
+        "best_for": "tutorials, upgrade checklists, low-pressure process",
+        "uses": [
+          "steps"
+        ]
+      }
+    ],
+    "warning": [
+      {
+        "id": "soft-signal.warning.gentle-note",
+        "component_class": "soft-warning-layout",
+        "best_for": "constraints, risks, caveats without alarmist visuals",
+        "uses": [
+          "problem",
+          "fix",
+          "risk_level"
+        ]
+      }
+    ],
+    "quote": [
+      {
+        "id": "soft-signal.quote.editorial-arch-quote",
+        "component_class": "soft-quote-layout",
+        "best_for": "short quote, viewpoint, creator commentary",
+        "uses": [
+          "quote",
+          "source",
+          "context"
+        ]
+      }
+    ],
+    "conclusion": [
+      {
+        "id": "soft-signal.conclusion.warm-follow-through",
+        "component_class": "soft-conclusion-layout",
+        "best_for": "final recommendation, gentle CTA, practical takeaway",
+        "uses": [
+          "action",
+          "reason",
+          "compatibility",
+          "command"
+        ]
+      }
+    ]
+  },
+  "card_templates": {
+    "hook": {
+      "required_payload": [
+        "headline",
+        "subtitle"
+      ],
+      "optional_payload": [
+        "version",
+        "date",
+        "chips"
+      ],
+      "component_class": "ss-card-hook",
+      "layout_templates": [
+        "soft-signal.hook.warm-title-chips"
+      ]
+    },
+    "summary": {
+      "required_payload": [
+        "claim",
+        "evidence"
+      ],
+      "optional_payload": [
+        "proof_chips"
+      ],
+      "component_class": "ss-card-summary",
+      "layout_templates": [
+        "soft-signal.summary.paper-evidence-stack"
+      ]
+    },
+    "key_points": {
+      "required_payload": [
+        "items"
+      ],
+      "constraints": {
+        "min_items": 3,
+        "max_items": 5,
+        "item_fields": [
+          "title",
+          "detail"
+        ]
+      },
+      "component_class": "ss-card-key-points",
+      "layout_templates": [
+        "soft-signal.key_points.botanical-note-stack"
+      ]
+    },
+    "steps": {
+      "required_payload": [
+        "steps"
+      ],
+      "constraints": {
+        "min_items": 2,
+        "item_fields": [
+          "label",
+          "action",
+          "detail"
+        ]
+      },
+      "component_class": "ss-card-steps",
+      "layout_templates": [
+        "soft-signal.steps.editorial-checklist"
+      ]
+    },
+    "metrics": {
+      "required_payload": [
+        "metrics"
+      ],
+      "constraints": {
+        "min_items": 1,
+        "item_fields": [
+          "value",
+          "label"
+        ]
+      },
+      "component_class": "ss-card-metrics",
+      "layout_templates": [
+        "soft-signal.metrics.soft-number-tiles"
+      ]
+    },
+    "code_log": {
+      "required_payload": [
+        "entries"
+      ],
+      "constraints": {
+        "min_items": 2,
+        "item_fields": [
+          "code",
+          "label"
+        ]
+      },
+      "component_class": "ss-card-code-log",
+      "layout_templates": [
+        "soft-signal.code_log.paper-console"
+      ]
+    },
+    "architecture": {
+      "required_payload": [
+        "nodes",
+        "links"
+      ],
+      "constraints": {
+        "min_nodes": 3,
+        "node_fields": [
+          "name",
+          "role"
+        ]
+      },
+      "component_class": "ss-card-architecture",
+      "layout_templates": [
+        "soft-signal.architecture.soft-block-flow"
+      ]
+    },
+    "warning": {
+      "required_payload": [
+        "problem",
+        "fix"
+      ],
+      "optional_payload": [
+        "risk_level"
+      ],
+      "component_class": "ss-card-warning",
+      "layout_templates": [
+        "soft-signal.warning.gentle-note"
+      ]
+    },
+    "quote": {
+      "required_payload": [
+        "quote",
+        "source"
+      ],
+      "optional_payload": [
+        "context"
+      ],
+      "component_class": "ss-card-quote",
+      "layout_templates": [
+        "soft-signal.quote.editorial-arch-quote"
+      ]
+    },
+    "comparison": {
+      "required_payload": [
+        "left",
+        "right",
+        "criteria"
+      ],
+      "component_class": "ss-card-comparison",
+      "layout_templates": [
+        "soft-signal.comparison.soft-grid-before-after"
+      ]
+    },
+    "conclusion": {
+      "required_payload": [
+        "action",
+        "reason"
+      ],
+      "optional_payload": [
+        "compatibility",
+        "command"
+      ],
+      "component_class": "ss-card-conclusion",
+      "layout_templates": [
+        "soft-signal.conclusion.warm-follow-through"
+      ]
+    }
+  },
+  "animation_map": {
+    "hook": "warm_paper_reveal",
+    "summary": "soft_evidence_rise",
+    "key_points": "botanical_notes_unfold",
+    "steps": "gentle_checklist_draw",
+    "metrics": "soft_number_bloom",
+    "code_log": "paper_console_type",
+    "architecture": "soft_blocks_flow",
+    "warning": "gentle_note_focus",
+    "quote": "editorial_arch_focus",
+    "comparison": "soft_grid_compare",
+    "conclusion": "warm_cta_settle"
+  },
+  "branding_components": {
+    "logo_intro": "themes/soft-signal/components/logo-intro.html",
+    "follow_outro": "themes/soft-signal/components/follow-outro.html",
+    "style_note": "Brand copy and assets stay fixed; paper texture, warm palette, soft motion, and gentle card language come from this theme."
+  },
+  "asset_policy": {
+    "default": "deterministic_registered_assets_only",
+    "raster_assets": "theme_level_only",
+    "allowed_theme_assets": [
+      "registered 1920x1080 background PNG presets",
+      "registered CSS element layers in asset_registry.elements",
+      "fixed branding assets from assets/branding"
+    ],
+    "never_generate_per_article": true,
+    "do_not_generate_per_article": true,
+    "runtime_rule": "Generated article videos must call background_presets[].asset_path through the preset css_class and may only use asset_registry.elements for decorative layers.",
+    "background_rule": "Do not create, search, or generate per-article backgrounds. Do not use unknown image paths or random decorative placement.",
+    "motion_rule": "Use deterministic transitions from transitions.js only; no runtime random APIs, random positions, random durations, or looping ambient background motion."
+  },
+  "asset_registry": {
+    "backgrounds": [
+      {
+        "id": "warm_paper",
+        "path": "themes/soft-signal/assets/backgrounds/warm-paper-bg.png",
+        "type": "png",
+        "runtime": true,
+        "size": "1920x1080",
+        "best_for": "general explainers, tutorials, dense information, calm opening summaries",
+        "safe_area_px": {
+          "top": 150,
+          "right": 300,
+          "bottom": 160,
+          "left": 300,
+          "note": "Keeps content inside the warm central paper field."
+        }
+      },
+      {
+        "id": "soft_blobs",
+        "path": "themes/soft-signal/assets/backgrounds/soft-blobs-bg.png",
+        "type": "png",
+        "runtime": true,
+        "size": "1920x1080",
+        "best_for": "product introduction, AI tools, workflow overview, friendly high-level concepts",
+        "safe_area_px": {
+          "top": 150,
+          "right": 360,
+          "bottom": 170,
+          "left": 360,
+          "note": "Keeps content away from large organic edge blobs."
+        }
+      },
+      {
+        "id": "botanical_signal",
+        "path": "themes/soft-signal/assets/backgrounds/botanical-signal-bg.png",
+        "type": "png",
+        "runtime": true,
+        "size": "1920x1080",
+        "best_for": "personal brand, human-centered stories, warm commentary, creator-facing content",
+        "safe_area_px": {
+          "top": 160,
+          "right": 410,
+          "bottom": 170,
+          "left": 410,
+          "note": "Keeps content away from side botanical silhouettes."
+        }
+      },
+      {
+        "id": "editorial_arch",
+        "path": "themes/soft-signal/assets/backgrounds/editorial-arch-bg.png",
+        "type": "png",
+        "runtime": true,
+        "size": "1920x1080",
+        "best_for": "case studies, viewpoint scenes, quote scenes, cover-like moments",
+        "safe_area_px": {
+          "top": 150,
+          "right": 320,
+          "bottom": 180,
+          "left": 390,
+          "note": "Keeps text away from the side arch and color fields."
+        }
+      },
+      {
+        "id": "signal_blocks",
+        "aliases": [
+          "signal_lines"
+        ],
+        "path": "themes/soft-signal/assets/backgrounds/signal-blocks-bg.png",
+        "type": "png",
+        "runtime": true,
+        "size": "1920x1080",
+        "best_for": "AI agents, memory, automation, process flow, relationship mapping using layered soft blocks",
+        "safe_area_px": {
+          "top": 150,
+          "right": 390,
+          "bottom": 180,
+          "left": 390,
+          "note": "Keeps content away from layered soft blocks near edges."
+        }
+      },
+      {
+        "id": "soft_grid",
+        "path": "themes/soft-signal/assets/backgrounds/soft-grid-bg.png",
+        "type": "png",
+        "runtime": true,
+        "size": "1920x1080",
+        "best_for": "version updates, technical breakdowns, comparison, checklists, structured summaries",
+        "safe_area_px": {
+          "top": 150,
+          "right": 340,
+          "bottom": 170,
+          "left": 340,
+          "note": "Keeps structured content inside the subtle central grid field."
+        }
+      }
+    ],
+    "elements": [
+      {
+        "id": "paper_grain",
+        "type": "css_layer",
+        "runtime": true,
+        "css_class": "ss-element-paper-grain",
+        "best_for": "subtle paper texture on warm scenes"
+      },
+      {
+        "id": "large_blobs",
+        "type": "css_layer",
+        "runtime": true,
+        "css_class": "ss-element-large-blobs",
+        "best_for": "soft product intro and lifestyle scenes"
+      },
+      {
+        "id": "soft_arch",
+        "type": "css_layer",
+        "runtime": true,
+        "css_class": "ss-element-soft-arch",
+        "best_for": "quote, viewpoint, case study scenes"
+      },
+      {
+        "id": "botanical_silhouette",
+        "type": "css_layer",
+        "runtime": true,
+        "css_class": "ss-element-botanical-silhouette",
+        "best_for": "human-centered and personal brand scenes"
+      },
+      {
+        "id": "subtle_grid_blocks",
+        "type": "css_layer",
+        "runtime": true,
+        "css_class": "ss-element-subtle-grid-blocks",
+        "best_for": "version update, checklist, comparison scenes"
+      }
+    ]
+  }
+}
