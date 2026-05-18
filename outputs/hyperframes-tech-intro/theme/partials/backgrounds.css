@@ -1,0 +1,148 @@
+.ts-bg-dark-grid,
+.ts-bg-data-stream,
+.ts-bg-orbital-signal,
+.ts-bg-hud-panels,
+.ts-bg-neural-map,
+.ts-bg-terminal-glow,
+.ts-bg-blueprint {
+  position: relative;
+  overflow: hidden;
+  --ts-safe-top: 140px;
+  --ts-safe-right: 270px;
+  --ts-safe-bottom: 140px;
+  --ts-safe-left: 270px;
+  background-color: #020409;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.ts-bg-dark-grid::before,
+.ts-bg-data-stream::before,
+.ts-bg-orbital-signal::before,
+.ts-bg-hud-panels::before,
+.ts-bg-neural-map::before,
+.ts-bg-terminal-glow::before,
+.ts-bg-blueprint::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at center, transparent 0 66%, rgba(2, 4, 9, 0.24) 100%),
+    linear-gradient(180deg, rgba(236, 248, 255, 0.018), transparent 30%, transparent 74%, rgba(236, 248, 255, 0.014));
+}
+
+.ts-bg-dark-grid::after,
+.ts-bg-data-stream::after,
+.ts-bg-orbital-signal::after,
+.ts-bg-hud-panels::after,
+.ts-bg-neural-map::after,
+.ts-bg-terminal-glow::after,
+.ts-bg-blueprint::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, transparent 0%, rgba(0, 213, 255, 0.02) 50%, transparent 100%),
+    linear-gradient(180deg, rgba(0, 0, 0, 0.10), transparent 36%, transparent 68%, rgba(0, 0, 0, 0.14));
+  opacity: 0.34;
+}
+
+.ts-bg-dark-grid {
+  --ts-safe-top: 150px;
+  --ts-safe-right: 310px;
+  --ts-safe-bottom: 150px;
+  --ts-safe-left: 310px;
+  background-image: url("../assets/backgrounds/dark-grid-bg.png");
+}
+
+.ts-bg-data-stream {
+  --ts-safe-top: 150px;
+  --ts-safe-right: 370px;
+  --ts-safe-bottom: 150px;
+  --ts-safe-left: 370px;
+  background-image: url("../assets/backgrounds/data-stream-bg.png");
+}
+
+.ts-bg-orbital-signal,
+.ts-bg-hud-panels {
+  --ts-safe-top: 150px;
+  --ts-safe-right: 340px;
+  --ts-safe-bottom: 170px;
+  --ts-safe-left: 340px;
+  background-image: url("../assets/backgrounds/orbital-signal-bg.png");
+}
+
+.ts-bg-neural-map {
+  --ts-safe-top: 160px;
+  --ts-safe-right: 410px;
+  --ts-safe-bottom: 160px;
+  --ts-safe-left: 410px;
+  background-image: url("../assets/backgrounds/neural-map-bg.png");
+}
+
+.ts-bg-terminal-glow {
+  --ts-safe-top: 160px;
+  --ts-safe-right: 330px;
+  --ts-safe-bottom: 170px;
+  --ts-safe-left: 330px;
+  background-image: url("../assets/backgrounds/terminal-glow-bg.png");
+}
+
+.ts-bg-blueprint {
+  --ts-safe-top: 170px;
+  --ts-safe-right: 360px;
+  --ts-safe-bottom: 170px;
+  --ts-safe-left: 360px;
+  background-image: url("../assets/backgrounds/blueprint-bg.png");
+}
+
+.ts-element-scan-band,
+.ts-element-node-cluster,
+.ts-element-terminal-strip,
+.ts-element-blueprint-marks,
+.ts-element-signal-dots {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.ts-element-scan-band {
+  background: linear-gradient(90deg, transparent 0 46%, rgba(0, 213, 255, 0.055) 49.5%, rgba(236, 248, 255, 0.08) 50%, rgba(0, 213, 255, 0.045) 50.5%, transparent 54% 100%);
+  opacity: 0.22;
+}
+
+.ts-element-node-cluster {
+  background:
+    radial-gradient(circle at 18% 26%, rgba(0, 213, 255, 0.18) 0 2px, transparent 3px),
+    radial-gradient(circle at 82% 24%, rgba(0, 213, 255, 0.15) 0 2px, transparent 3px),
+    radial-gradient(circle at 78% 68%, rgba(34, 230, 168, 0.11) 0 2px, transparent 3px);
+}
+
+.ts-element-terminal-strip {
+  background:
+    linear-gradient(180deg, transparent 0 12%, rgba(34, 230, 168, 0.04) 12.2% 12.36%, transparent 12.65% 100%),
+    linear-gradient(180deg, transparent 0 84%, rgba(34, 230, 168, 0.038) 84.2% 84.36%, transparent 84.65% 100%);
+}
+
+.ts-element-blueprint-marks {
+  background-image:
+    linear-gradient(rgba(0, 213, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 213, 255, 0.024) 1px, transparent 1px);
+  background-size: 180px 180px;
+  mask-image: linear-gradient(90deg, black 0 14%, transparent 30% 70%, black 86% 100%);
+}
+
+.ts-element-signal-dots {
+  background:
+    radial-gradient(circle at 17% 22%, rgba(236, 248, 255, 0.22) 0 2px, transparent 3px),
+    radial-gradient(circle at 85% 28%, rgba(0, 213, 255, 0.14) 0 2px, transparent 3px),
+    radial-gradient(circle at 78% 76%, rgba(34, 230, 168, 0.12) 0 2px, transparent 3px),
+    radial-gradient(circle at 23% 82%, rgba(236, 248, 255, 0.16) 0 1.5px, transparent 2.5px);
+  opacity: 0.35;
+}
