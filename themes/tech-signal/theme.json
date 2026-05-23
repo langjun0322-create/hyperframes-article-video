@@ -182,6 +182,7 @@
       {
         "id": "tech-signal.hook.orbital-proof-chips",
         "component_class": "hook-layout",
+        "layout_mode": "open_title",
         "best_for": "article title, release framing, opening thesis",
         "uses": [
           "headline",
@@ -194,11 +195,22 @@
       {
         "id": "tech-signal.summary.evidence-ladder",
         "component_class": "summary-layout",
+        "layout_mode": "structured_cards",
         "best_for": "central claim with 2-3 proof points",
         "uses": [
           "claim",
           "evidence",
           "proof_chips"
+        ]
+      },
+      {
+        "id": "tech-signal.summary.open-title",
+        "component_class": "hook-layout",
+        "layout_mode": "open_title",
+        "best_for": "one concise claim with a short supporting explanation",
+        "uses": [
+          "claim",
+          "evidence"
         ]
       }
     ],
@@ -206,6 +218,7 @@
       {
         "id": "tech-signal.comparison.before-after-board",
         "component_class": "comparison-layout",
+        "layout_mode": "comparison_board",
         "best_for": "old behavior vs new behavior, before/after tables",
         "uses": [
           "left",
@@ -218,6 +231,7 @@
       {
         "id": "tech-signal.key_points.layered-stack",
         "component_class": "key-layout",
+        "layout_mode": "structured_cards",
         "best_for": "3-5 peer highlights or fix groups",
         "uses": [
           "items"
@@ -228,6 +242,7 @@
       {
         "id": "tech-signal.metrics.metric-wall",
         "component_class": "metrics-layout",
+        "layout_mode": "metric_board",
         "best_for": "counts, timings, retries, ratios, measurable proof",
         "uses": [
           "metrics"
@@ -238,6 +253,7 @@
       {
         "id": "tech-signal.code_log.terminal-shell",
         "component_class": "code-layout",
+        "layout_mode": "terminal_panel",
         "best_for": "commands, errors, config keys, status enums, API strings",
         "uses": [
           "entries"
@@ -248,6 +264,7 @@
       {
         "id": "tech-signal.architecture.node-flow",
         "component_class": "arch-layout",
+        "layout_mode": "diagram_flow",
         "best_for": "module relationships, provider flows, gateway/channel routes",
         "uses": [
           "nodes",
@@ -259,6 +276,7 @@
       {
         "id": "tech-signal.steps.command-timeline",
         "component_class": "steps-layout",
+        "layout_mode": "structured_cards",
         "best_for": "upgrade guide, setup sequence, operational checklist",
         "uses": [
           "steps"
@@ -269,6 +287,7 @@
       {
         "id": "tech-signal.warning.system-alert-panel",
         "component_class": "warning-layout",
+        "layout_mode": "structured_cards",
         "best_for": "failure modes, risks, validation constraints",
         "uses": [
           "problem",
@@ -281,6 +300,7 @@
       {
         "id": "tech-signal.quote.focus-frame",
         "component_class": "quote-layout",
+        "layout_mode": "quote_focus",
         "best_for": "short source quote that carries the argument",
         "uses": [
           "quote",
@@ -293,12 +313,51 @@
       {
         "id": "tech-signal.conclusion.signal-cta",
         "component_class": "conclusion-layout",
+        "layout_mode": "structured_cards",
         "best_for": "final recommendation, action, upgrade or takeaway",
         "uses": [
           "action",
           "reason",
           "compatibility",
           "command"
+        ]
+      },
+      {
+        "id": "tech-signal.conclusion.open-title",
+        "component_class": "hook-layout",
+        "layout_mode": "open_title",
+        "best_for": "short final takeaway without a containing panel",
+        "uses": [
+          "action",
+          "reason"
+        ]
+      }
+    ],
+    "image_evidence": [
+      {
+        "id": "tech-signal.image_evidence.media-focus",
+        "component_class": "ts-media-focus-layout",
+        "layout_mode": "media_focus",
+        "best_for": "a screenshot or chart that carries the section evidence",
+        "uses": [
+          "image_path",
+          "alt",
+          "caption",
+          "why_relevant",
+          "source_section"
+        ]
+      },
+      {
+        "id": "tech-signal.image_evidence.split-media-text",
+        "component_class": "ts-split-media-layout",
+        "layout_mode": "split_media_text",
+        "best_for": "a source image that needs adjacent interpretation",
+        "uses": [
+          "image_path",
+          "alt",
+          "caption",
+          "why_relevant",
+          "source_section"
         ]
       }
     ]
@@ -329,7 +388,8 @@
       ],
       "component_class": "ts-card-summary",
       "layout_templates": [
-        "tech-signal.summary.evidence-ladder"
+        "tech-signal.summary.evidence-ladder",
+        "tech-signal.summary.open-title"
       ]
     },
     "key_points": {
@@ -463,7 +523,23 @@
       ],
       "component_class": "ts-card-conclusion",
       "layout_templates": [
-        "tech-signal.conclusion.signal-cta"
+        "tech-signal.conclusion.signal-cta",
+        "tech-signal.conclusion.open-title"
+      ]
+    },
+    "image_evidence": {
+      "required_payload": [
+        "image_id",
+        "image_path",
+        "alt",
+        "caption",
+        "why_relevant",
+        "source_section"
+      ],
+      "component_class": "ts-card-image-evidence",
+      "layout_templates": [
+        "tech-signal.image_evidence.media-focus",
+        "tech-signal.image_evidence.split-media-text"
       ]
     }
   },
@@ -478,7 +554,8 @@
     "warning": "system_alert_shift",
     "quote": "quote_frame_focus",
     "comparison": "comparison_split_reveal",
-    "conclusion": "glass_panel_focus"
+    "conclusion": "glass_panel_focus",
+    "image_evidence": "source_image_reveal"
   },
   "branding_components": {
     "logo_intro": {

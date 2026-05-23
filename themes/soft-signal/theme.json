@@ -159,6 +159,7 @@
       {
         "id": "soft-signal.hook.warm-title-chips",
         "component_class": "soft-hook-layout",
+        "layout_mode": "open_title",
         "best_for": "article title, opening thesis, calm promise",
         "uses": [
           "headline",
@@ -171,11 +172,22 @@
       {
         "id": "soft-signal.summary.paper-evidence-stack",
         "component_class": "soft-summary-layout",
+        "layout_mode": "structured_cards",
         "best_for": "central claim with 2-3 gentle evidence blocks",
         "uses": [
           "claim",
           "evidence",
           "proof_chips"
+        ]
+      },
+      {
+        "id": "soft-signal.summary.open-title",
+        "component_class": "soft-hook-layout",
+        "layout_mode": "open_title",
+        "best_for": "a calm single-thought section without a surrounding note card",
+        "uses": [
+          "claim",
+          "evidence"
         ]
       }
     ],
@@ -183,6 +195,7 @@
       {
         "id": "soft-signal.comparison.soft-grid-before-after",
         "component_class": "soft-comparison-layout",
+        "layout_mode": "comparison_board",
         "best_for": "before/after table, calm comparison, version delta",
         "uses": [
           "left",
@@ -195,6 +208,7 @@
       {
         "id": "soft-signal.key_points.botanical-note-stack",
         "component_class": "soft-key-layout",
+        "layout_mode": "structured_cards",
         "best_for": "3-5 warm highlights or content pillars",
         "uses": [
           "items"
@@ -205,6 +219,7 @@
       {
         "id": "soft-signal.metrics.soft-number-tiles",
         "component_class": "soft-metrics-layout",
+        "layout_mode": "metric_board",
         "best_for": "numbers, counts, timings, ratios, light proof",
         "uses": [
           "metrics"
@@ -215,6 +230,7 @@
       {
         "id": "soft-signal.code_log.paper-console",
         "component_class": "soft-code-layout",
+        "layout_mode": "terminal_panel",
         "best_for": "commands or technical strings presented in a gentler editorial style",
         "uses": [
           "entries"
@@ -225,6 +241,7 @@
       {
         "id": "soft-signal.architecture.soft-block-flow",
         "component_class": "soft-arch-layout",
+        "layout_mode": "diagram_flow",
         "best_for": "agent flow, memory, automation, product chain without visible line clutter",
         "uses": [
           "nodes",
@@ -236,6 +253,7 @@
       {
         "id": "soft-signal.steps.editorial-checklist",
         "component_class": "soft-steps-layout",
+        "layout_mode": "structured_cards",
         "best_for": "tutorials, upgrade checklists, low-pressure process",
         "uses": [
           "steps"
@@ -246,6 +264,7 @@
       {
         "id": "soft-signal.warning.gentle-note",
         "component_class": "soft-warning-layout",
+        "layout_mode": "structured_cards",
         "best_for": "constraints, risks, caveats without alarmist visuals",
         "uses": [
           "problem",
@@ -258,6 +277,7 @@
       {
         "id": "soft-signal.quote.editorial-arch-quote",
         "component_class": "soft-quote-layout",
+        "layout_mode": "quote_focus",
         "best_for": "short quote, viewpoint, creator commentary",
         "uses": [
           "quote",
@@ -270,12 +290,51 @@
       {
         "id": "soft-signal.conclusion.warm-follow-through",
         "component_class": "soft-conclusion-layout",
+        "layout_mode": "structured_cards",
         "best_for": "final recommendation, gentle CTA, practical takeaway",
         "uses": [
           "action",
           "reason",
           "compatibility",
           "command"
+        ]
+      },
+      {
+        "id": "soft-signal.conclusion.open-title",
+        "component_class": "soft-hook-layout",
+        "layout_mode": "open_title",
+        "best_for": "a short closing thought placed directly on the paper field",
+        "uses": [
+          "action",
+          "reason"
+        ]
+      }
+    ],
+    "image_evidence": [
+      {
+        "id": "soft-signal.image_evidence.media-focus",
+        "component_class": "ss-media-focus-layout",
+        "layout_mode": "media_focus",
+        "best_for": "a source image mounted as the central editorial proof",
+        "uses": [
+          "image_path",
+          "alt",
+          "caption",
+          "why_relevant",
+          "source_section"
+        ]
+      },
+      {
+        "id": "soft-signal.image_evidence.split-media-text",
+        "component_class": "ss-split-media-layout",
+        "layout_mode": "split_media_text",
+        "best_for": "a source image with an adjacent editorial note",
+        "uses": [
+          "image_path",
+          "alt",
+          "caption",
+          "why_relevant",
+          "source_section"
         ]
       }
     ]
@@ -306,7 +365,8 @@
       ],
       "component_class": "ss-card-summary",
       "layout_templates": [
-        "soft-signal.summary.paper-evidence-stack"
+        "soft-signal.summary.paper-evidence-stack",
+        "soft-signal.summary.open-title"
       ]
     },
     "key_points": {
@@ -440,7 +500,23 @@
       ],
       "component_class": "ss-card-conclusion",
       "layout_templates": [
-        "soft-signal.conclusion.warm-follow-through"
+        "soft-signal.conclusion.warm-follow-through",
+        "soft-signal.conclusion.open-title"
+      ]
+    },
+    "image_evidence": {
+      "required_payload": [
+        "image_id",
+        "image_path",
+        "alt",
+        "caption",
+        "why_relevant",
+        "source_section"
+      ],
+      "component_class": "ss-card-image-evidence",
+      "layout_templates": [
+        "soft-signal.image_evidence.media-focus",
+        "soft-signal.image_evidence.split-media-text"
       ]
     }
   },
@@ -455,7 +531,8 @@
     "warning": "gentle_note_focus",
     "quote": "editorial_arch_focus",
     "comparison": "soft_grid_compare",
-    "conclusion": "warm_cta_settle"
+    "conclusion": "warm_cta_settle",
+    "image_evidence": "soft_image_reveal"
   },
   "branding_components": {
     "logo_intro": "themes/soft-signal/components/logo-intro.html",

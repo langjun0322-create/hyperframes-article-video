@@ -715,3 +715,64 @@
   bottom: 26px;
   transform: rotate(180deg);
 }
+
+.ff-card-image-evidence {
+  width: min(1440px, 100%);
+}
+
+.ff-media-focus-layout .ff-card-image-evidence {
+  display: grid;
+  gap: 20px;
+  justify-items: center;
+}
+
+.ff-split-media-layout .ff-card-image-evidence {
+  display: grid;
+  grid-template-columns: minmax(0, 1.03fr) minmax(350px, 0.72fr);
+  gap: 34px;
+  align-items: center;
+}
+
+.ff-source-media {
+  width: 100%;
+  overflow: hidden;
+  border: 4px solid #073b61;
+  border-radius: 8px;
+  background: #f6ede1;
+  padding: 14px 14px 30px;
+  box-sizing: border-box;
+  box-shadow: 10px 10px 0 rgba(198, 90, 58, 0.22);
+}
+
+.ff-source-media img {
+  display: block;
+  width: 100%;
+  height: min(560px, 54vh);
+  object-fit: contain;
+  border-radius: 4px;
+}
+
+.ff-media-copy {
+  display: grid;
+  gap: 18px;
+}
+
+.ff-media-caption {
+  color: #073b61;
+  font-family: "Folk Display", "Folk CN", Georgia, serif;
+  font-size: 34px;
+  line-height: 1.2;
+}
+
+.ff-media-meta {
+  width: max-content;
+  max-width: 100%;
+  border: 3px solid #073b61;
+  border-radius: 8px;
+  background: #f2c230;
+  padding: 14px 18px;
+  color: #073b61;
+  font-size: 19px;
+  line-height: 1.4;
+  font-weight: 750;
+}

@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <title>Body Scene Registry</title>
+  </head>
+  <body>
+    <main data-composition-id="body-scene-registry" data-width="1920" data-height="1080" data-duration="0.1" hidden></main>
+    <script src="../assets/gsap.min.js"></script>
+    <script>
+      window.__timelines = window.__timelines || {};
+      window.__timelines["body-scene-registry"] = gsap.timeline({ paused: true }).to({}, { duration: 0.1 }, 0);
+    </script>
+  </body>
+</html>

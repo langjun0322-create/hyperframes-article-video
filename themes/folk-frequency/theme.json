@@ -159,6 +159,7 @@
       {
         "id": "folk-frequency.hook.reference-hook-page",
         "component_class": "ff-poster-copy-layout ff-hook-page",
+        "layout_mode": "open_title",
         "best_for": "reference-style Hook Page with large direct-on-paper title, green page badge, red kicker, and optional bottom colored pills; no background-baked hero zone",
         "uses": [
           "headline",
@@ -171,6 +172,7 @@
       {
         "id": "folk-frequency.hook.open-poster-title",
         "component_class": "ff-poster-copy-layout",
+        "layout_mode": "open_title",
         "best_for": "large title, short promise, and tags placed directly on the poster background without a wrapper card",
         "uses": [
           "headline",
@@ -182,6 +184,7 @@
       {
         "id": "folk-frequency.hook.poster-banner",
         "component_class": "ff-hook-layout",
+        "layout_mode": "open_title",
         "best_for": "big title, article promise, social poster opening",
         "uses": [
           "headline",
@@ -194,6 +197,7 @@
       {
         "id": "folk-frequency.summary.body-page-01",
         "component_class": "ff-poster-copy-layout ff-body-page",
+        "layout_mode": "structured_cards",
         "best_for": "reference-style Body Page 01 with large headline and HTML-rendered color blocks, quote panel, or bottom category band",
         "uses": [
           "claim",
@@ -206,6 +210,7 @@
       {
         "id": "folk-frequency.summary.open-editorial",
         "component_class": "ff-poster-copy-layout",
+        "layout_mode": "open_title",
         "best_for": "claim and short evidence list placed on the background with light dividers instead of a full panel",
         "uses": [
           "claim",
@@ -217,6 +222,7 @@
       {
         "id": "folk-frequency.summary.story-panel",
         "component_class": "ff-summary-layout",
+        "layout_mode": "structured_cards",
         "best_for": "claim plus evidence in a warm editorial panel",
         "uses": [
           "claim",
@@ -229,6 +235,7 @@
       {
         "id": "folk-frequency.comparison.twin-posters",
         "component_class": "ff-comparison-layout",
+        "layout_mode": "comparison_board",
         "best_for": "before and after, old and new, two-option contrast",
         "uses": [
           "left",
@@ -241,6 +248,7 @@
       {
         "id": "folk-frequency.key_points.body-page-01-blocks",
         "component_class": "ff-poster-copy-layout ff-body-page",
+        "layout_mode": "structured_cards",
         "best_for": "3 key points displayed as colored folk poster blocks without a large enclosing card",
         "uses": [
           "items"
@@ -250,6 +258,7 @@
       {
         "id": "folk-frequency.key_points.workshop-highlights",
         "component_class": "ff-key-layout",
+        "layout_mode": "structured_cards",
         "best_for": "3-5 memorable highlights with icon accents",
         "uses": [
           "items"
@@ -260,6 +269,7 @@
       {
         "id": "folk-frequency.metrics.open-stamp-grid",
         "component_class": "ff-poster-copy-layout",
+        "layout_mode": "metric_board",
         "best_for": "metrics as colored stamp blocks placed directly on the poster background",
         "uses": [
           "metrics"
@@ -269,6 +279,7 @@
       {
         "id": "folk-frequency.metrics.open-stamps",
         "component_class": "ff-poster-copy-layout",
+        "layout_mode": "metric_board",
         "best_for": "numbers displayed as individual stamp tiles without a large enclosing card",
         "uses": [
           "metrics"
@@ -278,6 +289,7 @@
       {
         "id": "folk-frequency.metrics.stamp-tiles",
         "component_class": "ff-metrics-layout",
+        "layout_mode": "metric_board",
         "best_for": "numbers, counts, dates, short proof points",
         "uses": [
           "metrics"
@@ -288,6 +300,7 @@
       {
         "id": "folk-frequency.code_log.handbill-console",
         "component_class": "ff-code-layout",
+        "layout_mode": "terminal_panel",
         "best_for": "commands and technical strings inside a printable handbill",
         "uses": [
           "entries"
@@ -298,6 +311,7 @@
       {
         "id": "folk-frequency.architecture.process-path",
         "component_class": "ff-arch-layout",
+        "layout_mode": "diagram_flow",
         "best_for": "simple flow with named layers and roles",
         "uses": [
           "nodes",
@@ -309,6 +323,7 @@
       {
         "id": "folk-frequency.steps.body-page-02-flow",
         "component_class": "ff-poster-copy-layout ff-step-page",
+        "layout_mode": "structured_cards",
         "best_for": "reference-style Body Page 02 with HTML-rendered step panels, circular numbers, arrows, and optional bottom label strip",
         "uses": [
           "steps"
@@ -318,6 +333,7 @@
       {
         "id": "folk-frequency.steps.open-program-list",
         "component_class": "ff-poster-copy-layout",
+        "layout_mode": "structured_cards",
         "best_for": "short workflow or checklist placed directly on the background with numbered dividers",
         "uses": [
           "steps"
@@ -327,6 +343,7 @@
       {
         "id": "folk-frequency.steps.event-program",
         "component_class": "ff-steps-layout",
+        "layout_mode": "structured_cards",
         "best_for": "sequence, upgrade guide, checklist, process",
         "uses": [
           "steps"
@@ -337,6 +354,7 @@
       {
         "id": "folk-frequency.warning.coral-notice",
         "component_class": "ff-warning-layout",
+        "layout_mode": "structured_cards",
         "best_for": "constraints, caveats, risk notes with humane tone",
         "uses": [
           "problem",
@@ -349,6 +367,7 @@
       {
         "id": "folk-frequency.quote.dashed-poster-quote",
         "component_class": "ff-poster-copy-layout",
+        "layout_mode": "quote_focus",
         "best_for": "quote in a dashed folk poster panel or quiet indigo zone, not a generic glass card",
         "uses": [
           "quote",
@@ -360,6 +379,7 @@
       {
         "id": "folk-frequency.quote.indigo-quote-card",
         "component_class": "ff-quote-layout",
+        "layout_mode": "quote_focus",
         "best_for": "short quote or central sentiment",
         "uses": [
           "quote",
@@ -372,12 +392,52 @@
       {
         "id": "folk-frequency.conclusion.festival-cta",
         "component_class": "ff-conclusion-layout",
+        "layout_mode": "structured_cards",
         "best_for": "final recommendation and follow-through",
         "uses": [
           "action",
           "reason",
           "compatibility",
           "command"
+        ]
+      },
+      {
+        "id": "folk-frequency.conclusion.open-title",
+        "component_class": "ff-poster-copy-layout",
+        "layout_mode": "open_title",
+        "best_for": "short closing line printed directly on the poster field",
+        "uses": [
+          "action",
+          "reason"
+        ],
+        "cardless": true
+      }
+    ],
+    "image_evidence": [
+      {
+        "id": "folk-frequency.image_evidence.media-focus",
+        "component_class": "ff-media-focus-layout",
+        "layout_mode": "media_focus",
+        "best_for": "a source image framed as a poster photograph",
+        "uses": [
+          "image_path",
+          "alt",
+          "caption",
+          "why_relevant",
+          "source_section"
+        ]
+      },
+      {
+        "id": "folk-frequency.image_evidence.split-media-text",
+        "component_class": "ff-split-media-layout",
+        "layout_mode": "split_media_text",
+        "best_for": "a source image with printed annotation and stamp metadata",
+        "uses": [
+          "image_path",
+          "alt",
+          "caption",
+          "why_relevant",
+          "source_section"
         ]
       }
     ]
@@ -552,7 +612,23 @@
       ],
       "component_class": "ff-card-conclusion",
       "layout_templates": [
-        "folk-frequency.conclusion.festival-cta"
+        "folk-frequency.conclusion.festival-cta",
+        "folk-frequency.conclusion.open-title"
+      ]
+    },
+    "image_evidence": {
+      "required_payload": [
+        "image_id",
+        "image_path",
+        "alt",
+        "caption",
+        "why_relevant",
+        "source_section"
+      ],
+      "component_class": "ff-card-image-evidence",
+      "layout_templates": [
+        "folk-frequency.image_evidence.media-focus",
+        "folk-frequency.image_evidence.split-media-text"
       ]
     }
   },
@@ -567,7 +643,8 @@
     "warning": "coral_notice_snap",
     "quote": "indigo_quote_focus",
     "comparison": "twin_poster_compare",
-    "conclusion": "festival_cta_settle"
+    "conclusion": "festival_cta_settle",
+    "image_evidence": "poster_image_reveal"
   },
   "asset_registry": {
     "textures": [

@@ -53,6 +53,9 @@
     twin_poster_compare(tl, root, selector, at) {
       folkSequence(tl, root, selector, at, { main: ".ff-item" });
     },
+    poster_image_reveal(tl, root, selector, at) {
+      folkSequence(tl, root, selector, at, { main: ".ff-source-media, .ff-media-copy", items: ".ff-media-caption, .ff-media-meta" });
+    },
     festival_cta_settle(tl, root, selector, at) {
       folkSequence(tl, root, selector, at);
     }

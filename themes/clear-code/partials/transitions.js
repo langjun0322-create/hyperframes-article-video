@@ -47,7 +47,7 @@
 
   function cardsRiseIn(tl, root, at) {
     var start = at || 0;
-    var cards = q(root, ".cc-card, .cc-panel, .cc-step, .cc-stat, .cc-note-card, .obs-info-card, .obs-mini-card, .obs-stat, .obs-node");
+    var cards = q(root, ".cc-card, .cc-panel, .cc-step, .cc-stat, .cc-note-card, .cc-source-media, .cc-media-copy, .obs-info-card, .obs-mini-card, .obs-stat, .obs-node");
     fromTo(tl, q(root, ".cc-badge, .obs-badge"), { opacity: 0, y: -16 }, { opacity: 1, y: 0, duration: 0.52, stagger: 0.08, ease: "power3.out", immediateRender: false }, start + 0.14);
     fromTo(tl, q(root, ".cc-title"), { opacity: 0, y: 28 }, { opacity: 1, y: 0, duration: 0.76, ease: "power3.out", immediateRender: false }, start + 0.48);
     fromTo(tl, q(root, ".cc-kicker, .cc-subtitle"), { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.66, stagger: 0.12, ease: "power3.out", immediateRender: false }, start + 1.20);
@@ -86,6 +86,7 @@
     focus_note_pop: cardsRiseIn,
     quote_slide_focus: cardsRiseIn,
     two_column_compare: cardsRiseIn,
-    cta_settle: cardsRiseIn
+    cta_settle: cardsRiseIn,
+    source_image_reveal: cardsRiseIn
   };
 })();

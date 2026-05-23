@@ -53,6 +53,9 @@
     soft_grid_compare(tl, root, at) {
       softSequence(tl, root, at, { cards: ".ss-grid > *", items: ".ss-item, .ss-chip" });
     },
+    soft_image_reveal(tl, root, at) {
+      softSequence(tl, root, at, { cards: ".ss-source-media, .ss-media-copy", items: ".ss-media-caption, .ss-media-meta" });
+    },
     warm_cta_settle(tl, root, at) {
       softSequence(tl, root, at, {});
     }

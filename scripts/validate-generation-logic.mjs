@@ -15,6 +15,30 @@ const REQUIRED_CARD_TYPES = [
   "quote",
   "comparison",
   "conclusion",
+  "image_evidence",
+];
+
+const LAYOUT_MODES = new Set([
+  "open_title",
+  "structured_cards",
+  "media_focus",
+  "split_media_text",
+  "metric_board",
+  "terminal_panel",
+  "diagram_flow",
+  "comparison_board",
+  "quote_focus",
+]);
+
+const OPEN_TITLE_CARD_TYPES = ["hook", "summary", "conclusion"];
+
+const IMAGE_EVIDENCE_FIELDS = [
+  "image_id",
+  "image_path",
+  "alt",
+  "caption",
+  "why_relevant",
+  "source_section",
 ];
 
 const REQUIRED_BREAKDOWN_SECTIONS = [
@@ -206,11 +230,38 @@ function validateThemeContracts(themes, collectedErrors) {
       if (!theme.card_templates?.[cardType]) {
         collectedErrors.push(`${id}: missing card_templates.${cardType}.`);
       }
-      if (!Array.isArray(theme.layout_templates?.[cardType]) || !theme.layout_templates[cardType].length) {
+      const layouts = theme.layout_templates?.[cardType];
+      if (!Array.isArray(layouts) || !layouts.length) {
         collectedErrors.push(`${id}: missing layout_templates.${cardType}.`);
       }
       if (!theme.animation_map?.[cardType]) {
         collectedErrors.push(`${id}: missing animation_map.${cardType}.`);
+      }
+    }
+
+    for (const [cardType, layouts] of Object.entries(theme.layout_templates || {})) {
+      const registeredIds = new Set();
+      for (const layout of layouts || []) {
+        if (!layout.id) {
+          collectedErrors.push(`${id}: layout_templates.${cardType} has an entry without id.`);
+          continue;
+        }
+        registeredIds.add(layout.id);
+        if (!LAYOUT_MODES.has(layout.layout_mode)) {
+          collectedErrors.push(`${id}: layout_template ${layout.id} has invalid layout_mode ${layout.layout_mode || "(missing)"}.`);
+        }
+      }
+
+      for (const referencedId of theme.card_templates?.[cardType]?.layout_templates || []) {
+        if (!registeredIds.has(referencedId)) {
+          collectedErrors.push(`${id}: card_templates.${cardType} references unknown layout_template ${referencedId}.`);
+        }
+      }
+    }
+
+    for (const cardType of OPEN_TITLE_CARD_TYPES) {
+      if (!(theme.layout_templates?.[cardType] || []).some((layout) => layout.layout_mode === "open_title")) {
+        collectedErrors.push(`${id}: layout_templates.${cardType} must provide an open_title layout.`);
       }
     }
   }
@@ -241,7 +292,7 @@ function validateProject(projectDir, themes, parsedArgs, collectedErrors, collec
 
   const breakdownPath = path.join(projectDir, "article-breakdown.md");
   if (fs.existsSync(breakdownPath)) {
-    validateBreakdown(breakdownPath, themes, collectedErrors, collectedWarnings);
+    validateBreakdown(breakdownPath, projectDir, themes, collectedErrors, collectedWarnings);
   }
 
   const indexPath = path.join(projectDir, "index.html");
@@ -300,7 +351,7 @@ function validateLayoutIgnoreUsage(projectDir, collectedErrors) {
   }
 }
 
-function validateBreakdown(breakdownPath, themes, collectedErrors, collectedWarnings) {
+function validateBreakdown(breakdownPath, projectDir, themes, collectedErrors, collectedWarnings) {
   const text = fs.readFileSync(breakdownPath, "utf8");
   for (const section of REQUIRED_BREAKDOWN_SECTIONS) {
     if (!text.includes(section)) {
@@ -327,11 +378,16 @@ function validateBreakdown(breakdownPath, themes, collectedErrors, collectedWarn
   }
 
   const theme = themeRecord.theme;
+  const breakdownSchema = Number(readScalar(text, "breakdown_schema") || 1);
+  const isSchemaV2 = breakdownSchema >= 2;
+  if (!isSchemaV2) {
+    collectedWarnings.push(`${breakdownPath}: legacy breakdown schema without layout_mode; accepted for compatibility.`);
+  }
   const backgroundIds = new Set((theme.background_presets || []).map((item) => item.id));
-  const layoutIdsByType = new Map(
+  const layoutsByType = new Map(
     Object.entries(theme.layout_templates || {}).map(([cardType, layouts]) => [
       cardType,
-      new Set((layouts || []).map((layout) => layout.id)),
+      new Map((layouts || []).map((layout) => [layout.id, layout])),
     ])
   );
 
@@ -347,6 +403,12 @@ function validateBreakdown(breakdownPath, themes, collectedErrors, collectedWarn
         collectedErrors.push(`${breakdownPath}: ${sceneLabel} missing ${field}.`);
       }
     }
+    if (isSchemaV2 && !scene.layout_mode) {
+      collectedErrors.push(`${breakdownPath}: ${sceneLabel} missing layout_mode.`);
+    }
+    if (scene.layout_mode && !LAYOUT_MODES.has(scene.layout_mode)) {
+      collectedErrors.push(`${breakdownPath}: ${sceneLabel} has invalid layout_mode ${scene.layout_mode}.`);
+    }
 
     if (scene.narration && scene.visual_text && normalize(scene.narration) === normalize(scene.visual_text)) {
       collectedErrors.push(`${breakdownPath}: ${sceneLabel} visual_text duplicates narration.`);
@@ -359,9 +421,13 @@ function validateBreakdown(breakdownPath, themes, collectedErrors, collectedWarn
       collectedErrors.push(`${breakdownPath}: ${sceneLabel} unknown card_type ${scene.card_type} for ${themeRecord.id}.`);
     }
 
-    const layoutIds = layoutIdsByType.get(scene.card_type);
-    if (scene.layout_template && (!layoutIds || !layoutIds.has(scene.layout_template))) {
+    const layouts = layoutsByType.get(scene.card_type);
+    const selectedLayout = layouts?.get(scene.layout_template);
+    if (scene.layout_template && !selectedLayout) {
       collectedErrors.push(`${breakdownPath}: ${sceneLabel} layout_template ${scene.layout_template} is not registered for ${themeRecord.id}.${scene.card_type}.`);
+    }
+    if (isSchemaV2 && scene.layout_mode && selectedLayout && selectedLayout.layout_mode !== scene.layout_mode) {
+      collectedErrors.push(`${breakdownPath}: ${sceneLabel} layout_mode ${scene.layout_mode} does not match ${scene.layout_template} (${selectedLayout.layout_mode}).`);
     }
 
     if (scene.background_preset && !backgroundIds.has(scene.background_preset)) {
@@ -376,6 +442,10 @@ function validateBreakdown(breakdownPath, themes, collectedErrors, collectedWarn
     if (scene.source_excerpt && scene.source_excerpt.length < 12) {
       collectedErrors.push(`${breakdownPath}: ${sceneLabel} source_excerpt is too short to audit.`);
     }
+
+    if (scene.card_type === "image_evidence") {
+      validateImageEvidenceScene(block, projectDir, breakdownPath, sceneLabel, collectedErrors);
+    }
   });
 
   if (bodyBlocks.length > 1 && narrations.size === 1) {
@@ -387,6 +457,40 @@ function validateBreakdown(breakdownPath, themes, collectedErrors, collectedWarn
   }
 
   validateNarrationScript(text, bodyBlocks.length, breakdownPath, collectedErrors);
+}
+
+function validateImageEvidenceScene(block, projectDir, breakdownPath, sceneLabel, collectedErrors) {
+  const payload = Object.fromEntries(
+    IMAGE_EVIDENCE_FIELDS.map((field) => [field, readNestedScalar(block, "visual_payload", field)])
+  );
+
+  for (const field of IMAGE_EVIDENCE_FIELDS) {
+    if (!payload[field]) {
+      collectedErrors.push(`${breakdownPath}: ${sceneLabel} missing visual_payload.${field}.`);
+    }
+  }
+
+  const imagePathCount = countNestedKey(block, "visual_payload", "image_path");
+  if (imagePathCount !== 1 || readNestedScalar(block, "visual_payload", "images")) {
+    collectedErrors.push(`${breakdownPath}: ${sceneLabel} image_evidence must contain exactly one main image_path.`);
+  }
+
+  const imagePath = payload.image_path;
+  if (!imagePath) return;
+
+  const isLocalSourceImage =
+    imagePath.startsWith("assets/source-media/") &&
+    !imagePath.includes("..") &&
+    !path.isAbsolute(imagePath) &&
+    !/^(?:https?:|data:|\/\/)/i.test(imagePath);
+  if (!isLocalSourceImage) {
+    collectedErrors.push(`${breakdownPath}: ${sceneLabel} image_path must reference a local assets/source-media/ resource.`);
+    return;
+  }
+
+  if (!fs.existsSync(path.resolve(projectDir, imagePath))) {
+    collectedErrors.push(`${breakdownPath}: ${sceneLabel} image_path resource not found: ${imagePath}.`);
+  }
 }
 
 function validateIndexHtml(indexPath, collectedErrors) {
@@ -606,6 +710,42 @@ function readScalar(text, key) {
     if (match) return cleanYamlScalar(match[1]);
   }
   return null;
+}
+
+function readNestedScalar(block, parentKey, key) {
+  let insideParent = false;
+
+  for (const line of block.split(/\r?\n/)) {
+    const topLevel = line.match(/^([A-Za-z0-9_]+):/);
+    if (topLevel) {
+      insideParent = topLevel[1] === parentKey;
+      continue;
+    }
+    if (!insideParent) continue;
+
+    const match = line.match(new RegExp(`^\\s+${escapeRegExp(key)}:\\s*(.+?)\\s*$`));
+    if (match) return cleanYamlScalar(match[1]);
+  }
+
+  return null;
+}
+
+function countNestedKey(block, parentKey, key) {
+  let insideParent = false;
+  let count = 0;
+
+  for (const line of block.split(/\r?\n/)) {
+    const topLevel = line.match(/^([A-Za-z0-9_]+):/);
+    if (topLevel) {
+      insideParent = topLevel[1] === parentKey;
+      continue;
+    }
+    if (insideParent && new RegExp(`^\\s+${escapeRegExp(key)}:`).test(line)) {
+      count += 1;
+    }
+  }
+
+  return count;
 }
 
 function cleanYamlScalar(value) {

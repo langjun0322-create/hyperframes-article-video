@@ -104,12 +104,14 @@
       {
         "id": "clear-code.hook.split-hero",
         "component_class": "cc-layout-hook",
+        "layout_mode": "open_title",
         "best_for": "large serif headline with right-side line diagram and bottom nav",
         "uses": ["headline", "subtitle", "chips"]
       },
       {
         "id": "clear-code.hook.centered-manifesto",
         "component_class": "cc-layout-centered",
+        "layout_mode": "open_title",
         "best_for": "short thesis and three value cards",
         "uses": ["headline", "subtitle", "items"]
       }
@@ -118,14 +120,23 @@
       {
         "id": "clear-code.summary.card-stack",
         "component_class": "cc-layout-summary",
+        "layout_mode": "structured_cards",
         "best_for": "main explanation card plus supporting focus card",
         "uses": ["claim", "evidence", "proof_chips"]
+      },
+      {
+        "id": "clear-code.summary.open-title",
+        "component_class": "cc-layout-centered",
+        "layout_mode": "open_title",
+        "best_for": "one direct explanatory point without a card frame",
+        "uses": ["claim", "evidence"]
       }
     ],
     "key_points": [
       {
         "id": "clear-code.key_points.three-panel",
         "component_class": "cc-layout-three-panel",
+        "layout_mode": "structured_cards",
         "best_for": "three practical takeaways with icons",
         "uses": ["items"]
       }
@@ -134,6 +145,7 @@
       {
         "id": "clear-code.steps.workflow-cards",
         "component_class": "cc-layout-steps",
+        "layout_mode": "structured_cards",
         "best_for": "three or four workflow steps connected by arrows",
         "uses": ["steps"]
       }
@@ -142,6 +154,7 @@
       {
         "id": "clear-code.metrics.stat-strip",
         "component_class": "cc-layout-metrics",
+        "layout_mode": "metric_board",
         "best_for": "numbers, labels, and proof points in a horizontal strip",
         "uses": ["metrics"]
       }
@@ -150,6 +163,7 @@
       {
         "id": "clear-code.code_log.note-console",
         "component_class": "cc-layout-code",
+        "layout_mode": "terminal_panel",
         "best_for": "commands and config strings in a calm note card",
         "uses": ["entries"]
       }
@@ -158,6 +172,7 @@
       {
         "id": "clear-code.architecture.tool-map",
         "component_class": "cc-layout-architecture",
+        "layout_mode": "diagram_flow",
         "best_for": "tool layers, relationships, and simple system diagrams",
         "uses": ["nodes", "links"]
       }
@@ -166,6 +181,7 @@
       {
         "id": "clear-code.warning.focus-note",
         "component_class": "cc-layout-warning",
+        "layout_mode": "structured_cards",
         "best_for": "risk, caveat, and resolution note",
         "uses": ["problem", "fix", "risk_level"]
       }
@@ -174,6 +190,7 @@
       {
         "id": "clear-code.quote.side-quote",
         "component_class": "cc-layout-quote",
+        "layout_mode": "quote_focus",
         "best_for": "quote card paired with short explanation",
         "uses": ["quote", "source", "context"]
       }
@@ -182,6 +199,7 @@
       {
         "id": "clear-code.comparison.two-column",
         "component_class": "cc-layout-comparison",
+        "layout_mode": "comparison_board",
         "best_for": "before and after comparison with criteria",
         "uses": ["left", "right", "criteria"]
       }
@@ -190,14 +208,38 @@
       {
         "id": "clear-code.conclusion.action-card",
         "component_class": "cc-layout-conclusion",
+        "layout_mode": "structured_cards",
         "best_for": "final action, reason, and CTA",
         "uses": ["action", "reason", "compatibility", "command"]
+      },
+      {
+        "id": "clear-code.conclusion.open-title",
+        "component_class": "cc-layout-centered",
+        "layout_mode": "open_title",
+        "best_for": "short closing takeaway without a card frame",
+        "uses": ["action", "reason"]
+      }
+    ],
+    "image_evidence": [
+      {
+        "id": "clear-code.image_evidence.media-focus",
+        "component_class": "cc-layout-media-focus",
+        "layout_mode": "media_focus",
+        "best_for": "one source image in a clean document frame",
+        "uses": ["image_path", "alt", "caption", "why_relevant", "source_section"]
+      },
+      {
+        "id": "clear-code.image_evidence.split-media-text",
+        "component_class": "cc-layout-split-media",
+        "layout_mode": "split_media_text",
+        "best_for": "one source image with a concise explanation rail",
+        "uses": ["image_path", "alt", "caption", "why_relevant", "source_section"]
       }
     ]
   },
   "card_templates": {
     "hook": { "required_payload": ["headline", "subtitle"], "optional_payload": ["chips"], "component_class": "cc-card-hook", "layout_templates": ["clear-code.hook.split-hero", "clear-code.hook.centered-manifesto"] },
-    "summary": { "required_payload": ["claim", "evidence"], "optional_payload": ["proof_chips"], "component_class": "cc-card-summary", "layout_templates": ["clear-code.summary.card-stack"] },
+    "summary": { "required_payload": ["claim", "evidence"], "optional_payload": ["proof_chips"], "component_class": "cc-card-summary", "layout_templates": ["clear-code.summary.card-stack", "clear-code.summary.open-title"] },
     "key_points": { "required_payload": ["items"], "constraints": { "min_items": 3, "max_items": 5, "item_fields": ["title", "detail"] }, "component_class": "cc-card-key-points", "layout_templates": ["clear-code.key_points.three-panel"] },
     "steps": { "required_payload": ["steps"], "constraints": { "min_items": 2, "item_fields": ["label", "action", "detail"] }, "component_class": "cc-card-steps", "layout_templates": ["clear-code.steps.workflow-cards"] },
     "metrics": { "required_payload": ["metrics"], "constraints": { "min_items": 1, "item_fields": ["value", "label"] }, "component_class": "cc-card-metrics", "layout_templates": ["clear-code.metrics.stat-strip"] },
@@ -206,7 +248,8 @@
     "warning": { "required_payload": ["problem", "fix"], "optional_payload": ["risk_level"], "component_class": "cc-card-warning", "layout_templates": ["clear-code.warning.focus-note"] },
     "quote": { "required_payload": ["quote", "source"], "optional_payload": ["context"], "component_class": "cc-card-quote", "layout_templates": ["clear-code.quote.side-quote"] },
     "comparison": { "required_payload": ["left", "right", "criteria"], "component_class": "cc-card-comparison", "layout_templates": ["clear-code.comparison.two-column"] },
-    "conclusion": { "required_payload": ["action", "reason"], "optional_payload": ["compatibility", "command"], "component_class": "cc-card-conclusion", "layout_templates": ["clear-code.conclusion.action-card"] }
+    "conclusion": { "required_payload": ["action", "reason"], "optional_payload": ["compatibility", "command"], "component_class": "cc-card-conclusion", "layout_templates": ["clear-code.conclusion.action-card", "clear-code.conclusion.open-title"] },
+    "image_evidence": { "required_payload": ["image_id", "image_path", "alt", "caption", "why_relevant", "source_section"], "component_class": "cc-card-image-evidence", "layout_templates": ["clear-code.image_evidence.media-focus", "clear-code.image_evidence.split-media-text"] }
   },
   "animation_map": {
     "hook": "clear_hero_reveal",
@@ -219,7 +262,8 @@
     "warning": "focus_note_pop",
     "quote": "quote_slide_focus",
     "comparison": "two_column_compare",
-    "conclusion": "cta_settle"
+    "conclusion": "cta_settle",
+    "image_evidence": "source_image_reveal"
   },
   "branding_components": {
     "logo_intro": "themes/clear-code/components/logo-intro.html",

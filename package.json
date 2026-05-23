@@ -6,6 +6,7 @@
     "setup": "node scripts/setup-first-run.mjs",
     "check:config": "node scripts/setup-first-run.mjs --check",
     "test:setup": "node --test scripts/setup-first-run.test.mjs",
+    "test:validation": "node --test scripts/validate-generation-logic.test.mjs",
     "validate:themes": "node scripts/validate-generation-logic.mjs --themes-only"
   }
 }

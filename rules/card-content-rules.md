@@ -1,8 +1,8 @@
 # Card Content Rules
 
-Short narration does not mean sparse visuals. Every article body scene needs a card with enough source-grounded information to feel intentionally designed.
+Short narration does not mean sparse visuals. Every article body scene needs a complete source-grounded visual composition, but it does not need a visible card container.
 
-Cards should not all share one layout. Match the information shape:
+Scenes should not all share one layout. Match the information shape:
 
 - Use a hero + tilted proof chips for a release hook.
 - Use a two-column proof board for summary scenes.
@@ -10,6 +10,7 @@ Cards should not all share one layout. Match the information shape:
 - Use metric walls for numbers.
 - Use terminal shells for code and errors.
 - Use node flows for architecture.
+- Use one source image plus caption and evidence notes in `media_focus` or `split_media_text` for image evidence.
 - Use confirmation rings or CTA panels for conclusions.
 
 Themes decide how much content is open layout versus wrapped in cards. `folk-frequency` and `soft-signal` may place titles and short labels directly on the background safe area; use cards only for grouped information. `tech-signal` and `clear-code` can use stronger panels, but the visible text and payload must still come from the article breakdown, not from theme demo copy.
@@ -23,6 +24,8 @@ Each `visual_payload` must include the fields required by its card template in `
 Use `visual_text` for the screen's human-readable copy: scene headline, short subtitle, labels, chip text, and card section names. Use `visual_payload` for structured content that templates render: item arrays, metrics, commands, before/after rows, nodes, and links. Do not make `visual_text` a duplicate of `narration`; the spoken line can be compact while the screen carries richer evidence.
 
 Keep text from the article when it is a technical string, number, command, error, provider, channel, or product name. Summarize prose only when needed for fit.
+
+Source images can be visible card content when they are evidence. Use only images that explain the article: screenshots, charts, diagrams, product UI, workflow images, maps, and before/after visuals. Do not use logos, avatars, ads, decorative dividers, social share images, recommendation thumbnails, or generic hero art unless the article specifically discusses them.
 
 ## Type Rules
 
@@ -73,6 +76,16 @@ Keep text from the article when it is a technical string, number, command, error
 - Show the failure mode and the fix.
 - Use warning styling, but keep the tone precise.
 
+### `image_evidence`
+
+- Show exactly one source image as the main evidence.
+- Include a concise headline that says what the viewer should notice.
+- Include a factual caption; do not use the image as decoration.
+- Include `why_relevant` in `visual_payload` so the generator knows why this image deserves a scene.
+- Include `source_section` or equivalent source location.
+- Use local project paths in final HTML. If the source was a Web Clipper Markdown note with local images, copy the chosen image into `assets/source-media/` when needed.
+- Keep the image inside the registered media layout. Do not turn it into a theme background or full-scene wallpaper.
+
 ### `conclusion`
 
 - Show the action the viewer should take.
@@ -83,9 +96,11 @@ Keep text from the article when it is a technical string, number, command, error
 
 Before writing HTML, confirm:
 
-- No body card is title-only.
+- No body scene is visually empty or title-only unless it intentionally uses `open_title` for a short thesis or ending.
 - Any scene with a number displays the number.
 - Any scene about code/config displays the exact technical string.
 - Any `key_points` scene has at least 3 real items.
+- Any `image_evidence` scene has one main image, an alt description, a caption, and a relevance note.
+- Source images are local and resolvable before they are used in HTML.
 - Text volume fits the selected card template.
 - Long headlines use the theme's compact title or lower-body layout rule so cards never overlap the title or subtitle.

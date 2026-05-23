@@ -2,24 +2,29 @@
 
 `article-breakdown.md` is the required analysis and generation prompt for every article video project. It is not a scratch file. Keep it in the output project so the article decisions, scene choices, and final video can be audited together.
 
+Newly generated documents must declare `breakdown_schema: 2` immediately after `# Article Breakdown`. Existing documents without this field remain legacy-compatible.
+
 ## Purpose
 
 The document must answer the full video plan in one place:
 
+- what source was read: Web Clipper Markdown, normal Markdown, or URL
 - what the article is saying
-- why it becomes this many scenes
+- what URL content was normalized when the source was a link
+- which source images are useful evidence
+- how the article's authored sections map to video scenes
 - what each scene says aloud
 - what each scene shows on screen
 - which theme layout, background, and animation each scene uses
 - which source excerpt supports each scene
 
-Do not create a separate "full article analysis" document. The breakdown document is the analysis.
+Do not create a separate "full article analysis" document. The breakdown document is the analysis. Do not require a separate `source.md`; Web Clipper Markdown and normal Markdown are source articles directly, and URL summaries live in this document.
 
 ## Required Sections
 
 Use this exact section order:
 
-1. `# Article Breakdown`
+1. `# Article Breakdown` followed by `breakdown_schema: 2`
 2. `## Source`
 3. `## Article Profile`
 4. `## Style Selection`
@@ -29,19 +34,51 @@ Use this exact section order:
 8. `## Narration Script`
 9. `## Build Notes`
 
+## Source
+
+Record the source before analysis. Use concise fields, then add the normalized source material or source note summary needed to audit the scenes.
+
+Include these fields when available:
+
+- `input_type`: `obsidian_web_clipper_markdown`, `markdown`, or `url`.
+- `source_path`: local Markdown path when the input is a file.
+- `source_url`: original URL from the user, frontmatter, Web Clipper metadata, or page source.
+- `web_clipper`: `true` when the Markdown appears to be an Obsidian Web Clipper note.
+- `title`
+- `author`
+- `published_at`
+- `captured_at`
+- `extraction_notes`: missing content, login gates, paywalls, media download limits, or other reliability notes.
+
+For Web Clipper Markdown, keep the note's existing frontmatter, source fields, clipped headings, image links, highlights, quotes, and body structure as the source article. Do not require a fixed Web Clipper template.
+
+For URL input, include a `### Formatted Source Article` subsection that summarizes the readable page content into article form. Remove navigation, ads, comments, cookie banners, related links, and repeated page furniture. Preserve technical strings, numbers, names, dates, commands, and links that later scenes may cite.
+
+If useful source images exist, include a `### Adopted Source Images` subsection. Each adopted image needs:
+
+```yaml
+image_id: image-01
+path_or_url: "assets/source-media/image-01.png"
+caption: "Short factual caption."
+why_relevant: "What article point this image supports."
+source_section: "Heading, paragraph, figure, or page area where it appeared."
+```
+
+Also list rejected media briefly when the distinction matters, such as logos, avatars, ads, decorative art, social share images, and recommendation thumbnails.
+
 ## Article Profile
 
 Include these fields:
 
 - `title`
 - `article_type`
-- `core_claim`
+- `hook_candidate`
 - `target_audience`
 - `content_rhythm`
 - `primary_evidence`
 - `viewer_takeaway`
 
-Use prose after the fields only when it clarifies why the video should be cut a certain way.
+Use prose after the fields only when it clarifies the article's existing structure. Do not rewrite the article into a new thesis if the source is already carefully arranged.
 
 ## Style Selection
 
@@ -62,7 +99,11 @@ For every theme, `background_preset` is a deterministic preset, not a free-form 
 
 ## Scene Count Reasoning
 
-Explain why the article needs the chosen number of body scenes. The reason should reference the article's shape, such as release hook, comparison table, feature groups, metrics, command snippets, architecture relationships, risks, or upgrade steps.
+Explain how the chosen body scenes follow the article's authored structure. Reference original headings, paragraph groups, tables, images, code blocks, and section order.
+
+Scene count follows the source structure, not a fixed target. Use as many body scenes as the article naturally needs. Merge adjacent short sections when they express the same idea. Split a long section when it contains separate visual units, such as text plus a table, a step list plus code, or a paragraph plus an explanatory image.
+
+Only the opening video hook may compress the article's overall promise. After the hook, preserve the source order. Do not move evidence across sections unless the user explicitly asks for a rewritten video narrative.
 
 Logo intro and Follow outro do not count as body scenes.
 
@@ -94,9 +135,9 @@ Each body scene must be written as a Markdown subsection with a YAML block. Use 
 ```yaml
 scene_id: scene-01
 scene_role: hook
-source_section: "article title and opening"
-core_message: "The key idea this scene communicates."
-narration: "2-3 natural short spoken sentences that introduce the headline, explain the core conclusion, and mention 1-2 key card points."
+source_section: "article title and opening, in original order"
+core_message: "The key idea this source section communicates."
+narration: "2-3 natural short spoken sentences that summarize this source section without pulling in later evidence."
 visual_text:
   headline: "Text shown prominently on screen."
   supporting_copy: "Short on-screen explanation."
@@ -105,6 +146,7 @@ visual_text:
 visual_payload:
   items: []
 card_type: hook
+layout_mode: open_title
 layout_template: tech-signal.hook.orbital-proof-chips
 background_preset: orbital_signal
 animation: orbital_thesis_reveal
@@ -114,37 +156,71 @@ source_excerpt: "Exact or lightly trimmed article evidence."
 
 `narration` and `visual_text` must not be duplicates. Narration is what the voice says. `visual_text` and `visual_payload` are what the viewer reads.
 
+For an image evidence scene, use this `visual_payload` shape:
+
+```yaml
+visual_payload:
+  image_id: image-01
+  image_path: assets/source-media/image-01.png
+  alt: "Accessible description of the source image."
+  caption: "Short factual caption shown near the image."
+  why_relevant: "Why this image supports the scene's core message."
+  source_section: "Where the image appeared in the source article."
+card_type: image_evidence
+layout_mode: media_focus
+layout_template: tech-signal.image_evidence.media-focus
+background_preset: dark_grid
+animation: source_image_reveal
+```
+
+Use exactly one main image per `image_evidence` scene. If multiple source images matter, create separate scenes or choose the one that carries the clearest evidence.
+
 ## Field Rules
 
-- `scene_id`: Use stable sequential IDs, such as `scene-01`.
-- `scene_role`: Use a semantic role such as hook, claim, proof, comparison, evidence, command, architecture, steps, or conclusion.
-- `source_section`: Name the article section or table that supports the scene.
-- `core_message`: One sentence explaining why this scene exists.
-- `narration`: 2-3 short spoken sentences. Cover the scene's headline meaning, core conclusion, and 1-2 key visual points. Keep code, config, and long lists out of narration.
+- `scene_id`: Use stable sequential IDs, such as `scene-01`, in the same order as the source article after the opening hook.
+- `scene_role`: Use a semantic role such as hook, section_summary, list, comparison, evidence, command, architecture, steps, image_evidence, warning, or conclusion.
+- `source_section`: Name the original article heading, paragraph group, table, code block, quote, or image position that supports the scene. Include enough wording to show its original place in the article.
+- `core_message`: One sentence explaining what this source section contributes to the article.
+- `narration`: 2-3 short spoken sentences. Summarize the current source section and mention 1-2 key visual points from that section. Keep code, config, and long lists out of narration. Do not pull in later sections.
 - `visual_text`: Human-readable on-screen copy. It may include labels, chips, panel titles, and section names.
 - `visual_payload`: Structured data used by the selected card. It must satisfy `theme.json.card_templates[card_type]`.
-- `card_type`: Must exist in `theme.json.card_templates`.
-- `layout_template`: Must exist in `theme.json.layout_templates[card_type]`.
+- `card_type`: Must exist in `theme.json.card_templates`. It identifies the information type, not whether the scene must show a card-shaped container.
+- `layout_mode`: Required in schema v2. It identifies the composition type and must match the selected theme layout.
+- `layout_template`: Must exist in `theme.json.layout_templates[card_type]` and declare the selected `layout_mode`.
 - `background_preset`: Must exist in `theme.json.background_presets`.
 - `animation`: Must match `theme.json.animation_map[card_type]`.
 - `duration_target`: Estimate from scene complexity and narration length.
 - `source_excerpt`: Keep technical strings, commands, numbers, and product names exact.
+  For `image_evidence`, `source_excerpt` should cite the adopted image record plus the nearby article text that explains it.
 
 ## Card Type Mapping
 
 Choose card types from the article evidence:
 
-- `hook`: article title, thesis, release framing, strong opening.
-- `summary`: central claim or high-level conclusion.
-- `comparison`: before/after table, old behavior vs new behavior.
-- `key_points`: 3-5 peer highlights or fix groups.
-- `metrics`: numbers, counts, timings, retries, ratios, measurable proof.
-- `code_log`: commands, config keys, errors, status enums, API params.
-- `architecture`: system flow, product chain, provider/channel relationships.
-- `steps`: setup, upgrade, checklist, operational order.
-- `warning`: failure mode, risk, constraint, false alarm, validation issue.
-- `quote`: short source quote that carries narrative weight.
-- `conclusion`: final recommendation and viewer action.
+- `hook`: article title, opening, release framing, strongest contrast, or clearest promise.
+- `summary`: the current source section mainly states or explains one idea.
+- `comparison`: the current source section contrasts before/after or old/new behavior.
+- `key_points`: the current source section has 3-5 peer highlights or fix groups.
+- `metrics`: the current source section contains numbers, counts, timings, retries, ratios, or measurable proof.
+- `code_log`: the current source section contains commands, config keys, errors, status enums, or API params.
+- `architecture`: the current source section explains system flow, product chain, provider/channel relationships, or module relationships.
+- `steps`: the current source section is setup, upgrade, checklist, or operational order.
+- `warning`: the current source section explains a failure mode, risk, constraint, false alarm, or validation issue.
+- `quote`: the current source section contains a short quote that carries narrative weight.
+- `image_evidence`: one source screenshot, chart, diagram, product image, or other information-bearing image is the clearest evidence for the current source section.
+- `conclusion`: the article's final recommendation, takeaway, or viewer action.
+
+## Layout Mode Mapping
+
+- `open_title`: a short headline, thesis, or ending displayed without a prominent card wrapper.
+- `structured_cards`: several points, steps, or explanatory modules.
+- `media_focus`: one source image is the central evidence with compact captioning.
+- `split_media_text`: one source image shares the scene with interpretation text.
+- `metric_board`: measurements, results, or numeric evidence.
+- `terminal_panel`: commands, logs, configurations, or technical strings.
+- `diagram_flow`: systems, architecture, dependencies, or ordered relationships.
+- `comparison_board`: explicit before/after or left/right evidence.
+- `quote_focus`: a quotation or statement is the primary evidence.
 
 ## Narration Script
 
@@ -162,6 +238,7 @@ Include any implementation notes needed to generate the video from the breakdown
   Do not add artificial scene gaps for timing convenience; call out any deliberate pause explicitly.
 - Any self-contained packaging request.
 - Any article media that should or should not be used.
+- Any source image copied into `assets/source-media/`, including the original Markdown path or URL.
 - Any deliberate omission from the article and why.
 
 ## Validation Checklist
@@ -169,9 +246,16 @@ Include any implementation notes needed to generate the video from the breakdown
 Before generating HTML, confirm:
 
 - The document includes article analysis and scene breakdown together.
+- `## Source` records the input type, source path or URL, and Web Clipper status when relevant.
+- New breakdowns declare `breakdown_schema: 2`.
+- URL inputs include enough formatted source material to audit the scene plan.
+- Adopted source images have captions, relevance notes, and source sections.
+- Body scenes preserve the source order after the opening hook.
+- Scene count follows source structure; any merge or split is explained in Scene Count Reasoning.
 - Every scene has the required fields.
-- Every body scene is supported by `source_excerpt`.
-- Every scene chooses `card_type`, `layout_template`, `background_preset`, and `animation`.
+- Every body scene is supported by `source_excerpt` from its own source section, not from a later unrelated section.
+- Every schema v2 scene chooses `card_type`, `layout_mode`, `layout_template`, `background_preset`, and `animation`, and its template mode matches its scene mode.
+- `image_evidence` scenes use one main source image, not a collage, and the image is treated as evidence rather than a background.
 - `visual_text` and `visual_payload` are richer than narration.
 - The final video timeline uses audio-derived `scene_timecodes`, not only `duration_target`.
 - Chinese narration is generated as one continuous speech track by default; `scene_timecodes[].voice_start` should be adjacent to the previous `voice_end` unless a pause was intentionally requested.

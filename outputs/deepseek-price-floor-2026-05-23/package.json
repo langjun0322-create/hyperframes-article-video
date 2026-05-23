@@ -1,0 +1,10 @@
+{
+  "name": "deepseek-price-floor-video",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "lint": "hyperframes lint",
+    "inspect": "hyperframes inspect --samples 15",
+    "render": "hyperframes render --quality draft -o renders/final.mp4"
+  }
+}
